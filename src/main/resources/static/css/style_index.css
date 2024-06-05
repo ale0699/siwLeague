@@ -4,7 +4,7 @@ body{
 
 header {
     height: 700px;
-    background-image: url(/static/images/navbar.png);
+    background-image: url(images/navbar.png);
     background-size: cover;
     background-position: center; /* Centra l'immagine */
 }
