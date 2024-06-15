@@ -22,7 +22,7 @@ public class Squadra {
 	private String logo;
 	
 	@ManyToOne
-	private Squadra teamManager;
+	private GestoreSquadra teamManager;
 	
 	@ManyToOne
 	private Torneo torneo;
@@ -60,11 +60,11 @@ public class Squadra {
 		this.logo = logo;
 	}
 
-	public Squadra getTeamManager() {
+	public GestoreSquadra getTeamManager() {
 		return teamManager;
 	}
 
-	public void setTeamManager(Squadra teamManager) {
+	public void setTeamManager(GestoreSquadra teamManager) {
 		this.teamManager = teamManager;
 	}
 
