@@ -1,0 +1,56 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar {   
+    background-color: #486684; /* Colore di sfondo con opacità */
+}
+
+.container-fluid div{
+    text-align: center;
+    flex: 1;
+}
+
+.user-info{
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-info a{
+	
+	color: white;
+}
+
+section{
+    padding-top: 150px;
+}
+
+footer{
+
+    margin-top: 20px;
+    padding-top: 10px;
+    background-color: #486684;
+    color: white;
+}
+
+.upper-row{
+
+    border-bottom: 2px solid white;
+}
+
+.footer-nav{
+
+    list-style: none;
+}
+
+.item-footer-nav{
+
+    padding: 5px;
+}
+
+.item-footer-nav a{
+
+    text-decoration: none;
+    color: white;
+}
