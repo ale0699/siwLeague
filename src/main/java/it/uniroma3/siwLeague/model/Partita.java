@@ -33,8 +33,8 @@ public class Partita {
 	@ManyToOne
 	private Squadra squadraFuoriCasa;
 	
-	@ManyToMany(mappedBy = "partiteGol")
-	private List<Giocatore> margatori;
+	@ManyToMany
+	private List<Giocatore> marcatori;
 
 	public Long getIdPartita() {
 		return idPartita;
@@ -109,16 +109,16 @@ public class Partita {
 	}
 
 	public List<Giocatore> getMargatori() {
-		return margatori;
+		return marcatori;
 	}
 
 	public void setMargatori(List<Giocatore> margatori) {
-		this.margatori = margatori;
+		this.marcatori = margatori;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(campo, dataEOra, golSquadraCasa, golSquadraFuoriCasa, idPartita, margatori, numeroGiornata,
+		return Objects.hash(campo, dataEOra, golSquadraCasa, golSquadraFuoriCasa, idPartita, marcatori, numeroGiornata,
 				squadraCasa, squadraFuoriCasa, torneo);
 	}
 
@@ -133,7 +133,7 @@ public class Partita {
 		Partita other = (Partita) obj;
 		return Objects.equals(campo, other.campo) && Objects.equals(dataEOra, other.dataEOra)
 				&& golSquadraCasa == other.golSquadraCasa && golSquadraFuoriCasa == other.golSquadraFuoriCasa
-				&& Objects.equals(idPartita, other.idPartita) && Objects.equals(margatori, other.margatori)
+				&& Objects.equals(idPartita, other.idPartita) && Objects.equals(marcatori, other.marcatori)
 				&& numeroGiornata == other.numeroGiornata && Objects.equals(squadraCasa, other.squadraCasa)
 				&& Objects.equals(squadraFuoriCasa, other.squadraFuoriCasa) && Objects.equals(torneo, other.torneo);
 	}
@@ -143,7 +143,7 @@ public class Partita {
 		return "Partita [idPartita=" + idPartita + ", numeroGiornata=" + numeroGiornata + ", dataEOra=" + dataEOra
 				+ ", campo=" + campo + ", golSquadraCasa=" + golSquadraCasa + ", golSquadraFuoriCasa="
 				+ golSquadraFuoriCasa + ", torneo=" + torneo + ", squadraCasa=" + squadraCasa + ", squadraFuoriCasa="
-				+ squadraFuoriCasa + ", margatori=" + margatori + "]";
+				+ squadraFuoriCasa + ", margatori=" + marcatori + "]";
 	}
 	
 }
