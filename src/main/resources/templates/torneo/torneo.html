@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Homepage</title>
+    <title th:text="${torneo.nome}"></title>
     <link href="/css/style_index.css?version7" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -16,7 +16,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong fixed-top">
                 <div class="container-fluid">
                     <div class="logo-image">
-                        <a class="navbar-brand" href="/">
+                        <a class="navbar-brand" href="#">
                             <img src="/images/logo.png" alt="logo" width="150" height="150">
                         </a>
                     </div>
@@ -30,7 +30,7 @@
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="#">Tornei</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">About</a>
@@ -54,70 +54,41 @@
                 </div>
             </nav>
         </div>
-        <div class="row title-homepage">
-            <h1>Benvenuto su Siw League</h1>
-            <p>Unisciti alla Siw League e porta la tua squadra di calcio a 5 alla gloria! Iscriviti ora per partecipare
-                ai tornei più entusiasmanti della stagione.</p>
-        </div>
     </header>
 
-    <div>
-        <a href="/selectTorneo">Iscrivi la tua squadra</a>
+    <section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Torneo</h1>
+                <p>Nome: <span th:text="${torneo.nome}"></span></p>
+                <p>Descrizione: <span th:text="${torneo.descrizione}"></span></p>
+                <p>Data Inizio: <span th:text="${torneo.dataInizio}"></span></p>
+                <p>Data Fine: <span th:text="${torneo.dataFine}"></span></p>
+                <p>Numero Massimo Squadre Partecipanti: <span th:text="${torneo.numeroMassimoSquadrePartecipanti}"></span></p>
+                <p>Numero Massimo Giocatori Iscrivibili: <span th:text="${torneo.numeroMassimoGiocatoriIscrivibili}"></span></p>
+                <p>Montepremi: <span th:text="${torneo.montepremi}"></span></p>
+                <p>Iscrizione in corso: <span th:text="${torneo.iscrizioneInCorso}"></span></p>
+            </div>
+        </div>
     </div>
 
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>Squadre Iscritte</h2>
+                    <ul>
+                        <li th:each="squadra : ${squadrePartecipanti}">
+                            <a th:href="@{'/squadra/'+${squadra.idSquadra}}" th:text="${squadra.nome}"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Aggiungi questa sezione per il link ai tornei -->
-    <section class="container tournament-section">
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
-        <div class="container">
-            <h2>Iscriviti ai Tornei di Calcio a 5!</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/tornei" class="btn btn-primary">Scopri i Tornei</a>
-        </div>
     </section>
 
     <footer>
@@ -161,6 +132,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
     <script>
         window.onscroll = function () { scrollFunction() };
 

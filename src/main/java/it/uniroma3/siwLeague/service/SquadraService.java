@@ -1,5 +1,7 @@
 package it.uniroma3.siwLeague.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,11 @@ public class SquadraService {
 	public Squadra findSquadraByIdSquadra(Long idSquadra) {
 		
 		return this.squadraRepository.findById(idSquadra).get();
+	}
+	
+	public List<Squadra> findSquadrePartecipantiTorneoByIdTorneo(Long idTorneo){
+		
+		return this.squadraRepository.findByTorneoIdTorneo(idTorneo);
 	}
 	
 	public void save(Squadra squadra) {

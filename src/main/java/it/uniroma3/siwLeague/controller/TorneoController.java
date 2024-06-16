@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import it.uniroma3.siwLeague.service.SquadraService;
 import it.uniroma3.siwLeague.service.TorneoService;
 
 @Controller
@@ -12,6 +14,22 @@ public class TorneoController {
 	
 	@Autowired
 	private TorneoService torneoService;
+	
+	@Autowired
+	private SquadraService squadraService;
+	
+	@GetMapping(value = "/tornei")
+	public String getAllTornei(Model model) {
+		model.addAttribute("tornei", this.torneoService.findAllTornei());
+		return "torneo/tornei.html";
+	}
+	
+	@GetMapping(value = "/torneo/{idTorneo}")
+	public String getTorneo(@PathVariable("idTorneo")Long idTorneo, Model model) {
+		model.addAttribute("squadrePartecipanti", this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo));
+		model.addAttribute("torneo", this.torneoService.getTorneoByIdTorneo(idTorneo));
+		return "torneo/torneo.html";
+	}
 	
 	@GetMapping(value = "/selectTorneo")
 	public String getSelectTorneo(Model model) {
