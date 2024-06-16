@@ -35,7 +35,7 @@ public class SquadraController {
 	public String postAddSquadra(@RequestParam("idTorneo")Long idTorneo, @ModelAttribute Squadra squadra) {
 		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
 		squadra.setTorneo(torneo);
-		this.squadraService.save(squadra);
-		return "redirect:/";
+		this.squadraService.save(squadra); //forse non qua
+		return "redirect:/formAddPlayersSquad/"+squadra.getIdSquadra();
 	}
 }

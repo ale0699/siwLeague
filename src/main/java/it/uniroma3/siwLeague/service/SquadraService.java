@@ -12,6 +12,11 @@ public class SquadraService {
 	@Autowired
 	private SquadraRepository squadraRepository;
 	
+	public Squadra findSquadraByIdSquadra(Long idSquadra) {
+		
+		return this.squadraRepository.findById(idSquadra).get();
+	}
+	
 	public void save(Squadra squadra) {
 		
 		this.squadraRepository.save(squadra);
