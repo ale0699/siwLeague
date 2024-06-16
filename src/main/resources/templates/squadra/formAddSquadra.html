@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Aggiungi Squadra</title>
+    <link href="/css/style_index.css?version7" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong fixed-top">
+                <div class="container-fluid">
+                    <div class="logo-image">
+                        <a class="navbar-brand" href="#">
+                            <img src="/images/logo.png" alt="logo" width="150" height="150">
+                        </a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav container d-flex justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Tornei</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contatti</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div th:if="${userDetails}!=null">
+                        <div class="user-info">
+                            <span>Benvenuto <span th:text="${userDetails.username}"></span></span>
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </div>
+                    <div th:unless="${userDetails}!=null" class="user-info">
+                        <div class="user-info">
+                            <span>Effettua <a href="/login">Login</a></span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section>
+
+        <div class="container d-flex flex-column">
+            <div class="text-center">
+                <h2>Iscrizioni Aperte</h2>
+            </div>
+            <div class="container d-flex justify-content-around">
+                <div th:each="torneo: ${torneiAperteIscrizioni}">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${torneo.nome}"></h5>
+                            <p class="card-text" th:text="${torneo.descrizione}"></p>
+                            <p class="card-text" th:text="${#dates.format(torneo.dataInizio, 'dd-MM-yyyy')}"></p>
+                            <p class="card-text" th:text="${#dates.format(torneo.dataFine, 'dd-MM-yyyy')}"></p>
+                            <p class="card-text" th:text="${torneo.montepremi}"></p>
+                            <a href="#" class="btn btn-primary">Iscriviti!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <h2>Iscrizioni Chiuse</h2>
+            </div>
+            <div class="container d-flex justify-content-around">
+
+                <div th:each="torneo: ${torneiChiuseIscrizioni}">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${torneo.nome}"></h5>
+                            <p class="card-text" th:text="${torneo.descrizione}"></p>
+                            <p class="card-text" th:text="${#dates.format(torneo.dataInizio, 'dd-MM-yyyy')}"></p>
+                            <p class="card-text" th:text="${#dates.format(torneo.dataFine, 'dd-MM-yyyy')}"></p>
+                            <p class="card-text" th:text="${torneo.montepremi}"></p>
+                            <button class="btn btn-primary" disabled>Non più iscrivibile</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    <footer>
+        <div class="container-fluid">
+            <div class="container text-center">
+                <div class="row upper-row align-items-center">
+                    <div class="col">
+                        <img src="/images/logo.png" width="170" height="170">
+                    </div>
+                    <div class="col">
+                        <ul class="footer-nav">
+                            <li class="item-footer-nav">
+                                <a href="/">Homepage</a>
+                            </li>
+                            <li class="item-footer-nav">
+                                <a href="/">Tornei</a>
+                            </li>
+                            <li class="item-footer-nav">
+                                <a href="/">About</a>
+                            </li>
+                            <li class="item-footer-nav">
+                                <a href="/">Contatti</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row lower-row align-items-center">
+                    <div class="col">
+                        <span>&copy; 2024 Siw League</span>
+                    </div>
+                    <div class="col">
+                        <img src="/images/facebook.png">
+                        <img src="/images/instagram.png">
+                        <img src="/images/youtube.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 430 || document.documentElement.scrollTop > 430) {
+                document.querySelector(".navbar").classList.add("scrolled");
+            } else {
+                document.querySelector(".navbar").classList.remove("scrolled");
+            }
+        }
+    </script>
+</body>
+
+</html>

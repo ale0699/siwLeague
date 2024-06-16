@@ -19,12 +19,13 @@ public class Torneo {
 	private Long idTorneo;
 	@NotBlank
 	private String nome;
+	private String descrizione;
 	private LocalDate dataInizio;
 	private LocalDate dataFine;
-	private int numeroSquadrePartecipanti;
+	private int numeroMassimoSquadrePartecipanti;
 	private int numeroMassimoGiocatoriIscrivibili;
 	private int montepremi;
-	private boolean inCorso;
+	private boolean iscrizioneInCorso;
 	
 	@OneToMany(mappedBy = "torneo")
 	private List<Squadra> squadreIscritte;
@@ -48,6 +49,14 @@ public class Torneo {
 		this.nome = nome;
 	}
 
+	public String getDescrizione() {
+		return descrizione;
+	}
+
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+
 	public LocalDate getDataInizio() {
 		return dataInizio;
 	}
@@ -64,12 +73,12 @@ public class Torneo {
 		this.dataFine = dataFine;
 	}
 
-	public int getNumeroSquadrePartecipanti() {
-		return numeroSquadrePartecipanti;
+	public int getNumeroMassimoSquadrePartecipanti() {
+		return numeroMassimoSquadrePartecipanti;
 	}
 
-	public void setNumeroSquadrePartecipanti(int numeroSquadrePartecipanti) {
-		this.numeroSquadrePartecipanti = numeroSquadrePartecipanti;
+	public void setNumeroMassimoSquadrePartecipanti(int numeroSquadrePartecipanti) {
+		this.numeroMassimoSquadrePartecipanti = numeroSquadrePartecipanti;
 	}
 
 	public int getNumeroMassimoGiocatoriIscrivibili() {
@@ -88,12 +97,12 @@ public class Torneo {
 		this.montepremi = montepremi;
 	}
 
-	public boolean isInCorso() {
-		return inCorso;
+	public boolean isIscrizioneInCorso() {
+		return iscrizioneInCorso;
 	}
 
-	public void setInCorso(boolean inCorso) {
-		this.inCorso = inCorso;
+	public void setIscrizioneInCorso(boolean inCorso) {
+		this.iscrizioneInCorso = inCorso;
 	}
 
 	public List<Squadra> getSquadreIscritte() {
@@ -114,8 +123,8 @@ public class Torneo {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataFine, dataInizio, idTorneo, inCorso, montepremi, nome,
-				numeroMassimoGiocatoriIscrivibili, numeroSquadrePartecipanti, partiteTorneo, squadreIscritte);
+		return Objects.hash(dataFine, dataInizio, descrizione, idTorneo, iscrizioneInCorso, montepremi, nome,
+				numeroMassimoGiocatoriIscrivibili, numeroMassimoSquadrePartecipanti, partiteTorneo, squadreIscritte);
 	}
 
 	@Override
@@ -128,21 +137,22 @@ public class Torneo {
 			return false;
 		Torneo other = (Torneo) obj;
 		return Objects.equals(dataFine, other.dataFine) && Objects.equals(dataInizio, other.dataInizio)
-				&& Objects.equals(idTorneo, other.idTorneo) && inCorso == other.inCorso
-				&& montepremi == other.montepremi && Objects.equals(nome, other.nome)
+				&& Objects.equals(descrizione, other.descrizione) && Objects.equals(idTorneo, other.idTorneo)
+				&& iscrizioneInCorso == other.iscrizioneInCorso && montepremi == other.montepremi
+				&& Objects.equals(nome, other.nome)
 				&& numeroMassimoGiocatoriIscrivibili == other.numeroMassimoGiocatoriIscrivibili
-				&& numeroSquadrePartecipanti == other.numeroSquadrePartecipanti
+				&& numeroMassimoSquadrePartecipanti == other.numeroMassimoSquadrePartecipanti
 				&& Objects.equals(partiteTorneo, other.partiteTorneo)
 				&& Objects.equals(squadreIscritte, other.squadreIscritte);
 	}
 
 	@Override
 	public String toString() {
-		return "Torneo [idTorneo=" + idTorneo + ", nome=" + nome + ", dataInizio=" + dataInizio + ", dataFine="
-				+ dataFine + ", numeroSquadrePartecipanti=" + numeroSquadrePartecipanti
+		return "Torneo [idTorneo=" + idTorneo + ", nome=" + nome + ", descrizione=" + descrizione + ", dataInizio="
+				+ dataInizio + ", dataFine=" + dataFine + ", numeroSquadrePartecipanti=" + numeroMassimoSquadrePartecipanti
 				+ ", numeroMassimoGiocatoriIscrivibili=" + numeroMassimoGiocatoriIscrivibili + ", montepremi="
-				+ montepremi + ", inCorso=" + inCorso + ", squadreIscritte=" + squadreIscritte + ", partiteTorneo="
-				+ partiteTorneo + "]";
+				+ montepremi + ", iscrizioneInCorso=" + iscrizioneInCorso + ", squadreIscritte=" + squadreIscritte
+				+ ", partiteTorneo=" + partiteTorneo + "]";
 	}
 	
 }
