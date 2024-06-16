@@ -58,42 +58,25 @@
 
     <section>
 
-        <div class="container d-flex flex-column">
-            <div class="text-center">
-                <h2>Iscrizioni Aperte</h2>
-            </div>
-            <div class="container d-flex justify-content-around">
-                <div th:each="torneo: ${torneiAperteIscrizioni}">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${torneo.nome}"></h5>
-                            <p class="card-text" th:text="${torneo.descrizione}"></p>
-                            <p class="card-text" th:text="${torneo.dataInizio}"></p>
-                            <p class="card-text" th:text="${torneo.dataFine}"></p>
-                            <p class="card-text" th:text="${torneo.montepremi}"></p>
-                            <a href="#" class="btn btn-primary">Iscriviti!</a>
-                        </div>
-                    </div>
+        <div class="torneo-informazioni">
+            <h2 th:text="${torneo.nome}"></h2>
+            <p th:text="${torneo.descrizione}"></p>
+            <p th:text="${torneo.dataInizio}"></p>
+            <p th:text="${torneo.dataFine}"></p>
+        </div>
+        <div class="form-addSquadra">
+            <form th:action="@{/addSquadra}" th:object="${squadra}" method="post">
+                <input type="hidden" th:value="${torneo.idTorneo}" name="idTorneo">
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" required>
                 </div>
-            </div>
-            <div class="text-center">
-                <h2>Iscrizioni Chiuse</h2>
-            </div>
-            <div class="container d-flex justify-content-around">
-
-                <div th:each="torneo: ${torneiChiuseIscrizioni}">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${torneo.nome}"></h5>
-                            <p class="card-text" th:text="${torneo.descrizione}"></p>
-                            <p class="card-text" th:text="${torneo.dataInizio}"></p>
-                            <p class="card-text" th:text="${torneo.dataFine}"></p>
-                            <p class="card-text" th:text="${torneo.montepremi}"></p>
-                            <button class="btn btn-primary" disabled>Non più iscrivibile</button>
-                        </div>
-                    </div>
+                <div class="mb-3">
+                    <label for="logo" class="form-label">Logo</label>
+                    <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
                 </div>
-            </div>
+                <button type="submit" class="btn btn-primary">Aggiungi</button>
+            </form>
         </div>
 
     </section>

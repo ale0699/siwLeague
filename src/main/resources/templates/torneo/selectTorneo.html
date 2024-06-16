@@ -68,7 +68,10 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
                             <p class="card-text" th:text="${torneo.descrizione}"></p>
-                            <a href="#" class="btn btn-primary">Iscriviti!</a>
+                            <p class="card-text" th:text="${torneo.dataInizio}"></p>
+                            <p class="card-text" th:text="${torneo.dataFine}"></p>
+                            <p class="card-text" th:text="${torneo.montepremi}"></p>
+                            <a th:href="@{'formAddSquadra/'+${torneo.IdTorneo}}" class="btn btn-primary">Iscriviti!</a>
                         </div>
                     </div>
                 </div>
@@ -83,6 +86,9 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
                             <p class="card-text" th:text="${torneo.descrizione}"></p>
+                            <p class="card-text" th:text="${torneo.dataInizio}"></p>
+                            <p class="card-text" th:text="${torneo.dataFine}"></p>
+                            <p class="card-text" th:text="${torneo.montepremi}"></p>
                             <button class="btn btn-primary" disabled>Non più iscrivibile</button>
                         </div>
                     </div>
