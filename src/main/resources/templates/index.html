@@ -40,9 +40,16 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="user-info">
-                        <span>Effettua <a href="/login">Login</a></span>
-                        <span>Alessandro</span>
+                    <div th:if="${userDetails}!=null">
+                        <div class="user-info">
+                            <span>Benvenuto <span th:text="${userDetails.username}"></span></span>
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </div>
+                    <div th:unless="${userDetails}!=null" class="user-info">
+                        <div class="user-info">
+                            <span>Effettua <a href="/login">Login</a></span>
+                        </div>
                     </div>
                 </div>
             </nav>

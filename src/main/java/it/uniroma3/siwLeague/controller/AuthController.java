@@ -22,7 +22,12 @@ public class AuthController {
 	
 	@GetMapping(value = "/login")
 	public String getLoginPage() {
-		
+		return "login.html";
+	}
+	
+	@GetMapping(value = "/login/error")
+	public String getLoginErrorPage(Model model) {
+		model.addAttribute("error", "Username o password errati");
 		return "login.html";
 	}
 	
@@ -36,6 +41,7 @@ public class AuthController {
 	public String postRegisterPage(@ModelAttribute GestoreSquadra manager, Model model) {
 		
 		//password cifrata
+		manager.getCredenziali().setRuolo("DEFAULT");
 		manager.getCredenziali().setPassword(passwordEncoder.encode(manager.getCredenziali().getPassword()));
 		gestoreSquadraService.save(manager);
 		return "redirect:/";

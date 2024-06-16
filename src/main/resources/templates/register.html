@@ -40,9 +40,16 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="user-info">
-                        <span>Effettua <a href="/login">Login</a></span>
-                        <span>Alessandro</span>
+                    <div th:if="${userDetails}!=null">
+                        <div class="user-info">
+                            <span>Benvenuto <span th:text="${userDetails.username}"></span></span>
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </div>
+                    <div th:unless="${userDetails}!=null" class="user-info">
+                        <div class="user-info">
+                            <span>Effettua <a href="/login">Login</a></span>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -54,11 +61,13 @@
             <form th:action="@{/register}" method="post" th:object="${gestoreSquadra}">
                 <div class="mb-3">
                     <label for="username" class="form-label">Nome utente</label>
-                    <input type="text" class="form-control" id="username" name="username" th:field="${gestoreSquadra.credenziali.username}" required>
+                    <input type="text" class="form-control" id="username" name="username"
+                        th:field="${gestoreSquadra.credenziali.username}" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" th:field="${gestoreSquadra.credenziali.password}" required>
+                    <input type="password" class="form-control" th:field="${gestoreSquadra.credenziali.password}"
+                        required>
                 </div>
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome</label>
@@ -71,7 +80,7 @@
                 <button type="submit" class="btn btn-primary">Registrati</button>
             </form>
             <p>Hai già un account? <a href="/login">Accedi</a></p>
-        </div>    
+        </div>
     </section>
 
 

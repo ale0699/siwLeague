@@ -2,6 +2,10 @@ body{
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.error{
+    color: red;
+}
+
 .navbar {   
     background-color: #486684; /* Colore di sfondo con opacità */
 }
