@@ -38,4 +38,5 @@ public class SquadraController {
 		this.squadraService.save(squadra); //forse non qua
 		return "redirect:/formAddPlayersSquad/"+squadra.getIdSquadra();
 	}
+	
 }

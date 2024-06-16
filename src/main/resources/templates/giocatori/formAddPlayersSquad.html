@@ -61,14 +61,14 @@
         <div class="squadra-informazioni">
             <h2 th:text="${squadra.nome}"></h2>
             <p th:text="${squadra.logo}"></p>
+            <p th:text="'Partecipa al torneo: ' + ${squadra.torneo.nome}"></p>
         </div>
         <div class="rosa-dettagli">
-            <div th:if="${giocatori != null && !giocatori.isEmpty()}"></div>
+            <div th:if="${giocatori != null && !giocatori.isEmpty()}">
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Nome</th>
-                            <th scope="col">Cognome</th>
                             <th scope="col">Numero Maglia</th>
                             <th scope="col">Data di nascita</th>
                             <th scope="col">Azioni</th>
@@ -80,7 +80,8 @@
                             <td th:text="${giocatore.numeroMaglia}"></td>
                             <td th:text="${giocatore.dataNascita}"></td>
                             <td>
-                                <a href="/deleteGiocatore?idGiocatore=${giocatore.idGiocatore}&idSquadra=${squadra.idSquadra}">Elimina</a>
+                                <a
+                                    href="/deleteGiocatore?idGiocatore=${giocatore.idGiocatore}&idSquadra=${squadra.idSquadra}">Elimina</a>
                             </td>
                         </tr>
                     </tbody>
@@ -88,8 +89,33 @@
             </div>
         </div>
         <h2>Aggiungi Giocatori</h2>
+        <div class="form-addGiocatore">
+            <form th:action="@{/addPlayersSquad}" th:object="${giocatore}" method="post">
+                <input type="hidden" th:value="${squadra.idSquadra}" name="idSquadra">
+                
+                <div class="mb-3">
+                    <label for="nome" class="form-label">Nome:</label>
+                    <input type="text" class="form-control" th:field="*{nome}" required>
+                </div>
 
+                <div class="mb-3">
+                    <label for="cognome" class="form-label">Cognome:</label>
+                    <input type="text" class="form-control" th:field="*{cognome}" required>
+                </div>
 
+                <div class="mb-3">
+                    <label for="numeroMaglia" class="form-label">Numero Maglia:</label>
+                    <input type="number" class="form-control" th:field="*{numeroMaglia}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dataNascita" class="form-label">Data di nascita:</label>
+                    <input type="date" class="form-control" th:field="*{dataNascita}" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Aggiungi</button>
+            </form>
+        </div>
     </section>
 
 

@@ -18,4 +18,9 @@ public class GiocatoreService {
 		
 		return this.giocatoreRepository.findBySquadraIdSquadra(idSquadra);
 	}
+	
+	public void save(Giocatore giocatore) {
+		
+		this.giocatoreRepository.save(giocatore);
+	}
 }
