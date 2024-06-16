@@ -68,8 +68,8 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
                             <p class="card-text" th:text="${torneo.descrizione}"></p>
-                            <p class="card-text" th:text="${#dates.format(torneo.dataInizio, 'dd-MM-yyyy')}"></p>
-                            <p class="card-text" th:text="${#dates.format(torneo.dataFine, 'dd-MM-yyyy')}"></p>
+                            <p class="card-text" th:text="${torneo.dataInizio}"></p>
+                            <p class="card-text" th:text="${torneo.dataFine}"></p>
                             <p class="card-text" th:text="${torneo.montepremi}"></p>
                             <a href="#" class="btn btn-primary">Iscriviti!</a>
                         </div>
@@ -86,8 +86,8 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
                             <p class="card-text" th:text="${torneo.descrizione}"></p>
-                            <p class="card-text" th:text="${#dates.format(torneo.dataInizio, 'dd-MM-yyyy')}"></p>
-                            <p class="card-text" th:text="${#dates.format(torneo.dataFine, 'dd-MM-yyyy')}"></p>
+                            <p class="card-text" th:text="${torneo.dataInizio}"></p>
+                            <p class="card-text" th:text="${torneo.dataFine}"></p>
                             <p class="card-text" th:text="${torneo.montepremi}"></p>
                             <button class="btn btn-primary" disabled>Non più iscrivibile</button>
                         </div>
