@@ -14,6 +14,10 @@ public class SquadraService {
 	@Autowired
 	private SquadraRepository squadraRepository;
 	
+	public List<Squadra> findAllSquadre(){
+		return (List<Squadra>) this.squadraRepository.findAll();
+	}
+	
 	public Squadra findSquadraByIdSquadra(Long idSquadra) {
 		
 		return this.squadraRepository.findById(idSquadra).get();
