@@ -26,6 +26,7 @@ public class Torneo {
 	private int numeroMassimoGiocatoriIscrivibili;
 	private int montepremi;
 	private boolean iscrizioneInCorso;
+	private boolean torneoInCorso;
 	
 	@OneToMany(mappedBy = "torneo")
 	private List<Squadra> squadreIscritte;
@@ -105,6 +106,14 @@ public class Torneo {
 		this.iscrizioneInCorso = inCorso;
 	}
 
+	public boolean isTorneoInCorso() {
+		return torneoInCorso;
+	}
+
+	public void setTorneoInCorso(boolean torneoInCorso) {
+		this.torneoInCorso = torneoInCorso;
+	}
+
 	public List<Squadra> getSquadreIscritte() {
 		return squadreIscritte;
 	}
@@ -124,7 +133,8 @@ public class Torneo {
 	@Override
 	public int hashCode() {
 		return Objects.hash(dataFine, dataInizio, descrizione, idTorneo, iscrizioneInCorso, montepremi, nome,
-				numeroMassimoGiocatoriIscrivibili, numeroMassimoSquadrePartecipanti, partiteTorneo, squadreIscritte);
+				numeroMassimoGiocatoriIscrivibili, numeroMassimoSquadrePartecipanti, partiteTorneo, squadreIscritte,
+				torneoInCorso);
 	}
 
 	@Override
@@ -143,16 +153,17 @@ public class Torneo {
 				&& numeroMassimoGiocatoriIscrivibili == other.numeroMassimoGiocatoriIscrivibili
 				&& numeroMassimoSquadrePartecipanti == other.numeroMassimoSquadrePartecipanti
 				&& Objects.equals(partiteTorneo, other.partiteTorneo)
-				&& Objects.equals(squadreIscritte, other.squadreIscritte);
+				&& Objects.equals(squadreIscritte, other.squadreIscritte) && torneoInCorso == other.torneoInCorso;
 	}
 
 	@Override
 	public String toString() {
 		return "Torneo [idTorneo=" + idTorneo + ", nome=" + nome + ", descrizione=" + descrizione + ", dataInizio="
-				+ dataInizio + ", dataFine=" + dataFine + ", numeroSquadrePartecipanti=" + numeroMassimoSquadrePartecipanti
-				+ ", numeroMassimoGiocatoriIscrivibili=" + numeroMassimoGiocatoriIscrivibili + ", montepremi="
-				+ montepremi + ", iscrizioneInCorso=" + iscrizioneInCorso + ", squadreIscritte=" + squadreIscritte
+				+ dataInizio + ", dataFine=" + dataFine + ", numeroMassimoSquadrePartecipanti="
+				+ numeroMassimoSquadrePartecipanti + ", numeroMassimoGiocatoriIscrivibili="
+				+ numeroMassimoGiocatoriIscrivibili + ", montepremi=" + montepremi + ", iscrizioneInCorso="
+				+ iscrizioneInCorso + ", torneoInCorso=" + torneoInCorso + ", squadreIscritte=" + squadreIscritte
 				+ ", partiteTorneo=" + partiteTorneo + "]";
 	}
-	
+
 }
