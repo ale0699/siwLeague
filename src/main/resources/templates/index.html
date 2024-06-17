@@ -65,7 +65,7 @@
         <div class="container">
             <h2>Le squadre partecipanti</h2>
         </div>
-        <div class="container d-flex" style="overflow-x: scroll;">
+        <div class="team-container container d-flex" style="overflow-x: scroll;">
             <div class="team-logo" th:each="squadra : ${squadre}">
                 <a th:href="@{'/squadra/'+${squadra.idSquadra}}"> 
                     <img th:src="@{${squadra.logo}}" alt="logo squadra" width="80" height="80">

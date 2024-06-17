@@ -43,6 +43,10 @@ section{
     padding-top: 20px;
 }
 
+.team-container{
+    overflow-x: scroll;
+}
+
 footer{
 
     margin-top: 20px;
