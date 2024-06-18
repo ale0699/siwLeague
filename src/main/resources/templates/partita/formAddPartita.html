@@ -56,24 +56,28 @@
         </div>
     </header>
 
-    <div class="logo-allTeams pt-5">
-        <div class="container">
-            <h2>Le squadre partecipanti</h2>
-        </div>
-        <div class="team-container container d-flex">
-            <div class="team-logo" th:each="squadra : ${squadre}">
-                <a th:href="@{'/squadra/'+${squadra.idSquadra}}"> 
-                    <img th:src="@{${squadra.logo}}" alt="logo squadra" width="80" height="80">
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- Aggiungi questa sezione per il link ai tornei -->
-    <section class="container tournament-section">
-        <div class="container">
-            <h2>Iscrivi la tua squadra</h2>
-            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-            <a href="/selectTorneo" class="btn btn-primary">Iscrivi la tua squadra</a>
+    <section class="container">
+        <div class="form-partita container d-flex">
+            <form th:action="@{/addPartita}" method="post" th:object="${partita}">
+                <div class="squadra-casa">
+                    <div class="select-casa">
+                        <select class="select-squadra" aria-label="Default select example" th:each="squadraCasa : ${squadre}">
+                            <option th:field="${partita.squadraCasa}" th:text="${squadraCasa.nome}"></option>
+                        </select>
+                    </div>
+                    <div class="gol-effettuati">
+                        <input type="number" th:field="${partita.golSquadraCasa}">
+                    </div>
+                </div>
+                <div class="squadra-fuori-casa">
+                    <select class="select-squadra" aria-label="Default select example" th:each="squadraFuoriCasa : ${squadre}">
+                        <option th:field="${partita.squadraFuoriCasa}" th:text="${squadraFuoriCasa.nome}"></option>
+                    </select>
+                    <div class="gol-effettuati">
+                        <input type="number" th:field="${partita.golSquadraFuoriCasa}">
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 
