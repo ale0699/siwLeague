@@ -62,12 +62,12 @@
                 <div class="container d-flex">
                     <div class="squadra-casa">
                         <div class="select-casa">
-                            <select class="select-squadra" th:field="*{squadraCasa}">
-                                <option selected>Seleziona Squadra Casa</option>
-                                <div class="each" th:each="squadraCasa : ${squadre}">
+                            <div class="each" th:each="squadraCasa : ${squadre}">
+                                <select class="select-squadra" th:field="*{squadraCasa}">
+                                    <option selected>Seleziona Squadra Casa</option>
                                     <option th:value="${squadraCasa.idSquadra}" th:text="${squadraCasa.nome}"></option>
-                                </div>
-                            </select>
+                                </select>
+                            </div>
                         </div>
                         <div class="gol-effettuati">
                             <label>Gol squadra Fuori Casa</label>
