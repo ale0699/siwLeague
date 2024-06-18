@@ -3,7 +3,7 @@ body{
 }
 
 header {
-    height: 700px;
+    height: 100vh;
     background-image: url(/images/navbar.png);
     background-size: cover;
     background-position: center; /* Centra l'immagine */
