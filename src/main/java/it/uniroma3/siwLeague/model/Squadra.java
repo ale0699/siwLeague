@@ -99,6 +99,86 @@ public class Squadra {
 	public void setGiocatori(List<Giocatore> giocatori) {
 		this.giocatori = giocatori;
 	}
+	
+	public int calcolaPosizione() {
+	    // Implementa la logica per calcolare la posizione
+	    return 0; // Placeholder, implementa la logica reale
+	}
+	
+	public int calcolaPartiteGiocate() {
+	    return partiteCasa.size() + partiteFuoriCasa.size();
+	}
+	
+	private int calcolaVittorie() {
+	    int vittorie = 0;
+	    for (Partita partita : partiteCasa) {
+	        if (partita.getSquadraVincente().equals(this)) {
+	            vittorie++;
+	        }
+	    }
+	    for (Partita partita : partiteFuoriCasa) {
+	        if (partita.getSquadraVincente().equals(this)) {
+	            vittorie++;
+	        }
+	    }
+	    return vittorie;
+	}
+
+	private int calcolaPareggi() {
+	    int pareggi = 0;
+	    for (Partita partita : partiteCasa) {
+	        if (partita.isPareggio()) {
+	            pareggi++;
+	        }
+	    }
+	    for (Partita partita : partiteFuoriCasa) {
+	        if (partita.isPareggio()) {
+	            pareggi++;
+	        }
+	    }
+	    return pareggi;
+	}
+
+	private int calcolaSconfitte() {
+	    int sconfitte = 0;
+	    for (Partita partita : partiteCasa) {
+	        if (!partita.getSquadraVincente().equals(this)) {
+	            sconfitte++;
+	        }
+	    }
+	    for (Partita partita : partiteFuoriCasa) {
+	        if (!partita.getSquadraVincente().equals(this)) {
+	            sconfitte++;
+	        }
+	    }
+	    return sconfitte;
+	}
+
+	private int calcolaGolFatti() {
+	    int golFatti = 0;
+	    for (Partita partita : partiteCasa) {
+	        golFatti += partita.getGolSquadraCasa();
+	    }
+	    for (Partita partita : partiteFuoriCasa) {
+	        golFatti += partita.getGolSquadraFuoriCasa();
+	    }
+	    return golFatti;
+	}
+
+	private int calcolaGolSubiti() {
+	    int golSubiti = 0;
+	    for (Partita partita : partiteCasa) {
+	        golSubiti += partita.getGolSquadraFuoriCasa();
+	    }
+	    for (Partita partita : partiteFuoriCasa) {
+	        golSubiti += partita.getGolSquadraCasa();
+	    }
+	    return golSubiti;
+	}
+
+	private int calcolaPunti() {
+	    return (this.calcolaVittorie() * 3) + this.calcolaPareggi();
+	}
 
 	@Override
 	public int hashCode() {

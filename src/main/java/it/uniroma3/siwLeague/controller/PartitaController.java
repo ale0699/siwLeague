@@ -40,4 +40,5 @@ public class PartitaController {
 		this.partitaService.save(partita);
 		return "redirect:/partita/"+partita.getIdPartita();
 	}
+	
 }

@@ -73,11 +73,47 @@
             </div>
         </div>
     </div>
+    <div class="tabella-classifica">
+        <div class="container">
+            <h2>Classifica</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Posizione</th>
+                        <th scope="col">Squadra</th>
+                        <th scope="col">Punti</th>
+                        <th scope="col">Partite Giocate</th>
+                        <th scope="col">Vittorie</th>
+                        <th scope="col">Pareggi</th>
+                        <th scope="col">Sconfitte</th>
+                        <th scope="col">Gol Fatti</th>
+                        <th scope="col">Gol Subiti</th>
+                        <th scope="col">Differenza Reti</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="squadra : ${squadre}">
+                        <th scope="row" th:text="${squadra.calcolaPosizione()}"></th>
+                        <td th:text="${squadra.getNome()}"></td>
+                        <td th:text="${squadra.calcolaPunti()}"></td>
+                        <td th:text="${squadra.calcolaPartiteGiocate()}"></td>
+                        <td th:text="${squadra.calcolaVittorie()}"></td>
+                        <td th:text="${squadra.calcolaPareggi()}"></td>
+                        <td th:text="${squadra.calcolaSconfitte()}"></td>
+                        <td th:text="${squadra.calcolaGolFatti()}"></td>
+                        <td th:text="${squadra.calcolaGolSubiti()}"></td>
+                        <td th:text="${squadra.calcolaGolFatti() - squadra.calcolaGolSubiti()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
 
     <div class="container">
         <h2>Aggiungi Partita ad un torneo</h2>
         <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-        <a href="/selectTorneo" class="btn btn-primary">Iscrivi la tua squadra</a>
+        <a th:href="@{'/formAddPartita/'${torneo.idTorneo}}" class="btn btn-primary">Iscrivi la tua squadra</a>
     </div>
 
     <div>

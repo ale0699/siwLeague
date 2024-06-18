@@ -64,7 +64,7 @@
                         <div class="select-squadra">
                             <select class="form-select" th:field="*{squadraCasa}">
                                 <option value="" selected>Seleziona Squadra Casa</option>
-                                <div class="options"  th:each="squadra : ${squadre}">
+                                <div class="options" th:each="squadra : ${squadre}">
                                     <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
                                 </div>
                             </select>
@@ -79,7 +79,7 @@
                         <div class="select-squadra">
                             <select class="form-select" th:field="*{squadraFuoriCasa}">
                                 <option value="" selected>Seleziona Squadra Fuori Casa</option>
-                                <div class="options"  th:each="squadra : ${squadre}">
+                                <div class="options" th:each="squadra : ${squadre}">
                                     <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
                                 </div>
                             </select>
@@ -104,8 +104,8 @@
             </form>
         </div>
     </section>
-    
-    
+
+
 
     <footer>
         <div class="container-fluid">

@@ -115,6 +115,21 @@ public class Partita {
 	public void setMargatori(List<Giocatore> margatori) {
 		this.marcatori = margatori;
 	}
+	
+	public Squadra getSquadraVincente() {
+		
+		if(this.golSquadraCasa>this.golSquadraFuoriCasa) {
+			
+			return this.squadraCasa;
+		}
+		return this.squadraFuoriCasa;
+	}
+	
+
+	public boolean isPareggio() {
+
+		return this.golSquadraCasa==this.golSquadraFuoriCasa;
+	}
 
 	@Override
 	public int hashCode() {
@@ -145,5 +160,6 @@ public class Partita {
 				+ golSquadraFuoriCasa + ", torneo=" + torneo + ", squadraCasa=" + squadraCasa + ", squadraFuoriCasa="
 				+ squadraFuoriCasa + ", margatori=" + marcatori + "]";
 	}
-	
+
+
 }
