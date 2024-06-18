@@ -61,13 +61,11 @@
             <form th:action="@{/addPartita}" method="post" th:object="${partita}">
                 <div class="container d-flex">
                     <div class="squadra-casa">
-                        <div class="select-casa">
-                            <div class="each" th:each="squadraCasa : ${squadre}">
-                                <select class="select-squadra" th:field="*{squadraCasa}">
-                                    <option selected>Seleziona Squadra Casa</option>
-                                    <option th:value="${squadraCasa.idSquadra}" th:text="${squadraCasa.nome}"></option>
-                                </select>
-                            </div>
+                        <div class="select">
+                            <select class="select-squadra" th:field="*{squadraCasa}">
+                                <option value="">Seleziona Squadra Casa</option>
+                                <option  th:each="squadraCasa : ${squadre}" th:value="${squadraCasa.idSquadra}" th:text="${squadraCasa.nome}"></option>
+                            </select>
                         </div>
                         <div class="gol-effettuati">
                             <label>Gol squadra Fuori Casa</label>
@@ -75,17 +73,15 @@
                         </div>
                     </div>
                     <div class="squadra-fuori-casa">
-                        <select class="select-squadra" th:field="*{squadraFuoriCasa}">
-                            <option selected>Seleziona Squadra Fuori Casa</option>
-                            <div class="each" th:each="squadraFuoriCasa : ${squadre}">
-                                <option th:value="${squadraFuoriCasa.idSquadra}" th:text="${squadraFuoriCasa.nome}">
-                                </option>
-                            </div>
-                        </select>
+                        <div class="select">
+                            <select class="select-squadra" th:field="*{squadraFuoriCasa}">
+                                <option value="">Seleziona Squadra Fuori Casa</option>
+                                <option  th:each="squadraFuoriCasa : ${squadre}" th:value="${squadraFuoriCasa.idSquadra}" th:text="${squadraFuoriCasa.nome}"></option>
+                            </select>
+                        </div>
                         <div class="gol-effettuati">
-                            <label>Gol squadra Casa</label>
-                            <input type="number" th:field="${partita.golSquadraFuoriCasa}"
-                                placeholder="Gol squadra di Casa">
+                            <label>Gol squadra Fuori Casa</label>
+                            <input type="number" th:field="${partita.golSquadraCasa}">
                         </div>
                     </div>
                     <div class="partita-informazioni">
