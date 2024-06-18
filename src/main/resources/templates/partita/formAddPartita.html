@@ -55,41 +55,48 @@
             </nav>
         </div>
     </header>
-
     <section class="container">
         <div class="form-partita container">
             <form th:action="@{/addPartita}" method="post" th:object="${partita}">
                 <div class="container d-flex">
+                    <!-- Sezione Squadra Casa -->
                     <div class="squadra-casa">
-                        <div class="select">
-                            <select class="select-squadra" th:field="*{squadraCasa}">
-                                <option value="">Seleziona Squadra Casa</option>
-                                <option  th:each="squadraCasa : ${squadre}" th:value="${squadraCasa.idSquadra}" th:text="${squadraCasa.nome}"></option>
+                        <div class="select-squadra">
+                            <select class="form-select" th:field="*{squadraCasa}">
+                                <option value="" selected>Seleziona Squadra Casa</option>
+                                <div class="options"  th:each="squadra : ${squadre}">
+                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
+                                </div>
                             </select>
                         </div>
                         <div class="gol-effettuati">
-                            <label>Gol squadra Fuori Casa</label>
-                            <input type="number" th:field="${partita.golSquadraCasa}">
+                            <label>Gol squadra Casa</label>
+                            <input type="number" th:field="*{golSquadraCasa}">
                         </div>
                     </div>
+                    <!-- Sezione Squadra Fuori Casa -->
                     <div class="squadra-fuori-casa">
-                        <div class="select">
-                            <select class="select-squadra" th:field="*{squadraFuoriCasa}">
-                                <option value="">Seleziona Squadra Fuori Casa</option>
-                                <option  th:each="squadraFuoriCasa : ${squadre}" th:value="${squadraFuoriCasa.idSquadra}" th:text="${squadraFuoriCasa.nome}"></option>
+                        <div class="select-squadra">
+                            <select class="form-select" th:field="*{squadraFuoriCasa}">
+                                <option value="" selected>Seleziona Squadra Fuori Casa</option>
+                                <div class="options"  th:each="squadra : ${squadre}">
+                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
+                                </div>
                             </select>
                         </div>
                         <div class="gol-effettuati">
                             <label>Gol squadra Fuori Casa</label>
-                            <input type="number" th:field="${partita.golSquadraCasa}">
+                            <input type="number" th:field="*{golSquadraFuoriCasa}">
                         </div>
                     </div>
+                    <!-- Sezione Informazioni Partita -->
                     <div class="partita-informazioni">
-                        <input type="datetime-local" th:field="${partita.dataEOra}" placeholder="Data e Ora">
-                        <input type="text" th:field="${partita.campo}" placeholder="Nome campo">
+                        <input type="datetime-local" th:field="*{dataEOra}" placeholder="Data e Ora">
+                        <input type="text" th:field="*{campo}" placeholder="Nome campo">
                         <label>Numero Giornata</label>
-                        <input type="number" th:field="${partita.numeroGiornata}">
+                        <input type="number" th:field="*{numeroGiornata}">
                     </div>
+                    <!-- Pulsante di invio -->
                     <div class="button">
                         <button type="submit" class="btn btn-primary">Aggiungi Partita e Aggiungi Marcatori</button>
                     </div>
@@ -97,6 +104,8 @@
             </form>
         </div>
     </section>
+    
+    
 
     <footer>
         <div class="container-fluid">

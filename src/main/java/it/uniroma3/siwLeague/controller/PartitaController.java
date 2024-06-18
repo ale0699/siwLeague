@@ -30,14 +30,13 @@ public class PartitaController {
 	@GetMapping(value = "/formAddPartita/{idTorneo}")
 	public String getFormAddPartita(@PathVariable("idTorneo")Long idTorneo, Model model) {
 		model.addAttribute(new Partita());
-		model.addAttribute("idTorneo", idTorneo);
 		model.addAttribute("squadre", this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo));
 		return "partita/formAddPartita.html";
 	}
 	
 	@PostMapping(value = "/addPartita")
 	public String postAddPartita(@ModelAttribute Partita partita) {
-		System.out.println(partita.toString());
+		partita.setTorneo(partita.getSquadraCasa().getTorneo());
 		this.partitaService.save(partita);
 		return "redirect:/partita/"+partita.getIdPartita();
 	}
