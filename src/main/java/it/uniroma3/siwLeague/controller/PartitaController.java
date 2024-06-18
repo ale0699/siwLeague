@@ -36,6 +36,7 @@ public class PartitaController {
 	
 	@PostMapping(value = "/addPartita")
 	public String postAddPartita(@ModelAttribute Partita partita) {
+		
 		partita.setTorneo(partita.getSquadraCasa().getTorneo());
 		this.partitaService.save(partita);
 		return "redirect:/partita/"+partita.getIdPartita();

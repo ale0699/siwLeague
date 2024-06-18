@@ -27,6 +27,8 @@ public class Squadra {
 	@ManyToOne
 	private Torneo torneo;
 	
+    private int punti;
+    
 	@OneToMany(mappedBy = "squadraCasa")
 	private List<Partita> partiteCasa;
 	
@@ -99,32 +101,31 @@ public class Squadra {
 	public void setGiocatori(List<Giocatore> giocatori) {
 		this.giocatori = giocatori;
 	}
-	
-	public int calcolaPosizione() {
-	    // Implementa la logica per calcolare la posizione
-	    return 0; // Placeholder, implementa la logica reale
+
+	public int getPunti() {
+		return (this.calcolaVittorie() * 3) + this.calcolaPareggi();
 	}
 	
 	public int calcolaPartiteGiocate() {
 	    return partiteCasa.size() + partiteFuoriCasa.size();
 	}
 	
-	private int calcolaVittorie() {
+	public int calcolaVittorie() {
 	    int vittorie = 0;
 	    for (Partita partita : partiteCasa) {
-	        if (partita.getSquadraVincente().equals(this)) {
+	        if (partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
 	            vittorie++;
 	        }
 	    }
 	    for (Partita partita : partiteFuoriCasa) {
-	        if (partita.getSquadraVincente().equals(this)) {
+	        if (partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
 	            vittorie++;
 	        }
 	    }
 	    return vittorie;
 	}
 
-	private int calcolaPareggi() {
+	public int calcolaPareggi() {
 	    int pareggi = 0;
 	    for (Partita partita : partiteCasa) {
 	        if (partita.isPareggio()) {
@@ -139,22 +140,22 @@ public class Squadra {
 	    return pareggi;
 	}
 
-	private int calcolaSconfitte() {
+	public int calcolaSconfitte() {
 	    int sconfitte = 0;
 	    for (Partita partita : partiteCasa) {
-	        if (!partita.getSquadraVincente().equals(this)) {
+	        if (!partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
 	            sconfitte++;
 	        }
 	    }
 	    for (Partita partita : partiteFuoriCasa) {
-	        if (!partita.getSquadraVincente().equals(this)) {
+	        if (!partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
 	            sconfitte++;
 	        }
 	    }
 	    return sconfitte;
 	}
 
-	private int calcolaGolFatti() {
+	public int calcolaGolFatti() {
 	    int golFatti = 0;
 	    for (Partita partita : partiteCasa) {
 	        golFatti += partita.getGolSquadraCasa();
@@ -165,7 +166,7 @@ public class Squadra {
 	    return golFatti;
 	}
 
-	private int calcolaGolSubiti() {
+	public int calcolaGolSubiti() {
 	    int golSubiti = 0;
 	    for (Partita partita : partiteCasa) {
 	        golSubiti += partita.getGolSquadraFuoriCasa();
@@ -174,10 +175,6 @@ public class Squadra {
 	        golSubiti += partita.getGolSquadraCasa();
 	    }
 	    return golSubiti;
-	}
-
-	private int calcolaPunti() {
-	    return (this.calcolaVittorie() * 3) + this.calcolaPareggi();
 	}
 
 	@Override

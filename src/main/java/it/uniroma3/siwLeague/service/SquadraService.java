@@ -25,7 +25,7 @@ public class SquadraService {
 	
 	public List<Squadra> findSquadrePartecipantiTorneoByIdTorneo(Long idTorneo){
 		
-		return this.squadraRepository.findByTorneoIdTorneo(idTorneo);
+		return this.squadraRepository.findByTorneoIdTorneoOrderByPuntiDesc(idTorneo);
 	}
 	
 	public void save(Squadra squadra) {

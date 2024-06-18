@@ -92,18 +92,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="squadra : ${squadre}">
-                        <th scope="row" th:text="${squadra.calcolaPosizione()}"></th>
-                        <td th:text="${squadra.getNome()}"></td>
-                        <td th:text="${squadra.calcolaPunti()}"></td>
-                        <td th:text="${squadra.calcolaPartiteGiocate()}"></td>
-                        <td th:text="${squadra.calcolaVittorie()}"></td>
-                        <td th:text="${squadra.calcolaPareggi()}"></td>
-                        <td th:text="${squadra.calcolaSconfitte()}"></td>
-                        <td th:text="${squadra.calcolaGolFatti()}"></td>
-                        <td th:text="${squadra.calcolaGolSubiti()}"></td>
-                        <td th:text="${squadra.calcolaGolFatti() - squadra.calcolaGolSubiti()}"></td>
-                    </tr>
+                    <th:block th:each="squadra, pos : ${squadrePartecipanti}">
+                        <tr>
+                            <th scope="row" th:text="${pos.index + 1}"></th>
+                            <td th:text="${squadra.nome}"></td>
+                            <td th:text="${squadra.getPunti()}"></td>
+                            <td th:text="${squadra.calcolaPartiteGiocate()}"></td>
+                            <td th:text="${squadra.calcolaVittorie()}"></td>
+                            <td th:text="${squadra.calcolaPareggi()}"></td>
+                            <td th:text="${squadra.calcolaSconfitte()}"></td>
+                            <td th:text="${squadra.calcolaGolFatti()}"></td>
+                            <td th:text="${squadra.calcolaGolSubiti()}"></td>
+                            <td th:text="${squadra.calcolaGolFatti() - squadra.calcolaGolSubiti()}"></td>
+                        </tr>
+                    </th:block>
                 </tbody>
             </table>
         </div>
@@ -113,7 +115,7 @@
     <div class="container">
         <h2>Aggiungi Partita ad un torneo</h2>
         <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-        <a th:href="@{'/formAddPartita/'${torneo.idTorneo}}" class="btn btn-primary">Iscrivi la tua squadra</a>
+        <a th:href="@{'/formAddPartita/'+${torneo.idTorneo}}" class="btn btn-primary">Aggiungi Partita ad un torneo</a>
     </div>
 
     <div>
