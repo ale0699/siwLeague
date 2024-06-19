@@ -15,6 +15,11 @@ section{
     padding-top: 30px;
 }
 
+.gol{
+    
+    font-weight: bold;
+}
+
 .loghi-squadre-partecipanti {
     max-height: 400px; /* Imposta un'altezza massima per il contenitore */
     overflow-y: auto; /* Abilita lo scorrimento verticale */

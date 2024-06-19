@@ -154,7 +154,7 @@
                     <tr>
                         <th scope="col">Giornata</th>
                         <th scope="col">Partita</th>
-                        <th scope="col">Data E Ora</th>
+                        <th scope="col">Data e Ora</th>
                         <th scope="col">Campo</th>
                     </tr>
                 </thead>
@@ -162,7 +162,17 @@
                     <th:block th:each="partita : ${partite}">
                         <tr>
                             <td th:text="${partita.numeroGiornata}"></td>
-                            <td th:text="${partita.squadraCasa.nome} + ' ' + ${partita.golSquadraCasa} + ' - ' + ${partita.golSquadraFuoriCasa} + ' ' + ${partita.squadraFuoriCasa.nome} "></td>
+                            <td>
+                                <a th:href="@{'/squadra/'+${partita.squadraCasa.idSquadra}}">
+                                    <span th:text="${partita.squadraCasa.nome}"></span>
+                                </a>
+                                <span class="gol" th:text="${partita.golSquadraCasa}"></span>
+                                -
+                                <span class="gol" th:text="${partita.golSquadraFuoriCasa}"></span>
+                                <a th:href="@{'/squadra/'+${partita.squadraFuoriCasa.idSquadra}}">
+                                    <span th:text="${partita.squadraFuoriCasa.nome}"></span>
+                                </a>
+                            </td>
                             <td th:text="${partita.dataEOra}"></td>
                             <td th:text="${partita.campo}"></td>
                         </tr>
