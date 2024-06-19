@@ -3,6 +3,7 @@ package it.uniroma3.siwLeague.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siwLeague.model.Credenziali;
 import it.uniroma3.siwLeague.model.GestoreSquadra;
 import it.uniroma3.siwLeague.repository.GestoreSquadraRepository;
 
@@ -11,6 +12,11 @@ public class GestoreSquadraService {
 	
 	@Autowired
 	private GestoreSquadraRepository gestoreSquadraRepository;
+	
+	public GestoreSquadra findGestoreSquadraByCredenziali(Credenziali credenziali) {
+		
+		return this.gestoreSquadraRepository.findByCredenziali(credenziali);
+	}
 	
 	public void save(GestoreSquadra gestoreSquadra) {
 		
