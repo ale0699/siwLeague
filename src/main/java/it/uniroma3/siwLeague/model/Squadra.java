@@ -1,5 +1,6 @@
 package it.uniroma3.siwLeague.model;
 
+
 import java.util.List;
 import java.util.Objects;
 
@@ -27,7 +28,7 @@ public class Squadra {
 	@ManyToOne
 	private Torneo torneo;
 	
-    private int punti;
+    private Integer punti=0;
     
 	@OneToMany(mappedBy = "squadraCasa")
 	private List<Partita> partiteCasa;
@@ -101,9 +102,18 @@ public class Squadra {
 	public void setGiocatori(List<Giocatore> giocatori) {
 		this.giocatori = giocatori;
 	}
+	
+	public void setPunti() {
+		
+		this.punti = (this.calcolaVittorie() * 3) + this.calcolaPareggi();
+	}
 
-	public int getPunti() {
-		return (this.calcolaVittorie() * 3) + this.calcolaPareggi();
+	public void setPunti(Integer punti) {
+		this.punti = punti;
+	}
+
+	public Integer getPunti() {
+		return this.punti;
 	}
 	
 	public int calcolaPartiteGiocate() {

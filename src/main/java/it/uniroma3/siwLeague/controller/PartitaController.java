@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siwLeague.model.Partita;
+import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
 
@@ -38,7 +39,18 @@ public class PartitaController {
 	public String postAddPartita(@ModelAttribute Partita partita) {
 		
 		partita.setTorneo(partita.getSquadraCasa().getTorneo());
+		
+		Squadra squadraCasa = partita.getSquadraCasa();		
+		Squadra squadraFuoriCasa = partita.getSquadraFuoriCasa();
+		
 		this.partitaService.save(partita);
+		
+		squadraCasa.setPunti();
+		squadraFuoriCasa.setPunti();
+		
+		this.squadraService.save(squadraCasa);
+		this.squadraService.save(squadraFuoriCasa);
+
 		return "redirect:/partita/"+partita.getIdPartita();
 	}
 	
