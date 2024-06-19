@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import it.uniroma3.siwLeague.model.Credenziali;
-import it.uniroma3.siwLeague.model.GestoreSquadra;
 import it.uniroma3.siwLeague.service.CredenzialiService;
-import it.uniroma3.siwLeague.service.GestoreSquadraService;
 
 @ControllerAdvice
 public class GlobalController {
