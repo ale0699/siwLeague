@@ -26,7 +26,7 @@ public class Torneo {
 	private int numeroMassimoGiocatoriIscrivibili;
 	private int montepremi;
 	private boolean iscrizioneInCorso;
-	private boolean torneoInCorso;
+	private boolean svolgimentoInCorso;
 	
 	@OneToMany(mappedBy = "torneo")
 	private List<Squadra> squadreIscritte;
@@ -106,12 +106,12 @@ public class Torneo {
 		this.iscrizioneInCorso = inCorso;
 	}
 
-	public boolean isTorneoInCorso() {
-		return torneoInCorso;
+	public boolean isSvolgimentoInCorso() {
+		return svolgimentoInCorso;
 	}
 
-	public void setTorneoInCorso(boolean torneoInCorso) {
-		this.torneoInCorso = torneoInCorso;
+	public void setSvolgimentoInCorso(boolean torneoInCorso) {
+		this.svolgimentoInCorso = torneoInCorso;
 	}
 
 	public List<Squadra> getSquadreIscritte() {
@@ -134,7 +134,7 @@ public class Torneo {
 	public int hashCode() {
 		return Objects.hash(dataFine, dataInizio, descrizione, idTorneo, iscrizioneInCorso, montepremi, nome,
 				numeroMassimoGiocatoriIscrivibili, numeroMassimoSquadrePartecipanti, partiteTorneo, squadreIscritte,
-				torneoInCorso);
+				svolgimentoInCorso);
 	}
 
 	@Override
@@ -153,7 +153,7 @@ public class Torneo {
 				&& numeroMassimoGiocatoriIscrivibili == other.numeroMassimoGiocatoriIscrivibili
 				&& numeroMassimoSquadrePartecipanti == other.numeroMassimoSquadrePartecipanti
 				&& Objects.equals(partiteTorneo, other.partiteTorneo)
-				&& Objects.equals(squadreIscritte, other.squadreIscritte) && torneoInCorso == other.torneoInCorso;
+				&& Objects.equals(squadreIscritte, other.squadreIscritte) && svolgimentoInCorso == other.svolgimentoInCorso;
 	}
 
 	@Override
@@ -162,7 +162,7 @@ public class Torneo {
 				+ dataInizio + ", dataFine=" + dataFine + ", numeroMassimoSquadrePartecipanti="
 				+ numeroMassimoSquadrePartecipanti + ", numeroMassimoGiocatoriIscrivibili="
 				+ numeroMassimoGiocatoriIscrivibili + ", montepremi=" + montepremi + ", iscrizioneInCorso="
-				+ iscrizioneInCorso + ", torneoInCorso=" + torneoInCorso + ", squadreIscritte=" + squadreIscritte
+				+ iscrizioneInCorso + ", torneoInCorso=" + svolgimentoInCorso + ", squadreIscritte=" + squadreIscritte
 				+ ", partiteTorneo=" + partiteTorneo + "]";
 	}
 

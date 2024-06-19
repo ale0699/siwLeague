@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
 import it.uniroma3.siwLeague.service.TorneoService;
 
@@ -18,6 +19,9 @@ public class TorneoController {
 	@Autowired
 	private SquadraService squadraService;
 	
+	@Autowired
+	private PartitaService partitaService;
+	
 	@GetMapping(value = "/tornei")
 	public String getAllTornei(Model model) {
 		model.addAttribute("tornei", this.torneoService.findAllTornei());
@@ -26,6 +30,7 @@ public class TorneoController {
 	
 	@GetMapping(value = "/torneo/{idTorneo}")
 	public String getTorneo(@PathVariable("idTorneo")Long idTorneo, Model model) {
+		model.addAttribute("partite", this.partitaService.findAllPartiteByIdTorneo(idTorneo));
 		model.addAttribute("squadrePartecipanti", this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo));
 		model.addAttribute("torneo", this.torneoService.getTorneoByIdTorneo(idTorneo));
 		return "torneo/torneo.html";

@@ -9,7 +9,7 @@ header {
     background-position: center; /* Centra l'immagine */
 }
 
-.title-homepage{
+.title{
     padding-top: 250px;
     text-align: center;
     color: white;
@@ -41,6 +41,7 @@ header {
 
 section{
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .team-container{
@@ -49,8 +50,7 @@ section{
 
 footer{
 
-    margin-top: 20px;
-    padding-top: 10px;
+    padding-top: 20px;
     background-color: #486684;
     color: white;
 }
