@@ -100,14 +100,14 @@
             </div>
         </div>
 
-        <div class="classifica container">
+        <div class="classifica-container container">
             <div class="row">
                 <div class="intestazione text-center">
                     <h2>Classifica</h2>
                 </div>
             </div>
-            <div class="row">
-                <table class="table">
+            <div class="row table-responsive">
+                <table class="tabella-classifica table table-hover text-center">
                     <thead>
                         <tr>
                             <th scope="col">Posizione</th>
@@ -122,9 +122,9 @@
                             <th scope="col">Differenza Reti</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="table-group-divider">
                         <th:block th:each="squadra, pos : ${squadrePartecipanti}">
-                            <tr>
+                            <tr class="statistiche-classifica-squadra">
                                 <th scope="row" th:text="${pos.index + 1}"></th>
                                 <td>
                                     <a th:href="@{'/squadra/'+${squadra.idSquadra}}">
@@ -146,39 +146,36 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="container text-center">
             <h2>Partite</h2>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Data e ora</th>
-                        <th scope="col">Squadra Casa</th>
-                        <th scope="col">Squadra Ospite</th>
-                        <th scope="col">Risultato</th>
+                        <th scope="col">Giornata</th>
+                        <th scope="col">Partita</th>
+                        <th scope="col">Data E Ora</th>
+                        <th scope="col">Campo</th>
                     </tr>
                 </thead>
                 <tbody>
                     <th:block th:each="partita : ${partite}">
                         <tr>
+                            <td th:text="${partita.numeroGiornata}"></td>
+                            <td th:text="${partita.squadraCasa.nome} + ' ' + ${partita.golSquadraCasa} + ' - ' + ${partita.golSquadraFuoriCasa} + ' ' + ${partita.squadraFuoriCasa.nome} "></td>
                             <td th:text="${partita.dataEOra}"></td>
-                            <td th:text="${partita.squadraCasa.nome}"></td>
-                            <td th:text="${partita.squadraFuoriCasa.nome}"></td>
-                            <td th:text="${partita.golSquadraCasa} + ' - ' + ${partita.golSquadraFuoriCasa}"></td>
+                            <td th:text="${partita.campo}"></td>
                         </tr>
                     </th:block>
                 </tbody>
             </table>
+        </div>
 
-
-            <div class="container">
-                <h2>Aggiungi Partita ad un torneo</h2>
-                <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
-                <a th:href="@{'/formAddPartita/'+${torneo.idTorneo}}" class="btn btn-primary">Aggiungi Partita ad un
-                    torneo</a>
-            </div>
-
-
-
+        <div class="container">
+            <h2>Aggiungi Partita ad un torneo</h2>
+            <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
+            <a th:href="@{'/formAddPartita/'+${torneo.idTorneo}}" class="btn btn-primary">Aggiungi Partita ad un
+                torneo</a>
+        </div>
     </section>
 
     <footer>
