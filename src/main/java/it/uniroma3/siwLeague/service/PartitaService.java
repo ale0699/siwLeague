@@ -21,7 +21,7 @@ public class PartitaService {
 	
 	public List<Partita> findAllPartiteByIdTorneo(Long idTorneo){
 		
-		return this.partitaRepository.findAllByTorneoIdTorneo(idTorneo);
+		return this.partitaRepository.findAllByTorneoIdTorneoOrderByNumeroGiornata(idTorneo);
 	}
 	
 	public void save(Partita partita) {

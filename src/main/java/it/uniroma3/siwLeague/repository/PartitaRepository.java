@@ -8,6 +8,6 @@ import it.uniroma3.siwLeague.model.Partita;
 
 public interface PartitaRepository extends CrudRepository<Partita, Long> {
 	
-	public List<Partita> findAllByTorneoIdTorneo(Long idTorneo);
+	public List<Partita> findAllByTorneoIdTorneoOrderByNumeroGiornata(Long idTorneo);
 
 }

@@ -108,7 +108,7 @@
                 </div>
             </div>
             <div class="row table-responsive">
-                <table class="tabella-classifica table table-hover text-center">
+                <table class="tabella-classifica table table-hover text-center table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Posizione</th>
@@ -149,7 +149,7 @@
 
         <div class="container text-center">
             <h2>Partite</h2>
-            <table class="table">
+            <table class="table table-hover table-striped">
                 <thead>
                     <tr>
                         <th scope="col">Giornata</th>
@@ -158,22 +158,20 @@
                         <th scope="col">Campo</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-group-divider">
                     <th:block th:each="partita : ${partite}">
                         <tr>
                             <td th:text="${partita.numeroGiornata}"></td>
                             <td>
-                                <a th:href="@{'/squadra/'+${partita.squadraCasa.idSquadra}}">
+                                <a th:href="@{'/partita/'+${partita.idPartita}}">
                                     <span th:text="${partita.squadraCasa.nome}"></span>
-                                </a>
-                                <span class="gol" th:text="${partita.golSquadraCasa}"></span>
-                                -
-                                <span class="gol" th:text="${partita.golSquadraFuoriCasa}"></span>
-                                <a th:href="@{'/squadra/'+${partita.squadraFuoriCasa.idSquadra}}">
+                                    <span class="gol" th:text="${partita.golSquadraCasa}"></span>
+                                    -
+                                    <span class="gol" th:text="${partita.golSquadraFuoriCasa}"></span>
                                     <span th:text="${partita.squadraFuoriCasa.nome}"></span>
                                 </a>
                             </td>
-                            <td th:text="${partita.dataEOra}"></td>
+                            <td th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></td>
                             <td th:text="${partita.campo}"></td>
                         </tr>
                     </th:block>
