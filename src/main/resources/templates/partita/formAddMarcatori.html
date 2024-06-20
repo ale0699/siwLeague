@@ -120,20 +120,20 @@
                             <div th:each="i: ${#numbers.sequence(0, partita.golSquadraFuoriCasa-1)}">
                                 <div>
                                     <h4 th:text="${i+1} + '° ' +'Gol'"></h4>
-                                    <select name="giocatore" id="giocatore"></select>
-                                    <option value="0">Seleziona un giocatore</option>
-                                    <option th:each="giocatore : ${partita.squadraFuoriCasa.giocatori}"
-                                        th:value="${giocatore.idGiocatore}"
-                                        th:text="${giocatore.nome + ' ' + giocatore.cognome}"></option>
-                                    </option>
+                                    <select name="giocatore" id="giocatore">
+                                        <option value="0">Seleziona un giocatore</option>
+                                        <option th:each="giocatore : ${partita.squadraFuoriCasa.giocatori}"
+                                            th:value="${giocatore.idGiocatore}"
+                                            th:text="${giocatore.nome + ' ' + giocatore.cognome}">
+                                        </option>
                                     </select>
-                                    <input type="text" name="minuto" value="minuto" placeholder="minuto"> 
+                                    <input type="text" name="minuto" placeholder="minuto"> 
                                 </div>
                             </div>
                         </div>
                         <div th:unless="${partita.golSquadraFuoriCasa > 0}">
                             <div>
-                                <h4>Nessun gol segnato dalla squadra fuori casa</h4>
+                                <h4>Nessun gol segnato dalla squadra casa</h4>
                             </div>
                         </div>
                     </div>
