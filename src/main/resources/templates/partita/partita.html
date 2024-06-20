@@ -56,55 +56,74 @@
             </nav>
         </div>
         <div class="row title">
-            <div class="col text-center">
-                <div class="partita-nav">
+            <div class="col">
+                <div class="partita-nav text-center">
+                    <h4>
+                        Giornata 
+                        <span th:text="${partita.numeroGiornata}"></span>
+                    </h4>
                     <h1>
+                        <img th:src="@{${partita.squadraCasa.logo}}" alt="logo casa" id="logo-nav">
                         <span th:text="${partita.squadraCasa.nome} "></span>
                         <span th:text="${partita.golSquadraCasa}"></span>
                         -
                         <span th:text="${partita.golSquadraFuoriCasa}"></span>
                         <span th:text="${partita.squadraFuoriCasa.nome}"></span>
+                        <img th:src="@{${partita.squadraFuoriCasa.logo}}" alt="logo fuori casa" id="logo-nav">
                     </h1>
+                    <h4>
+                        Data e ora: 
+                        <span th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></span>
+                    </h4>
+                    <h4>
+                        Campo: 
+                        <span th:text="${partita.campo}"></span>
+                    </h4>
                 </div>
             </div>
         </div>
     </header>
 
     <section>
-        <div class="container informazioni-partita">
+
+
+        <div class="container formazioni">
             <div class="row">
                 <div class="col">
-                    <h2 class="text-center">Informazioni partita</h2>
+                    <h2 class="text-center">Formazioni</h2>
                 </div>
             </div>
             <div class="row">
-                <div class="col">
-                    <h4 class="text-center">Data e Ora: <span th:text="${partita.dataEOra}"></span></h4>
+                <div class="col text-center">
+                    <h3 th:text="${partita.squadraCasa.nome}"></h3>
+                    <ul>
+                        <li th:each="giocatore : ${giocatoriCasa}">
+                            <h4>
+                                <span th:text="${giocatore.nome}"></span>
+                                <span th:text="${giocatore.cognome}"></span>
+                                <span th:text="${giocatore.numeroMaglia}"></span>
+                            </h4>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h4 class="text-center">Campo: <span th:text="${partita.campo}"></span></h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h4 class="text-center">Squadra Casa: <span th:text="${partita.squadraCasa.nome}"></span></h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h4 class="text-center">Squadra Fuori Casa: <span th:text="${partita.squadraFuoriCasa.nome}"></span>
-                    </h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h4 class="text-center">Risultato: <span th:text="${partita.golSquadraCasa}"></span> - <span
-                            th:text="${partita.golSquadraFuoriCasa}"></span></h4>
+                <div class="col text-center">
+                    <h3 th:text="${partita.squadraFuoriCasa.nome}"></h3>
+                    <ul>
+                        <li th:each="giocatore : ${giocatoriFuoriCasa}">
+                            <h4>
+                                <span th:text="${giocatore.nome}"></span>
+                                <span th:text="${giocatore.cognome}"></span>
+                                <span th:text="${giocatore.numeroMaglia}"></span>
+                            </h4>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+
+
+
+
         <div class="container dettaglio-marcatori">
             <div class="row">
                 <div class="col">

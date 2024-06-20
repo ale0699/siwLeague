@@ -21,7 +21,7 @@ public class GiocatoreService {
 	
 	public List<Giocatore> findGiocatoriBySquadraIdSquadra(Long idSquadra){
 		
-		return this.giocatoreRepository.findBySquadraIdSquadra(idSquadra);
+		return this.giocatoreRepository.findBySquadraIdSquadraOrderByNumeroMaglia(idSquadra);
 	}
 	
 	public void save(Giocatore giocatore) {

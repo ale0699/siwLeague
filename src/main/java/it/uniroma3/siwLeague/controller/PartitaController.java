@@ -32,7 +32,10 @@ public class PartitaController {
 	
 	@GetMapping(value = "/partita/{idPartita}")
 	public String getPartita(@PathVariable("idPartita")Long idPartita, Model model) {
-		model.addAttribute("partita", this.partitaService.findPartitaByIdPartita(idPartita));
+		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
+		model.addAttribute("partita", partita);
+		model.addAttribute("giocatoriCasa", this.giocatoreService.findGiocatoriBySquadraIdSquadra(partita.getSquadraCasa().getIdSquadra()));
+		model.addAttribute("giocatoriFuoriCasa", this.giocatoreService.findGiocatoriBySquadraIdSquadra(partita.getSquadraFuoriCasa().getIdSquadra()));
 		return "partita/partita.html";
 	}
 	

@@ -8,5 +8,5 @@ import it.uniroma3.siwLeague.model.Giocatore;
 
 public interface GiocatoreRepository extends CrudRepository<Giocatore, Long> {
 	
-	public List<Giocatore> findBySquadraIdSquadra(Long idSquadra);
+	public List<Giocatore> findBySquadraIdSquadraOrderByNumeroMaglia(Long idSquadra);
 }
