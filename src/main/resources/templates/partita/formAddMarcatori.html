@@ -55,55 +55,98 @@
             </nav>
         </div>
     </header>
-    <section class="container">
-        <div class="form-partita container">
-            <form th:action="@{/addPartita}" method="post" th:object="${partita}">
-                <div class="container d-flex">
-                    <!-- Sezione Squadra Casa -->
-                    <div class="squadra-casa">
-                        <div class="select-squadra">
-                            <select class="form-select" th:field="*{squadraCasa}">
-                                <option value="" selected>Seleziona Squadra Casa</option>
-                                <div class="options" th:each="squadra : ${squadre}">
-                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
+    <section>
+        <div class="container informazioni-partita">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center">Informazioni partita</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Data e Ora: <span th:text="${partita.dataEOra}"></span></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Campo: <span th:text="${partita.campo}"></span></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Squadra Casa: <span th:text="${partita.squadraCasa.nome}"></span></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Squadra Fuori Casa: <span th:text="${partita.squadraFuoriCasa.nome}"></span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Risultato: <span th:text="${partita.golSquadraCasa}"></span> - <span
+                            th:text="${partita.golSquadraFuoriCasa}"></span></h4>
+                </div>
+            </div>
+        </div>
+        <div class="container form-marcatori">
+            <form th:action="@{'/addMarcatori/'+${partita.idPartita}}" method="get">
+                <div class="row">
+                    <div class="col giocatori-squadra-casa text-center">
+                        <div th:if="${partita.golSquadraCasa > 0}">
+                            <div th:each="i: ${#numbers.sequence(0, partita.golSquadraCasa-1)}">
+                                <div>
+                                    <h4 th:text="${i+1} + '° ' +'Gol'"></h4>
+                                    <select name="giocatore" id="giocatore">
+                                        <option value="0">Seleziona un giocatore</option>
+                                        <option th:each="giocatore : ${partita.squadraCasa.giocatori}"
+                                            th:value="${giocatore.idGiocatore}"
+                                            th:text="${giocatore.nome + ' ' + giocatore.cognome}">
+                                        </option>
+                                    </select>
                                 </div>
-                            </select>
+                            </div>
                         </div>
-                        <div class="gol-effettuati">
-                            <label>Gol squadra Casa</label>
-                            <input type="number" th:field="*{golSquadraCasa}">
+                        <div th:unless="${partita.golSquadraCasa > 0}">
+                            <div>
+                                <h4>Nessun gol segnato dalla squadra casa</h4>
+                            </div>
                         </div>
                     </div>
-                    <!-- Sezione Squadra Fuori Casa -->
-                    <div class="squadra-fuori-casa">
-                        <div class="select-squadra">
-                            <select class="form-select" th:field="*{squadraFuoriCasa}">
-                                <option value="" selected>Seleziona Squadra Fuori Casa</option>
-                                <div class="options" th:each="squadra : ${squadre}">
-                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
+                    <div class="col giocatori-squadra-fuoriCasa text-center">
+                        <div th:if="${partita.golSquadraFuoriCasa > 0}">
+                            <div th:each="i: ${#numbers.sequence(0, partita.golSquadraFuoriCasa-1)}">
+                                <div>
+                                    <h4 th:text="${i+1} + '° ' +'Gol'"></h4>
+                                    <select name="giocatore" id="giocatore"></select>
+                                    <option value="0">Seleziona un giocatore</option>
+                                    <option th:each="giocatore : ${partita.squadraFuoriCasa.giocatori}"
+                                        th:value="${giocatore.idGiocatore}"
+                                        th:text="${giocatore.nome + ' ' + giocatore.cognome}"></option>
+                                    </option>
+                                    </select>
                                 </div>
-                            </select>
+                            </div>
                         </div>
-                        <div class="gol-effettuati">
-                            <label>Gol squadra Fuori Casa</label>
-                            <input type="number" th:field="*{golSquadraFuoriCasa}">
+                        <div th:unless="${partita.golSquadraFuoriCasa > 0}">
+                            <div>
+                                <h4>Nessun gol segnato dalla squadra fuori casa</h4>
+                            </div>
                         </div>
                     </div>
-                    <!-- Sezione Informazioni Partita -->
-                    <div class="partita-informazioni">
-                        <input type="datetime-local" th:field="*{dataEOra}" placeholder="Data e Ora">
-                        <input type="text" th:field="*{campo}" placeholder="Nome campo">
-                        <label>Numero Giornata</label>
-                        <input type="number" th:field="*{numeroGiornata}">
-                    </div>
-                    <!-- Pulsante di invio -->
-                    <div class="button">
-                        <button type="submit" class="btn btn-primary">Aggiungi Partita e Aggiungi Marcatori</button>
+                </div>
+                <div class="row text-center">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Aggiungi marcatori</button>
                     </div>
                 </div>
             </form>
         </div>
     </section>
+
+
+
     <footer>
         <div class="container-fluid">
             <div class="container text-center">

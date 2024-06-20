@@ -56,10 +56,60 @@
         </div>
     </header>
 
-    <section class="container">
-        <div class="partita">
-            <h1 th:text="${partita.squadraCasa.nome}"></h1>
+    <section>
+        <div class="container informazioni-partita">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center">Informazioni partita</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Data e Ora: <span th:text="${partita.dataEOra}"></span></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Campo: <span th:text="${partita.campo}"></span></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Squadra Casa: <span th:text="${partita.squadraCasa.nome}"></span></h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Squadra Fuori Casa: <span th:text="${partita.squadraFuoriCasa.nome}"></span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4 class="text-center">Risultato: <span th:text="${partita.golSquadraCasa}"></span> - <span
+                            th:text="${partita.golSquadraFuoriCasa}"></span></h4>
+                </div>
+            </div>
         </div>
+        <div class="container dettaglio-marcatori">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center">Marcatori</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div th:each="marcatore : ${partita.marcatori}">
+                    <div class="col">
+                        <h4 class="text-center">Nome: <span th:text="${marcatore.nome}"></span></h4>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-center">Cognome: <span th:text="${marcatore.cognome}"></span></h4>
+                    </div>
+                    <div class="col">
+                        <h4 class="text-center">Numero Maglia: <span th:text="${marcatore.numeroMaglia}"></span></h4>
+                    </div>
+                </div>
+            </div>
     </section>
 
     <footer>

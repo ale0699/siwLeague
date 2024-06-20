@@ -14,6 +14,11 @@ public class GiocatoreService {
 	@Autowired
 	private GiocatoreRepository giocatoreRepository;
 	
+	public Giocatore findGiocatoreByIdGiocatore(Long idGiocatore) {
+		
+		return this.giocatoreRepository.findById(idGiocatore).get();
+	}
+	
 	public List<Giocatore> findGiocatoriBySquadraIdSquadra(Long idSquadra){
 		
 		return this.giocatoreRepository.findBySquadraIdSquadra(idSquadra);

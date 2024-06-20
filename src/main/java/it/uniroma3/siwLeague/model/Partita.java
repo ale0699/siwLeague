@@ -108,12 +108,12 @@ public class Partita {
 		this.squadraFuoriCasa = squadraFuoriCasa;
 	}
 
-	public List<Giocatore> getMargatori() {
+	public List<Giocatore> getMarcatori() {
 		return marcatori;
 	}
 
-	public void setMargatori(List<Giocatore> margatori) {
-		this.marcatori = margatori;
+	public void setMarcatori(List<Giocatore> marcatori) {
+		this.marcatori = marcatori;
 	}
 	
 	public Squadra getSquadraVincente() {
@@ -158,7 +158,7 @@ public class Partita {
 		return "Partita [idPartita=" + idPartita + ", numeroGiornata=" + numeroGiornata + ", dataEOra=" + dataEOra
 				+ ", campo=" + campo + ", golSquadraCasa=" + golSquadraCasa + ", golSquadraFuoriCasa="
 				+ golSquadraFuoriCasa + ", torneo=" + torneo + ", squadraCasa=" + squadraCasa + ", squadraFuoriCasa="
-				+ squadraFuoriCasa + ", margatori=" + marcatori + "]";
+				+ squadraFuoriCasa + ", marcatori=" + marcatori + "]";
 	}
 
 
