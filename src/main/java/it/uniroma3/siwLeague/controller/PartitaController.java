@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Partita;
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.service.GiocatoreService;
@@ -69,11 +70,15 @@ public class PartitaController {
 	}
 	
 	@GetMapping(value = "/addMarcatori/{idPartita}")
-	public String postAddMarcatori(@PathVariable("idPartita")Long idPartita, @RequestParam("giocatore") List<Long> giocatori ) {
+	public String postAddMarcatori(@PathVariable("idPartita")Long idPartita, @RequestParam("giocatore") List<Long> giocatori, @RequestParam("minuto") List<Integer> minuti ) {
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
+		
+		int i = 0;
 		for(Long idGiocatore : giocatori) {
 			
-			partita.getMarcatori().add(this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore));
+			Giocatore giocatoreCorrente = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
+			partita.getMarcatori().put(minuti.get(i), giocatoreCorrente);
+			i++;
 		}
 		
 		this.partitaService.save(partita);

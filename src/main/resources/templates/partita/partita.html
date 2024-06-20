@@ -112,18 +112,25 @@
                 </div>
             </div>
             <div class="row">
-                <div th:each="marcatore : ${partita.marcatori}">
+                <div th:each="entry : ${partita.marcatori.entrySet()}">
+                    <!-- 'entry' rappresenta ogni coppia chiave-valore nella mappa -->
                     <div class="col">
-                        <h4 class="text-center">Nome: <span th:text="${marcatore.nome}"></span></h4>
+                        <!-- Estrarre il Giocatore dalla mappa usando entry.value -->
+                        <h4 class="text-center">Nome: <span th:text="${entry.value.nome}"></span></h4>
                     </div>
                     <div class="col">
-                        <h4 class="text-center">Cognome: <span th:text="${marcatore.cognome}"></span></h4>
+                        <h4 class="text-center">Cognome: <span th:text="${entry.value.cognome}"></span></h4>
                     </div>
                     <div class="col">
-                        <h4 class="text-center">Numero Maglia: <span th:text="${marcatore.numeroMaglia}"></span></h4>
+                        <h4 class="text-center">Numero Maglia: <span th:text="${entry.value.numeroMaglia}"></span></h4>
+                    </div>
+                    <div class="col">
+                        <!-- Mostrare il minuto usando entry.key -->
+                        <h4 class="text-center">Minutaggio: <span th:text="${entry.key}"></span></h4>
                     </div>
                 </div>
             </div>
+        </div>
     </section>
 
     <footer>

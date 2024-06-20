@@ -1,7 +1,7 @@
 package it.uniroma3.siwLeague.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapKeyColumn;
 
 @Entity
 public class Partita {
@@ -34,7 +35,8 @@ public class Partita {
 	private Squadra squadraFuoriCasa;
 	
 	@ManyToMany
-	private List<Giocatore> marcatori;
+	@MapKeyColumn(name="minuto_gol")
+	private Map<Integer ,Giocatore> marcatori;
 
 	public Long getIdPartita() {
 		return idPartita;
@@ -108,14 +110,14 @@ public class Partita {
 		this.squadraFuoriCasa = squadraFuoriCasa;
 	}
 
-	public List<Giocatore> getMarcatori() {
+	public Map<Integer, Giocatore> getMarcatori() {
 		return marcatori;
 	}
 
-	public void setMarcatori(List<Giocatore> marcatori) {
+	public void setMarcatori(Map<Integer, Giocatore> marcatori) {
 		this.marcatori = marcatori;
 	}
-	
+
 	public Squadra getSquadraVincente() {
 		
 		if(this.golSquadraCasa>this.golSquadraFuoriCasa) {
@@ -160,6 +162,5 @@ public class Partita {
 				+ golSquadraFuoriCasa + ", torneo=" + torneo + ", squadraCasa=" + squadraCasa + ", squadraFuoriCasa="
 				+ squadraFuoriCasa + ", marcatori=" + marcatori + "]";
 	}
-
 
 }
