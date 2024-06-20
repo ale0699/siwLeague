@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
 import it.uniroma3.siwLeague.service.TorneoService;
@@ -33,6 +34,14 @@ public class TorneoController {
 		model.addAttribute("partite", this.partitaService.findAllPartiteByIdTorneo(idTorneo));
 		model.addAttribute("squadrePartecipanti", this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo));
 		model.addAttribute("torneo", this.torneoService.getTorneoByIdTorneo(idTorneo));
+		
+		//aggiorno la persistenza ogni volta che visualizzo un torneo
+		for(Squadra squadra : this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo)) {
+			
+			squadra.setPunti();
+			this.squadraService.save(squadra);
+		}
+		
 		return "torneo/torneo.html";
 	}
 	
