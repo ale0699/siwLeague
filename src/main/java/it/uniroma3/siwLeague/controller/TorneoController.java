@@ -45,9 +45,9 @@ public class TorneoController {
 		List<Giocatore> giocatoriTorneo = this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo);
 		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
 
+		model.addAttribute("torneo", torneo);
 		model.addAttribute("partite", tuttePartiteTorneo);
 		model.addAttribute("squadrePartecipanti", squadrePartecipantiTorneo);
-		model.addAttribute("torneo", torneo);
 		model.addAttribute("marcatori", giocatoriTorneo);
 		return "torneo/torneo.html";
 	}
