@@ -48,8 +48,9 @@ public class TorneoController {
 		model.addAttribute("torneo", torneo);
 
 		// Aggiorno la persistenza ogni volta che visualizzo un torneo
+		/* ANDRA TOLTO */
 		for (Squadra squadra : squadrePartecipantiTorneo) {
-			squadra.setPunti();
+			squadra.aggiornaPunti();
 			this.squadraService.save(squadra);
 		}
 

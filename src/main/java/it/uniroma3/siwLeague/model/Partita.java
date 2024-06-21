@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,13 +29,13 @@ public class Partita {
 	@ManyToOne
 	private Torneo torneo;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Squadra squadraCasa;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Squadra squadraFuoriCasa;
 	
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@MapKeyColumn(name="minuto_gol")
 	private Map<Integer ,Giocatore> marcatori;
 

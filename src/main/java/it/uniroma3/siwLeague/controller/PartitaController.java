@@ -54,14 +54,10 @@ public class PartitaController {
 		Squadra squadraCasa = partita.getSquadraCasa();		
 		Squadra squadraFuoriCasa = partita.getSquadraFuoriCasa();
 		
+		squadraCasa.aggiornaPunti();
+		squadraFuoriCasa.aggiornaPunti();
+		
 		this.partitaService.save(partita);
-		
-		squadraCasa.setPunti();
-		squadraFuoriCasa.setPunti();
-		
-		this.squadraService.save(squadraCasa);
-		this.squadraService.save(squadraFuoriCasa);
-
 		return "redirect:/formAddMarcatori/"+partita.getIdPartita();
 	}
 	
@@ -82,7 +78,6 @@ public class PartitaController {
 			Giocatore giocatoreCorrente = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
 			giocatoreCorrente.setGolSegnati(giocatoreCorrente.getGolSegnati()+1);
 			partita.getMarcatori().put(minuti.get(i), giocatoreCorrente);
-			this.giocatoreService.save(giocatoreCorrente);
 			i++;
 		}
 		

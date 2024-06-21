@@ -104,8 +104,7 @@ public class Squadra {
 		this.giocatori = giocatori;
 	}
 	
-	public void setPunti() {
-		
+	public void aggiornaPunti() {
 		this.punti = (this.calcolaVittorie() * 3) + this.calcolaPareggi();
 	}
 
