@@ -8,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 
@@ -23,9 +22,6 @@ public class Giocatore {
 	private String cognome;
 	private int numeroMaglia;
 	private LocalDate dataNascita;
-	
-	@ManyToMany(mappedBy = "marcatori")
-	private List<Partita> partiteGol;
 	
 	@ManyToOne
 	private Squadra squadra;
@@ -70,14 +66,6 @@ public class Giocatore {
 		this.dataNascita = dataNascita;
 	}
 
-	public List<Partita> getPartiteGol() {
-		return partiteGol;
-	}
-
-	public void setPartiteGol(List<Partita> partiteGol) {
-		this.partiteGol = partiteGol;
-	}
-
 	public Squadra getSquadra() {
 		return squadra;
 	}
@@ -85,10 +73,29 @@ public class Giocatore {
 	public void setSquadra(Squadra squadra) {
 		this.squadra = squadra;
 	}
+	
+	public int getGolSegnati() {
+		
+		int gol = 0;
+		List<Partita> partiteCasa = this.getSquadra().getPartiteCasa();
+		List<Partita> partiteFuoriCasa = this.getSquadra().getPartiteFuoriCasa();
+
+		for (Partita partita : partiteCasa) {
+			
+			gol += partita.golSegnatiGiocatore(this);
+		}
+		
+		for (Partita partita : partiteFuoriCasa) {
+			
+			gol += partita.golSegnatiGiocatore(this);
+		}
+		
+		return gol;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cognome, dataNascita, idGiocatore, nome, numeroMaglia, partiteGol, squadra);
+		return Objects.hash(cognome, dataNascita, idGiocatore, nome, numeroMaglia, squadra);
 	}
 
 	@Override
@@ -102,17 +109,12 @@ public class Giocatore {
 		Giocatore other = (Giocatore) obj;
 		return Objects.equals(cognome, other.cognome) && Objects.equals(dataNascita, other.dataNascita)
 				&& Objects.equals(idGiocatore, other.idGiocatore) && Objects.equals(nome, other.nome)
-				&& numeroMaglia == other.numeroMaglia && Objects.equals(partiteGol, other.partiteGol)
-				&& Objects.equals(squadra, other.squadra);
+				&& numeroMaglia == other.numeroMaglia && Objects.equals(squadra, other.squadra);
 	}
 
 	@Override
 	public String toString() {
 		return "Giocatore [idGiocatore=" + idGiocatore + ", nome=" + nome + ", cognome=" + cognome + ", numeroMaglia="
-				+ numeroMaglia + ", dataNascita=" + dataNascita + ", partiteGol=" + partiteGol + ", squadra=" + squadra
-				+ "]";
+				+ numeroMaglia + ", dataNascita=" + dataNascita + ", squadra=" + squadra + "]";
 	}
-	
-	
-	
 }

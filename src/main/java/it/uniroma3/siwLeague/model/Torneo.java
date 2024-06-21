@@ -153,7 +153,8 @@ public class Torneo {
 				&& numeroMassimoGiocatoriIscrivibili == other.numeroMassimoGiocatoriIscrivibili
 				&& numeroMassimoSquadrePartecipanti == other.numeroMassimoSquadrePartecipanti
 				&& Objects.equals(partiteTorneo, other.partiteTorneo)
-				&& Objects.equals(squadreIscritte, other.squadreIscritte) && svolgimentoInCorso == other.svolgimentoInCorso;
+				&& Objects.equals(squadreIscritte, other.squadreIscritte)
+				&& svolgimentoInCorso == other.svolgimentoInCorso;
 	}
 
 	@Override
@@ -162,8 +163,7 @@ public class Torneo {
 				+ dataInizio + ", dataFine=" + dataFine + ", numeroMassimoSquadrePartecipanti="
 				+ numeroMassimoSquadrePartecipanti + ", numeroMassimoGiocatoriIscrivibili="
 				+ numeroMassimoGiocatoriIscrivibili + ", montepremi=" + montepremi + ", iscrizioneInCorso="
-				+ iscrizioneInCorso + ", torneoInCorso=" + svolgimentoInCorso + ", squadreIscritte=" + squadreIscritte
-				+ ", partiteTorneo=" + partiteTorneo + "]";
+				+ iscrizioneInCorso + ", svolgimentoInCorso=" + svolgimentoInCorso + ", squadreIscritte="
+				+ squadreIscritte + ", partiteTorneo=" + partiteTorneo + "]";
 	}
-
 }

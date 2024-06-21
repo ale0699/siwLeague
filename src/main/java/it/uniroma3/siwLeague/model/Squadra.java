@@ -4,6 +4,7 @@ package it.uniroma3.siwLeague.model;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,7 +37,7 @@ public class Squadra {
 	@OneToMany(mappedBy = "squadraFuoriCasa")
 	private List<Partita> partiteFuoriCasa;
 	
-	@OneToMany(mappedBy = "squadra")
+	@OneToMany(mappedBy = "squadra", cascade = CascadeType.REMOVE)
 	private List<Giocatore> giocatori;
 
 	public Long getIdSquadra() {
@@ -189,7 +190,8 @@ public class Squadra {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(idSquadra, logo, nome, partiteCasa, partiteFuoriCasa, teamManager, torneo);
+		return Objects.hash(giocatori, idSquadra, logo, nome, partiteCasa, partiteFuoriCasa, punti, teamManager,
+				torneo);
 	}
 
 	@Override
@@ -201,18 +203,17 @@ public class Squadra {
 		if (getClass() != obj.getClass())
 			return false;
 		Squadra other = (Squadra) obj;
-		return Objects.equals(idSquadra, other.idSquadra) && Objects.equals(logo, other.logo)
-				&& Objects.equals(nome, other.nome) && Objects.equals(partiteCasa, other.partiteCasa)
-				&& Objects.equals(partiteFuoriCasa, other.partiteFuoriCasa)
+		return Objects.equals(giocatori, other.giocatori) && Objects.equals(idSquadra, other.idSquadra)
+				&& Objects.equals(logo, other.logo) && Objects.equals(nome, other.nome)
+				&& Objects.equals(partiteCasa, other.partiteCasa)
+				&& Objects.equals(partiteFuoriCasa, other.partiteFuoriCasa) && Objects.equals(punti, other.punti)
 				&& Objects.equals(teamManager, other.teamManager) && Objects.equals(torneo, other.torneo);
 	}
 
 	@Override
 	public String toString() {
 		return "Squadra [idSquadra=" + idSquadra + ", nome=" + nome + ", logo=" + logo + ", teamManager=" + teamManager
-				+ ", torneo=" + torneo + ", partiteCasa=" + partiteCasa + ", partiteFuoriCasa=" + partiteFuoriCasa
-				+ "]";
-	}
-	
-	
+				+ ", torneo=" + torneo + ", punti=" + punti + ", partiteCasa=" + partiteCasa + ", partiteFuoriCasa="
+				+ partiteFuoriCasa + ", giocatori=" + giocatori + "]";
+	}	
 }
