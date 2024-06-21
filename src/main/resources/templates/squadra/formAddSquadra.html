@@ -66,7 +66,7 @@
         </div>
         <h2>Aggiungi Squadra</h2>
         <div class="form-addSquadra">
-            <form th:action="@{/addSquadra}" th:object="${squadra}" method="post">
+            <form th:action="@{/addGiocatoriSquadra}" th:object="${squadra}" method="post">
                 <input type="hidden" th:value="${torneo.idTorneo}" name="idTorneo">
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome</label>

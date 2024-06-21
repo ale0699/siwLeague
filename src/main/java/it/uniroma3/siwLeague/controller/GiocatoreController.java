@@ -22,16 +22,16 @@ public class GiocatoreController {
 	@Autowired
 	private GiocatoreService giocatoreService;
 	
-	@GetMapping(value = "/formAddPlayersSquad/{idSquadra}")
-	public String getformAddPlayersSquad(@PathVariable("idSquadra")Long idSquadra, Model model) {
+	@GetMapping(value = "/formAddGiocatoriSquadra/{idSquadra}")
+	public String getFormAddGiocatoriSquadra(@PathVariable("idSquadra")Long idSquadra, Model model) {
 		model.addAttribute("squadra", this.squadraService.findSquadraByIdSquadra(idSquadra));
 		model.addAttribute("giocatori", this.giocatoreService.findGiocatoriBySquadraIdSquadra(idSquadra));
 		model.addAttribute(new Giocatore());
-		return "giocatori/formAddPlayersSquad.html";
+		return "giocatori/formAddGiocatoriSquadra.html";
 	}
 	
-	@PostMapping(value = "addPlayersSquad")
-	public String postAddPlayersSquad(@RequestParam("idSquadra")Long idSquadra, @ModelAttribute Giocatore giocatore) {
+	@PostMapping(value = "addGiocatoriSquadra")
+	public String postAddGiocatoriSquadra(@RequestParam("idSquadra")Long idSquadra, @ModelAttribute Giocatore giocatore) {
 		giocatore.setSquadra(this.squadraService.findSquadraByIdSquadra(idSquadra));
 		this.giocatoreService.save(giocatore);
 		return "redirect:/formAddPlayersSquad/"+idSquadra;
