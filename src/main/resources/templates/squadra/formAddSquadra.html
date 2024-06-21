@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Aggiungi Squadra</title>
     <link href="/css/style_index.css?version7" rel="stylesheet">
+    <link href="/css/style_addSquadra.css?version7" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -54,37 +55,57 @@
                 </div>
             </nav>
         </div>
+        <div class="row title">
+            <div class="col text-center">
+                <div class="nome-torneo">
+                    <h1 th:text="'Stai iscrivendo la tua squadra a: ' + ${torneo.nome}"></h1>
+                    <div class="fase-torneo">
+                        <div th:if="${torneo.svolgimentoInCorso && !torneo.iscrizioneInCorso}">
+                            <span>(In Corso)</span>
+                        </div>
+                        <div th:if="${!torneo.svolgimentoInCorso && !torneo.iscrizioneInCorso}">
+                            <span>(Terminato)</span>
+                        </div>
+                        <div th:if="${!torneo.svolgimentoInCorso && torneo.iscrizioneInCorso}">
+                            <span>(In fase di iscrizione)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="descrizione-torneo">
+                    <p th:text="${torneo.descrizione}"></p>
+                </div>
+            </div>
+        </div>
     </header>
 
     <section>
-
-        <div class="torneo-informazioni">
-            <h2 th:text="${torneo.nome}"></h2>
-            <p th:text="${torneo.descrizione}"></p>
-            <p th:text="${torneo.dataInizio}"></p>
-            <p th:text="${torneo.dataFine}"></p>
-        </div>
-        <h2>Aggiungi Squadra</h2>
-        <div class="form-addSquadra">
-            <form th:action="@{/addGiocatoriSquadra}" th:object="${squadra}" method="post">
-                <input type="hidden" th:value="${torneo.idTorneo}" name="idTorneo">
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" required>
+        <div class="container container-form">
+            <div class="row">
+                <div class="col">
+                    <div class="text-center">
+                        <h2>Aggiungi la tua squadra</h2>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="logo" class="form-label">Logo</label>
-                    <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-addSquadra">
+                        <form th:action="@{/addGiocatoriSquadra}" th:object="${squadra}" method="post">
+                            <input type="hidden" th:value="${torneo.idTorneo}" name="idTorneo">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="logo" class="form-label">Logo</label>
+                                <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn btn-primary text-center">Aggiungi</button>
+                        </form>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Aggiungi</button>
-            </form>
+            </div>
         </div>
-
     </section>
-
-
-
-
     <footer>
         <div class="container-fluid">
             <div class="container text-center">
