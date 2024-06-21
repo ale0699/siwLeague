@@ -179,6 +179,24 @@
             </table>
         </div>
 
+        <div class="container marcatori">
+            <h2>Marcatori</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Giocatore</th>
+                        <th scope="col">Gol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="entry : ${marcatori}">
+                        <td th:text="${entry.key.nome}">Nome del Giocatore</td>
+                        <td th:text="${entry.value}">Numero di Gol</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="container">
             <h2>Aggiungi Partita ad un torneo</h2>
             <p>Partecipa ai nostri tornei e metti alla prova le tue abilità!</p>
