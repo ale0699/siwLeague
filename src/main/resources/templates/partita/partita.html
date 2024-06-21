@@ -58,10 +58,10 @@
         <div class="row title">
             <div class="col">
                 <div class="partita-nav text-center">
-                    <h4>
+                    <h5>
                         Giornata
                         <span th:text="${partita.numeroGiornata}"></span>
-                    </h4>
+                    </h5>
                     <h1>
                         <img th:src="@{${partita.squadraCasa.logo}}" alt="logo casa" id="logo-nav">
                         <span th:text="${partita.squadraCasa.nome} "></span>
@@ -71,14 +71,14 @@
                         <span th:text="${partita.squadraFuoriCasa.nome}"></span>
                         <img th:src="@{${partita.squadraFuoriCasa.logo}}" alt="logo fuori casa" id="logo-nav">
                     </h1>
-                    <h4>
+                    <h5>
                         Data e ora:
                         <span th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></span>
-                    </h4>
-                    <h4>
+                    </h5>
+                    <h5>
                         Campo:
                         <span th:text="${partita.campo}"></span>
-                    </h4>
+                    </h5>
                 </div>
             </div>
         </div>
