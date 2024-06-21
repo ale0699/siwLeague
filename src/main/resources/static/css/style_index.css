@@ -10,7 +10,7 @@ header {
 }
 
 .title{
-    padding-top: 250px;
+    padding-top: calc(25vh);
     text-align: center;
     color: white;
 }
