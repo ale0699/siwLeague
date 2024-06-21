@@ -29,7 +29,7 @@ public class TorneoController {
 
 	@Autowired
 	private PartitaService partitaService;
-	
+
 	@Autowired
 	private GiocatoreService giocatoreService;
 
@@ -45,12 +45,12 @@ public class TorneoController {
 		List<Squadra> squadrePartecipantiTorneo = this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo);
 		List<Giocatore> giocatoriTorneo = this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo);
 		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
-		
-		   // Ordinamento giocatoriTorneo per golSegnati
-	    giocatoriTorneo.sort(Comparator.comparingInt(Giocatore::getGolSegnati).reversed());
 
-	    // Ordinamento squadrePartecipantiTorneo per punti
-	    squadrePartecipantiTorneo.sort(Comparator.comparingInt(Squadra::getPunti).reversed());
+		// Ordinamento giocatoriTorneo per golSegnati
+		giocatoriTorneo.sort(Comparator.comparingInt(Giocatore::getGolSegnati).reversed());
+
+		// Ordinamento squadrePartecipantiTorneo per punti
+		squadrePartecipantiTorneo.sort(Comparator.comparingInt(Squadra::getPunti).reversed());
 
 		model.addAttribute("torneo", torneo);
 		model.addAttribute("partite", tuttePartiteTorneo);
