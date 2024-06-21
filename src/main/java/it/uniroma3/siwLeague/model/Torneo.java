@@ -19,6 +19,7 @@ public class Torneo {
 	private Long idTorneo;
 	@NotBlank
 	private String nome;
+	private String logo;
 	private String descrizione;
 	private LocalDate dataInizio;
 	private LocalDate dataFine;
@@ -48,6 +49,14 @@ public class Torneo {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 
 	public String getDescrizione() {
@@ -132,7 +141,7 @@ public class Torneo {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dataFine, dataInizio, descrizione, idTorneo, iscrizioneInCorso, montepremi, nome,
+		return Objects.hash(dataFine, dataInizio, descrizione, idTorneo, iscrizioneInCorso, logo, montepremi, nome,
 				numeroMassimoGiocatoriIscrivibili, numeroMassimoSquadrePartecipanti, partiteTorneo, squadreIscritte,
 				svolgimentoInCorso);
 	}
@@ -148,8 +157,8 @@ public class Torneo {
 		Torneo other = (Torneo) obj;
 		return Objects.equals(dataFine, other.dataFine) && Objects.equals(dataInizio, other.dataInizio)
 				&& Objects.equals(descrizione, other.descrizione) && Objects.equals(idTorneo, other.idTorneo)
-				&& iscrizioneInCorso == other.iscrizioneInCorso && montepremi == other.montepremi
-				&& Objects.equals(nome, other.nome)
+				&& iscrizioneInCorso == other.iscrizioneInCorso && Objects.equals(logo, other.logo)
+				&& montepremi == other.montepremi && Objects.equals(nome, other.nome)
 				&& numeroMassimoGiocatoriIscrivibili == other.numeroMassimoGiocatoriIscrivibili
 				&& numeroMassimoSquadrePartecipanti == other.numeroMassimoSquadrePartecipanti
 				&& Objects.equals(partiteTorneo, other.partiteTorneo)
@@ -159,8 +168,8 @@ public class Torneo {
 
 	@Override
 	public String toString() {
-		return "Torneo [idTorneo=" + idTorneo + ", nome=" + nome + ", descrizione=" + descrizione + ", dataInizio="
-				+ dataInizio + ", dataFine=" + dataFine + ", numeroMassimoSquadrePartecipanti="
+		return "Torneo [idTorneo=" + idTorneo + ", nome=" + nome + ", logo=" + logo + ", descrizione=" + descrizione
+				+ ", dataInizio=" + dataInizio + ", dataFine=" + dataFine + ", numeroMassimoSquadrePartecipanti="
 				+ numeroMassimoSquadrePartecipanti + ", numeroMassimoGiocatoriIscrivibili="
 				+ numeroMassimoGiocatoriIscrivibili + ", montepremi=" + montepremi + ", iscrizioneInCorso="
 				+ iscrizioneInCorso + ", svolgimentoInCorso=" + svolgimentoInCorso + ", squadreIscritte="

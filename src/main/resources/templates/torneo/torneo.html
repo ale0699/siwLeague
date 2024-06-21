@@ -60,11 +60,14 @@
                 <div class="nome-torneo">
                     <h1 th:text="${torneo.nome}"></h1>
                     <div class="fase-torneo">
-                        <div th:if="${torneo.svolgimentoInCorso}">
+                        <div th:if="${torneo.svolgimentoInCorso && !torneo.iscrizioneInCorso}">
                             <span>(In Corso)</span>
                         </div>
-                        <div th:unless="${torneo.svolgimentoInCorso}">
-                            <span>(Concluso)</span>
+                        <div th:if="${!torneo.svolgimentoInCorso && !torneo.iscrizioneInCorso}">
+                            <span>(Terminato)</span>
+                        </div>
+                        <div th:if="${!torneo.svolgimentoInCorso && torneo.iscrizioneInCorso}">
+                            <span>(In fase di iscrizione)</span>
                         </div>
                     </div>
                 </div>

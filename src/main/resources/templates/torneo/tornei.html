@@ -55,23 +55,34 @@
                 </div>
             </nav>
         </div>
+        <div class="row title">
+            <div class="col text-center">
+                <h1>Tornei</h1>
+            </div>
+        </div>
     </header>
 
     <section>
-
         <div class="container">
             <div class="row">
-                <div class="col">
-                    <h1>Tornei</h1>
-                    <ul>
-                        <li th:each="torneo : ${tornei}">
-                            <a th:href="@{'/torneo/'+${torneo.idTorneo}}" th:text="${torneo.nome}"></a>
-                        </li>
-                    </ul>
+                <div class="col" th:each="torneo : ${tornei}">
+                    <div class="card">
+                        <img th:src="@{${torneo.logo}}" class="card-img-top" alt="logo torneo">
+                        <div class="card-body">
+                            <div class="title-if">
+                                <h5 class="card-title" th:text="${torneo.nome}"></h5>
+                                <h5 class="card-title" th:if="${torneo.svolgimentoInCorso && !torneo.iscrizioneInCorso}">(In corso)</h5>
+                                <h5 class="card-title" th:if="${!torneo.svolgimentoInCorso && !torneo.iscrizioneInCorso}">(Terminato)</h5>
+                                <h5 class="card-title" th:if="${!torneo.svolgimentoInCorso && torneo.iscrizioneInCorso}">(In fase di iscrizione)</h5>
+                            </div>
+
+                            <p class="card-text" th:text="${torneo.descrizione}"></p>
+                            <a th:href="@{'/torneo/'+${torneo.idTorneo}}" class="btn btn-primary">Vai a torneo</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </section>
 
     <footer>
