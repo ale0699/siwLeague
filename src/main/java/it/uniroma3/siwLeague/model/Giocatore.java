@@ -22,8 +22,6 @@ public class Giocatore {
 	private int numeroMaglia;
 	private LocalDate dataNascita;
 	
-	private Integer golSegnati;
-	
 	@ManyToOne
 	private Squadra squadra;
 
@@ -75,12 +73,33 @@ public class Giocatore {
 		this.squadra = squadra;
 	}
 	
-	public void setGolSegnati(Integer golSegnati) {
-		this.golSegnati = golSegnati;
-	}
-
-	public Integer getGolSegnati() {
-		return this.golSegnati;
+	public int getGolSegnati() {
+		
+		int gol=0;
+		
+		for(Partita partita : this.getSquadra().getPartiteCasa()) {
+			
+			for (Integer minuto : partita.getMarcatori().keySet()) {
+				
+				if(partita.getMarcatori().get(minuto).equals(this)) {
+					
+					gol++;
+				}
+			}
+		}
+		
+		for(Partita partita : this.getSquadra().getPartiteFuoriCasa()) {
+			
+			for (Integer minuto : partita.getMarcatori().keySet()) {
+				
+				if(partita.getMarcatori().get(minuto).equals(this)) {
+					
+					gol++;
+				}
+			}
+		}
+		
+		return gol;
 	}
 
 	@Override

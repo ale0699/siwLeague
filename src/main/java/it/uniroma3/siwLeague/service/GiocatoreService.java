@@ -19,9 +19,9 @@ public class GiocatoreService {
 		return this.giocatoreRepository.findById(idGiocatore).get();
 	}
 	
-	public List<Giocatore> findGiocatoriBySquadraTorneoIdTorneoOrderByGolSegnati(Long idTorneo){
+	public List<Giocatore> findGiocatoriBySquadraTorneoIdTorneo(Long idTorneo){
 		
-		return this.giocatoreRepository.findBySquadraTorneoIdTorneoOrderByGolSegnatiDesc(idTorneo);
+		return this.giocatoreRepository.findBySquadraTorneoIdTorneo(idTorneo);
 	}
 	
 	public List<Giocatore> findGiocatoriBySquadraIdSquadra(Long idSquadra){

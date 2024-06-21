@@ -2,7 +2,6 @@ package it.uniroma3.siwLeague.model;
 
 
 import java.util.List;
-import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -28,8 +27,6 @@ public class Squadra {
 	
 	@ManyToOne
 	private Torneo torneo;
-	
-    private Integer punti=0;
     
 	@OneToMany(mappedBy = "squadraCasa")
 	private List<Partita> partiteCasa;
@@ -104,16 +101,8 @@ public class Squadra {
 		this.giocatori = giocatori;
 	}
 	
-	public void aggiornaPunti() {
-		this.punti = (this.calcolaVittorie() * 3) + this.calcolaPareggi();
-	}
-
-	public void setPunti(Integer punti) {
-		this.punti = punti;
-	}
-
-	public Integer getPunti() {
-		return this.punti;
+	public int getPunti() {
+		return (this.calcolaVittorie() * 3) + this.calcolaPareggi();
 	}
 	
 	public int calcolaPartiteGiocate() {
@@ -186,33 +175,4 @@ public class Squadra {
 	    }
 	    return golSubiti;
 	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(giocatori, idSquadra, logo, nome, partiteCasa, partiteFuoriCasa, punti, teamManager,
-				torneo);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Squadra other = (Squadra) obj;
-		return Objects.equals(giocatori, other.giocatori) && Objects.equals(idSquadra, other.idSquadra)
-				&& Objects.equals(logo, other.logo) && Objects.equals(nome, other.nome)
-				&& Objects.equals(partiteCasa, other.partiteCasa)
-				&& Objects.equals(partiteFuoriCasa, other.partiteFuoriCasa) && Objects.equals(punti, other.punti)
-				&& Objects.equals(teamManager, other.teamManager) && Objects.equals(torneo, other.torneo);
-	}
-
-	@Override
-	public String toString() {
-		return "Squadra [idSquadra=" + idSquadra + ", nome=" + nome + ", logo=" + logo + ", teamManager=" + teamManager
-				+ ", torneo=" + torneo + ", punti=" + punti + ", partiteCasa=" + partiteCasa + ", partiteFuoriCasa="
-				+ partiteFuoriCasa + ", giocatori=" + giocatori + "]";
-	}	
 }

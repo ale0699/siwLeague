@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Partita;
-import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.service.GiocatoreService;
 import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
@@ -51,12 +50,6 @@ public class PartitaController {
 		
 		partita.setTorneo(partita.getSquadraCasa().getTorneo());
 		
-		Squadra squadraCasa = partita.getSquadraCasa();		
-		Squadra squadraFuoriCasa = partita.getSquadraFuoriCasa();
-		
-		squadraCasa.aggiornaPunti();
-		squadraFuoriCasa.aggiornaPunti();
-		
 		this.partitaService.save(partita);
 		return "redirect:/formAddMarcatori/"+partita.getIdPartita();
 	}
@@ -76,7 +69,6 @@ public class PartitaController {
 		for(Long idGiocatore : giocatori) {
 			
 			Giocatore giocatoreCorrente = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
-			giocatoreCorrente.setGolSegnati(giocatoreCorrente.getGolSegnati()+1);
 			partita.getMarcatori().put(minuti.get(i), giocatoreCorrente);
 			i++;
 		}

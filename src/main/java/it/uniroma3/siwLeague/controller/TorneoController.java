@@ -46,15 +46,7 @@ public class TorneoController {
 		model.addAttribute("partite", tuttePartiteTorneo);
 		model.addAttribute("squadrePartecipanti", squadrePartecipantiTorneo);
 		model.addAttribute("torneo", torneo);
-
-		// Aggiorno la persistenza ogni volta che visualizzo un torneo
-		/* ANDRA TOLTO */
-		for (Squadra squadra : squadrePartecipantiTorneo) {
-			squadra.aggiornaPunti();
-			this.squadraService.save(squadra);
-		}
-
-		model.addAttribute("marcatori", this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneoOrderByGolSegnati(idTorneo));
+		model.addAttribute("marcatori", this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo));
 		return "torneo/torneo.html";
 	}
 
