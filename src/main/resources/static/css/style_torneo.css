@@ -15,6 +15,29 @@ section{
     padding-top: 30px;
 }
 
+.podium {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.podium.first {
+    background-color: gold;
+}
+
+.podium.second {
+    background-color: silver;
+}
+
+.podium.third {
+    background-color: bronze;
+}
+
+.table-responsive {
+    max-height: 300px; /* altezza massima della tabella */
+    overflow-y: auto;
+}
+
 .gol{
     
     font-weight: bold;

@@ -178,24 +178,52 @@
                 </tbody>
             </table>
         </div>
-
         <div class="container marcatori">
-            <h2>Marcatori</h2>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Giocatore</th>
-                        <th scope="col">Gol</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="entry : ${marcatori}">
-                        <td th:text="${entry.key.nome}">Nome del Giocatore</td>
-                        <td th:text="${entry.value}">Numero di Gol</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h2>Classifica Marcatori</h2>
+            <div class="row">
+                <div class="col">
+                    <div class="card podium first">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${marcatori[0].nome} + ' ' + ${marcatori[0].cognome}">Nome del Giocatore</h5>
+                            <p class="card-text" th:text="${marcatori[0].golSegnati}">Numero di Gol</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card podium second">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${marcatori[1].nome} + ' ' + ${marcatori[1].cognome}">Nome del Giocatore</h5>
+                            <p class="card-text" th:text="${marcatori[1].golSegnati}">Numero di Gol</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card podium third">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${marcatori[2].nome} + ' ' + ${marcatori[2].cognome}">Nome del Giocatore</h5>
+                            <p class="card-text" th:text="${marcatori[2].golSegnati}">Numero di Gol</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Giocatore</th>
+                            <th scope="col">Gol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="giocatore, index : ${marcatori}" th:if="${index.index > 2}">
+                            <td th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}">Nome del Giocatore</td>
+                            <td th:text="${giocatore.golSegnati}">Numero di Gol</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
+        
 
         <div class="container">
             <h2>Aggiungi Partita ad un torneo</h2>

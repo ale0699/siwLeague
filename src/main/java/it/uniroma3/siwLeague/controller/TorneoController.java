@@ -1,8 +1,6 @@
 package it.uniroma3.siwLeague.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Partita;
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.model.Torneo;
+import it.uniroma3.siwLeague.service.GiocatoreService;
 import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
 import it.uniroma3.siwLeague.service.TorneoService;
@@ -29,6 +27,9 @@ public class TorneoController {
 
 	@Autowired
 	private PartitaService partitaService;
+	
+	@Autowired
+	private GiocatoreService giocatoreService;
 
 	@GetMapping(value = "/tornei")
 	public String getAllTornei(Model model) {
@@ -52,34 +53,7 @@ public class TorneoController {
 			this.squadraService.save(squadra);
 		}
 
-		// Crea una lista di marcatori del torneo
-		Map<Giocatore, Integer> marcatoriTorneo = new HashMap<>();
-		
-		for (Partita partitaCorrente : tuttePartiteTorneo) {
-
-			Map<Integer, Giocatore> marcatoriPartitaCorrente = partitaCorrente.getMarcatori();
-			
-			//itero su tutti i minuti in cui si è segnato un gol
-			for (Integer minuto : marcatoriPartitaCorrente.keySet()) {
-				
-				//è il giocatore che ha segnato al minuto (Integer minuto)
-				Giocatore giocatoreMarcatoreNellaPartitaCorrente = marcatoriPartitaCorrente.get(minuto);
-				
-				//se è presente già nella mappa dei marcatori del torneo aggiungo un gol in più 
-				if (marcatoriTorneo.containsKey(giocatoreMarcatoreNellaPartitaCorrente)) {
-
-					marcatoriTorneo.put(giocatoreMarcatoreNellaPartitaCorrente, (marcatoriTorneo.get(giocatoreMarcatoreNellaPartitaCorrente) + 1));
-				}
-				//se non è presente lo inizializzo con un gol
-				else {
-
-					marcatoriTorneo.put(giocatoreMarcatoreNellaPartitaCorrente, 1);
-				}
-			}
-		}
-
-		model.addAttribute("marcatori", marcatoriTorneo);
-
+		model.addAttribute("marcatori", this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneoOrderByGolSegnati(idTorneo));
 		return "torneo/torneo.html";
 	}
 

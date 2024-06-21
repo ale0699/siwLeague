@@ -1,7 +1,6 @@
 package it.uniroma3.siwLeague.model;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -22,6 +21,8 @@ public class Giocatore {
 	private String cognome;
 	private int numeroMaglia;
 	private LocalDate dataNascita;
+	
+	private Integer golSegnati;
 	
 	@ManyToOne
 	private Squadra squadra;
@@ -74,23 +75,12 @@ public class Giocatore {
 		this.squadra = squadra;
 	}
 	
-	public int getGolSegnati() {
-		
-		int gol = 0;
-		List<Partita> partiteCasa = this.getSquadra().getPartiteCasa();
-		List<Partita> partiteFuoriCasa = this.getSquadra().getPartiteFuoriCasa();
+	public void setGolSegnati(Integer golSegnati) {
+		this.golSegnati = golSegnati;
+	}
 
-		for (Partita partita : partiteCasa) {
-			
-			gol += partita.golSegnatiGiocatore(this);
-		}
-		
-		for (Partita partita : partiteFuoriCasa) {
-			
-			gol += partita.golSegnatiGiocatore(this);
-		}
-		
-		return gol;
+	public Integer getGolSegnati() {
+		return this.golSegnati;
 	}
 
 	@Override

@@ -131,20 +131,6 @@ public class Partita {
 
 		return this.golSquadraCasa==this.golSquadraFuoriCasa;
 	}
-	
-	public int golSegnatiGiocatore(Giocatore g) {
-	    int gol = 0;
-	    for (Integer minuto : this.getMarcatori().keySet()) {
-
-	        Giocatore marcatore = this.getMarcatori().get(minuto);
-	        if (marcatore.equals(g)) {
-
-	            gol++;
-	        }
-	    }
-
-	    return gol;
-	}
 
 	@Override
 	public int hashCode() {

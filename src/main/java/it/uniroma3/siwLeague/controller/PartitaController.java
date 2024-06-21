@@ -80,7 +80,9 @@ public class PartitaController {
 		for(Long idGiocatore : giocatori) {
 			
 			Giocatore giocatoreCorrente = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
+			giocatoreCorrente.setGolSegnati(giocatoreCorrente.getGolSegnati()+1);
 			partita.getMarcatori().put(minuti.get(i), giocatoreCorrente);
+			this.giocatoreService.save(giocatoreCorrente);
 			i++;
 		}
 		
