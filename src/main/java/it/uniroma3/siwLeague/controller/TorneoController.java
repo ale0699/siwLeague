@@ -46,10 +46,10 @@ public class TorneoController {
 		List<Giocatore> giocatoriTorneo = this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo);
 		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
 
-		// Ordinamento giocatoriTorneo per golSegnati
+		//Ordinamento giocatoriTorneo per golSegnati
 		giocatoriTorneo.sort(Comparator.comparingInt(Giocatore::getGolSegnati).reversed());
 
-		// Ordinamento squadrePartecipantiTorneo per punti
+		//Ordinamento squadrePartecipantiTorneo per punti
 		squadrePartecipantiTorneo.sort(Comparator.comparingInt(Squadra::getPunti).reversed());
 
 		model.addAttribute("torneo", torneo);
