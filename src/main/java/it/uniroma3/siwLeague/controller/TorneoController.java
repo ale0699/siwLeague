@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Partita;
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.model.Torneo;
@@ -41,12 +42,13 @@ public class TorneoController {
 	public String getTorneo(@PathVariable("idTorneo") Long idTorneo, Model model) {
 		List<Partita> tuttePartiteTorneo = this.partitaService.findAllPartiteByIdTorneo(idTorneo);
 		List<Squadra> squadrePartecipantiTorneo = this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo);
+		List<Giocatore> giocatoriTorneo = this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo);
 		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
 
 		model.addAttribute("partite", tuttePartiteTorneo);
 		model.addAttribute("squadrePartecipanti", squadrePartecipantiTorneo);
 		model.addAttribute("torneo", torneo);
-		model.addAttribute("marcatori", this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo));
+		model.addAttribute("marcatori", giocatoriTorneo);
 		return "torneo/torneo.html";
 	}
 
