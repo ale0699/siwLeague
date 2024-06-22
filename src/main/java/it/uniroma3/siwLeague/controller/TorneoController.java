@@ -44,7 +44,7 @@ public class TorneoController {
 		List<Partita> tuttePartiteTorneo = this.partitaService.findAllPartiteByIdTorneo(idTorneo);
 		List<Squadra> squadrePartecipantiTorneo = this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo);
 		List<Giocatore> giocatoriTorneo = this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo);
-		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
+		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 
 		//Ordinamento giocatoriTorneo per golSegnati
 		giocatoriTorneo.sort(Comparator.comparingInt(Giocatore::getGolSegnati).reversed());

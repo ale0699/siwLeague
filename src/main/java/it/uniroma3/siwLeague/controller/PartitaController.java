@@ -16,6 +16,7 @@ import it.uniroma3.siwLeague.model.Partita;
 import it.uniroma3.siwLeague.service.GiocatoreService;
 import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
+import it.uniroma3.siwLeague.service.TorneoService;
 
 @Controller
 public class PartitaController {
@@ -29,6 +30,9 @@ public class PartitaController {
 	@Autowired
 	private GiocatoreService giocatoreService;
 	
+	@Autowired
+	private TorneoService torneoService;
+	
 	@GetMapping(value = "/partita/{idPartita}")
 	public String getPartita(@PathVariable("idPartita")Long idPartita, Model model) {
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
@@ -41,6 +45,7 @@ public class PartitaController {
 	@GetMapping(value = "/formAddPartita/{idTorneo}")
 	public String getFormAddPartita(@PathVariable("idTorneo")Long idTorneo, Model model) {
 		model.addAttribute(new Partita());
+		model.addAttribute("torneo", this.torneoService.findTorneoByIdTorneo(idTorneo));
 		model.addAttribute("squadre", this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo));
 		return "partita/formAddPartita.html";
 	}

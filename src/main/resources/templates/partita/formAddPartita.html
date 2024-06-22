@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Form Add Partita</title>
     <link href="/css/style_index.css?version7" rel="stylesheet">
+    <link href="/css/style_addPartita.css?version7" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -54,54 +55,156 @@
                 </div>
             </nav>
         </div>
-    </header>
-    <section class="container">
-        <div class="form-partita container">
-            <form th:action="@{/addPartita}" method="post" th:object="${partita}">
-                <div class="container d-flex">
-                    <!-- Sezione Squadra Casa -->
-                    <div class="squadra-casa">
-                        <div class="select-squadra">
-                            <select class="form-select" th:field="*{squadraCasa}">
-                                <option value="" selected>Seleziona Squadra Casa</option>
-                                <div class="options" th:each="squadra : ${squadre}">
-                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
-                                </div>
-                            </select>
-                        </div>
-                        <div class="gol-effettuati">
-                            <label>Gol squadra Casa</label>
-                            <input type="number" th:field="*{golSquadraCasa}">
-                        </div>
-                    </div>
-                    <!-- Sezione Squadra Fuori Casa -->
-                    <div class="squadra-fuori-casa">
-                        <div class="select-squadra">
-                            <select class="form-select" th:field="*{squadraFuoriCasa}">
-                                <option value="" selected>Seleziona Squadra Fuori Casa</option>
-                                <div class="options" th:each="squadra : ${squadre}">
-                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
-                                </div>
-                            </select>
-                        </div>
-                        <div class="gol-effettuati">
-                            <label>Gol squadra Fuori Casa</label>
-                            <input type="number" th:field="*{golSquadraFuoriCasa}">
-                        </div>
-                    </div>
-                    <!-- Sezione Informazioni Partita -->
-                    <div class="partita-informazioni">
-                        <input type="datetime-local" th:field="*{dataEOra}" placeholder="Data e Ora">
-                        <input type="text" th:field="*{campo}" placeholder="Nome campo">
-                        <label>Numero Giornata</label>
-                        <input type="number" th:field="*{numeroGiornata}">
-                    </div>
-                    <!-- Pulsante di invio -->
-                    <div class="button">
-                        <button type="submit" class="btn btn-primary">Aggiungi Partita e Aggiungi Marcatori</button>
-                    </div>
+        <div class="row title">
+            <div class="col text-center">
+                <div class="nome-torneo">
+                    <h1 th:text="'Stai registrando una nuova partita per il torneo: ' + ${torneo.nome}"></h1>
                 </div>
-            </form>
+                <div class="logo-torneo">
+                    <img th:src="@{${torneo.logo}}" id="logo-nav" alt="logo torneo">
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="d-flex justify-content-center">
+        <div class="row">
+            <div class="col">
+                <div class="container text-center">
+                    <h2>Partite già registrate</h2>
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Giornata</th>
+                                <th scope="col">Partita</th>
+                                <th scope="col">Data e Ora</th>
+                                <th scope="col">Campo</th>
+                                <th scope="col">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            <th:block th:each="partita : ${torneo.partiteTorneo}">
+                                <tr>
+                                    <td th:text="${partita.numeroGiornata}"></td>
+                                    <td>
+                                        <a th:href="@{'/partita/'+${partita.idPartita}}">
+                                            <span th:text="${partita.squadraCasa.nome}"></span>
+                                            <span class="gol" th:text="${partita.golSquadraCasa}"></span>
+                                            -
+                                            <span class="gol" th:text="${partita.golSquadraFuoriCasa}"></span>
+                                            <span th:text="${partita.squadraFuoriCasa.nome}"></span>
+                                        </a>
+                                    </td>
+                                    <td th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></td>
+                                    <td th:text="${partita.campo}"></td>
+                                    <td>
+                                        <a th:href="@{'/eliminaPartita/'+${partita.idPartita}}">
+                                            <button type="button" class="btn btn-primary">Elimina Partita</button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="contianer-sm container-form d-flex justify-content-center align-items-center text-center">
+                    <form th:action="@{/addPartita}" method="post" th:object="${partita}">
+                        <div class="row">
+                            <div class="col">
+                                <h2>Dettagli squadra casa</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="select-squadra">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect" th:field="*{squadraCasa}"
+                                            aria-label="Floating label select example">
+                                            <option value="" selected>Squadra Casa</option>
+                                            <div class="options" th:each="squadra : ${squadre}">
+                                                <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
+                                            </div>
+                                        </select>
+                                        <label for="floatingSelect">Squadra Casa</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 gol-effettuati">
+                                    <input type="number" class="form-control" id="floatingInput" th:field="*{golSquadraCasa}"
+                                        placeholder="Gol squadra Casa">
+                                    <label for="floatingInput">Gol squadra Casa</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h2>Dettagli squadra fuori casa</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="select-squadra">
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect" th:field="*{squadraFuoriCasa}"
+                                            aria-label="Floating label select example">
+                                            <option value="" selected>Squadra Fuori Casa</option>
+                                            <div class="options" th:each="squadra : ${squadre}">
+                                                <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
+                                            </div>
+                                        </select>
+                                        <label for="floatingSelect">Squadra Fuori Casa</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 gol-effettuati">
+                                    <input type="number" class="form-control" id="floatingInput"
+                                        th:field="*{golSquadraFuoriCasa}" placeholder="Gol squadra Fuori Casa">
+                                    <label for="floatingInput">Gol squadra Fuori Casa</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <h2>Ulteriori dettagli</h2>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating mb-3 dataeora">
+                                    <input type="datetime-local" class="form-control" id="floatingInput" th:field="*{dataEOra}"
+                                        placeholder="Data e Ora">
+                                    <label for="floatingInput">Data e Ora</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 campo">
+                                    <input type="text" class="form-control" id="floatingInput" th:field="*{campo}"
+                                        placeholder="Campo">
+                                    <label for="floatingInput">Campo</label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-floating mb-3 giornata">
+                                    <input type="number" class="form-control" id="floatingInput" th:field="*{numeroGiornata}"
+                                        placeholder="Numero Giornata">
+                                    <label for="floatingInput">Numero Giornata</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col">
+                                <div class="button">
+                                    <button type="submit" class="btn btn-primary">Aggiungi Marcatori</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
     <footer>

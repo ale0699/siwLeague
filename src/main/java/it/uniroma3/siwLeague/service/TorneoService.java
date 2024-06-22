@@ -14,7 +14,7 @@ public class TorneoService {
 	@Autowired
 	private TorneoRepository torneoRepository;
 	
-	public Torneo getTorneoByIdTorneo(Long idTorneo) {
+	public Torneo findTorneoByIdTorneo(Long idTorneo) {
 		
 		return this.torneoRepository.findById(idTorneo).get();
 	}

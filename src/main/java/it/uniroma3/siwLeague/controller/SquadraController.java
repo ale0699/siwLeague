@@ -43,7 +43,7 @@ public class SquadraController {
 	
 	@GetMapping(value = "/formAddSquadra/{idTorneo}")
 	public String getFormAddSquadra(@PathVariable("idTorneo")Long idTorneo, Model model) throws Exception {
-		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
+		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 		
 		//controllo che il torneo sia effettivamente aperto alle iscrizioni
 		if (torneo.isIscrizioneInCorso()) {
@@ -70,7 +70,7 @@ public class SquadraController {
             squadra.setLogo("/images/squadre/loghi/" + logo.getOriginalFilename());
         }
 		
-		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
+		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 		squadra.setTorneo(torneo);
 		this.squadraService.save(squadra); //forse non qua
 		return "redirect:/formAddGiocatoriSquadra/"+squadra.getIdSquadra();
