@@ -91,9 +91,9 @@
                                         <tr th:each="giocatore : ${giocatori}">
                                             <td th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></td>
                                             <td th:text="${giocatore.numeroMaglia}"></td>
-                                            <td th:text="${giocatore.dataNascita}"></td>
+                                            <td th:text="${#temporals.format(giocatore.dataNascita, 'dd-MM-yyyy')}"></td>
                                             <td th:if="${squadra.torneo.iscrizioneInCorso}">
-                                                <a th:href="@{'/removeGiocatoreSquadra/'+${giocatore.idGiocatore}}">
+                                                <a th:href="@{'/removeGiocatore/'+${giocatore.idGiocatore}}">
                                                     <button type="button" class="btn btn-secondary">Elimina
                                                         giocatore</button>
                                                 </a>
@@ -114,7 +114,7 @@
                     </div>
                     <div class="row">
                         <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
-                            <form th:action="@{/addPlayersSquad}" th:object="${giocatore}" method="post">
+                            <form th:action="@{/addGiocatoriSquadra}" th:object="${giocatore}" method="post">
                                 <input type="hidden" th:value="${squadra.idSquadra}" name="idSquadra">
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingNome" placeholder="Nome"

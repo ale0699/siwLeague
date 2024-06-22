@@ -33,4 +33,9 @@ public class GiocatoreService {
 		
 		this.giocatoreRepository.save(giocatore);
 	}
+
+	public void remove(Giocatore giocatore) {
+		
+		this.giocatoreRepository.delete(giocatore);
+	}
 }

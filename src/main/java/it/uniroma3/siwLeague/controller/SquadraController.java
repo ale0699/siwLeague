@@ -76,4 +76,12 @@ public class SquadraController {
 		return "redirect:/formAddGiocatoriSquadra/"+squadra.getIdSquadra();
 	}
 	
+	@GetMapping(value = "/removeSquadra/{idSquadra}")
+	public String getRemoveSquadra(@PathVariable("idSquadra")Long idSquadra) throws IOException {
+		Squadra squadra = this.squadraService.findSquadraByIdSquadra(idSquadra);
+		this.squadraService.remove(squadra);
+        Path fileNameAndPath = Paths.get("src/main/resources/static/"+squadra.getLogo());
+        Files.delete(fileNameAndPath);
+		return "redirect:/";
+	}
 }

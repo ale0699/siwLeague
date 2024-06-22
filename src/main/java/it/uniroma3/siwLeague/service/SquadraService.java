@@ -32,4 +32,9 @@ public class SquadraService {
 		
 		this.squadraRepository.save(squadra);
 	}
+	
+	public void remove(Squadra squadra) {
+		
+		this.squadraRepository.delete(squadra);
+	}
 }
