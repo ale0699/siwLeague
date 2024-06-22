@@ -46,6 +46,7 @@ public class PartitaController {
 	public String getFormAddPartita(@PathVariable("idTorneo")Long idTorneo, Model model) {
 		model.addAttribute(new Partita());
 		model.addAttribute("torneo", this.torneoService.findTorneoByIdTorneo(idTorneo));
+		model.addAttribute("partite", this.partitaService.findAllPartiteByIdTorneo(idTorneo));
 		model.addAttribute("squadre", this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo));
 		return "partita/formAddPartita.html";
 	}
@@ -79,7 +80,7 @@ public class PartitaController {
 		}
 		
 		this.partitaService.save(partita);
-		return "redirect:/partita/"+idPartita;
+		return "redirect:/formAddPartita/"+partita.getTorneo().getIdTorneo();
 	}
 	
 }
