@@ -42,18 +42,17 @@ public class PartitaController {
 		return "partita/partita.html";
 	}
 	
-	@GetMapping(value = "/formAddPartita/{idTorneo}")
+	@GetMapping(value = "/formManagePartita/{idTorneo}")
 	public String getFormAddPartita(@PathVariable("idTorneo")Long idTorneo, Model model) {
 		model.addAttribute(new Partita());
 		model.addAttribute("torneo", this.torneoService.findTorneoByIdTorneo(idTorneo));
 		model.addAttribute("partite", this.partitaService.findAllPartiteByIdTorneo(idTorneo));
 		model.addAttribute("squadre", this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo));
-		return "partita/formAddPartita.html";
+		return "partita/formManagePartita.html";
 	}
 	
 	@PostMapping(value = "/addPartita")
 	public String postAddPartita(@ModelAttribute Partita partita) {
-		
 		partita.setTorneo(partita.getSquadraCasa().getTorneo());
 		this.partitaService.save(partita);
 		return "redirect:/formAddMarcatori/"+partita.getIdPartita();
@@ -79,14 +78,14 @@ public class PartitaController {
 		}
 		
 		this.partitaService.save(partita);
-		return "redirect:/formAddPartita/"+partita.getTorneo().getIdTorneo();
+		return "redirect:/formManagePartita/"+partita.getTorneo().getIdTorneo();
 	}
 	
 	@GetMapping(value = "/removePartita/{idPartita}")
 	public String getRemovePartita(@PathVariable("idPartita")Long idPartita) {
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
 		this.partitaService.remove(partita);
-		return "redirect:/formAddPartita/"+partita.getTorneo().getIdTorneo();
+		return "redirect:/formManagePartita/"+partita.getTorneo().getIdTorneo();
 	}
 	
 }
