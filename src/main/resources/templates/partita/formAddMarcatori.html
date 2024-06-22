@@ -87,7 +87,7 @@
         <div class="row">
             <div class="col">
                 <div class="contianer-sm container-form d-flex justify-content-center align-items-center text-center">
-                    <form th:action="@{/addPartita}" method="post" th:object="${partita}">
+                    <form th:action="@{'/addMarcatori/'+${partita.idPartita}}" method="get">
                         <div class="row">
                             <div class="col">
                                 <h2>Marcatori squadra casa</h2>

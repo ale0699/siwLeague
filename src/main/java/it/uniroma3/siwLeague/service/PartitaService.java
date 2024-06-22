@@ -28,4 +28,9 @@ public class PartitaService {
 		
 		this.partitaRepository.save(partita);
 	}
+
+	public void remove(Partita partita) {
+
+		this.partitaRepository.delete(partita);
+	}
 }
