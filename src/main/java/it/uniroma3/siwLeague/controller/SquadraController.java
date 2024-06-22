@@ -1,6 +1,11 @@
 package it.uniroma3.siwLeague.controller;
 
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.model.Torneo;
@@ -54,12 +60,20 @@ public class SquadraController {
 		}
 	}
 	
-	@PostMapping(value = "addSquadra")
-	public String postAddSquadra(@RequestParam("idTorneo")Long idTorneo, @ModelAttribute Squadra squadra) {
+	@PostMapping(value = "/addSquadra")
+	public String postAddSquadra(@RequestParam("logo-image")MultipartFile logo, @RequestParam("idTorneo")Long idTorneo, @ModelAttribute Squadra squadra) throws IOException {
+		
+    	if (!logo.isEmpty()) { // Verifica se il file è vuoto
+
+            Path fileNameAndPath = Paths.get("src/main/resources/static/images/squadre/loghi", logo.getOriginalFilename());
+            Files.write(fileNameAndPath, logo.getBytes());
+            squadra.setLogo("/images/squadre/loghi/" + logo.getOriginalFilename());
+        }
+		
 		Torneo torneo = this.torneoService.getTorneoByIdTorneo(idTorneo);
 		squadra.setTorneo(torneo);
 		this.squadraService.save(squadra); //forse non qua
-		return "redirect:/formAddPlayersSquad/"+squadra.getIdSquadra();
+		return "redirect:/formAddGiocatoriSquadra/"+squadra.getIdSquadra();
 	}
 	
 }

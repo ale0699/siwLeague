@@ -34,6 +34,6 @@ public class GiocatoreController {
 	public String postAddGiocatoriSquadra(@RequestParam("idSquadra")Long idSquadra, @ModelAttribute Giocatore giocatore) {
 		giocatore.setSquadra(this.squadraService.findSquadraByIdSquadra(idSquadra));
 		this.giocatoreService.save(giocatore);
-		return "redirect:/formAddPlayersSquad/"+idSquadra;
+		return "redirect:/formAddGiocatoriSquadra/"+idSquadra;
 	}
 }

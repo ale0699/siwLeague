@@ -77,35 +77,25 @@
             </div>
         </div>
     </header>
-
-    <section>
-        <div class="container container-form">
-            <div class="row">
-                <div class="col">
-                    <div class="text-center">
-                        <h2>Aggiungi la tua squadra</h2>
-                    </div>
+    <section class="d-flex justify-content-center">
+        <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
+            <form th:action="@{/addSquadra}" method="post" th:object="${squadra}" enctype="multipart/form-data">
+                <input type="hidden" name="idTorneo" th:value="${torneo.idTorneo}" />
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingNome" placeholder="Nome" th:field="*{nome}">
+                    <label for="floatingNome">Nome</label>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="form-addSquadra">
-                        <form th:action="@{/addGiocatoriSquadra}" th:object="${squadra}" method="post">
-                            <input type="hidden" th:value="${torneo.idTorneo}" name="idTorneo">
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="logo" class="form-label">Logo</label>
-                                <input type="file" class="form-control" id="logo" name="logo" accept="image/*">
-                            </div>
-                            <button type="submit" class="btn btn-primary text-center">Aggiungi</button>
-                        </form>
-                    </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Immagine Logo</label>
+                    <input class="form-control" type="file" id="formLogo" name="logo-image" accept="image/*">
                 </div>
-            </div>
+                <div class="button text-center">
+                    <button type="submit" class="btn btn-primary">Aggiungi</button>
+                </div>
+            </form>
         </div>
     </section>
+
     <footer>
         <div class="container-fluid">
             <div class="container text-center">
