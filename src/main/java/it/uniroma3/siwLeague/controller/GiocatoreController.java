@@ -49,6 +49,6 @@ public class GiocatoreController {
 	public String getRemoveGiocatore(@PathVariable("idGiocatore") Long idGiocatore) {
 		Giocatore giocatore = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
 		this.giocatoreService.remove(giocatore);
-		return "redirect:/formAddMarcatori/" + giocatore.getSquadra().getIdSquadra();
+		return "redirect:/formAddGiocatoriSquadra/" + giocatore.getSquadra().getIdSquadra();
 	}
 }
