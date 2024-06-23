@@ -37,4 +37,9 @@ public class IndexController {
 		model.addAttribute("squadre", this.squadreService.findSquadreIdGestoreSquadra(manager.getIdGestoreSquadra()));
 		return "dashboard.html";
 	}
+	
+	@GetMapping(value = "/admin/dashboard")
+	public String getAdminDashboardPage(Model model) {
+		return "admin/dashboard.html";
+	}
 }

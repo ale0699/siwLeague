@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Homepage</title>
+    <title>Dashboard</title>
     <link href="/css/style_index.css?version7" rel="stylesheet">
+    <link href="/css/style_dashboard.css?version7" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -57,22 +58,48 @@
             </nav>
         </div>
         <div class="row title">
-            <h1>Benvenuto su Siw League</h1>
-            <p>Unisciti alla Siw League e porta la tua squadra di calcio a 5 alla gloria! Iscriviti ora per partecipare
-                ai tornei più entusiasmanti della stagione.</p>
+            <div class="col text-center">
+                <div class="nome-utente">
+                    <h1>Dashboard Admin</h1>
+                </div>
+            </div>
         </div>
     </header>
 
-    <section class="container">
-        <div class="logo-allTeams pt-5">
-            <div class="container">
-                <h2>Le squadre partecipanti</h2>
+    <section>
+
+        <div class="container main-container">
+            <div class="row">
+                <div class="col col-ul">
+                    <ul class="ul-nav container d-flex justify-content-around">
+                        <li class="li-nav">
+                            <a href="/selectTorneo" class="full-link">
+                                Aggiungi Torneo
+                            </a>
+                            <a href="/selectTorneo" class="full-link">
+                                Gestisci Torneo
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="team-container container d-flex">
-                <div class="team-logo" th:each="squadra : ${squadre}">
-                    <a th:href="@{'/squadra/'+${squadra.idSquadra}}"> 
-                        <img th:src="@{${squadra.logo}}" alt="logo squadra" width="80" height="80">
-                    </a>
+            <div class="row pt-5 pb-5">
+                <h2 class="text-center">Gestisci Squadre</h2>
+                <div class="col text-center" th:each="squadra : ${squadre}">
+                    <div class="card squadra-card mb-2 p-2" style="width: 18rem;">
+                        <div class="card-logo-container">
+                            <img th:src="@{${squadra.logo}}" class="card-img-top squadra-logo" alt="logo">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${squadra.nome}"></h5>
+                            <a th:href="@{'/formManageSquadra/'+${squadra.idSquadra}}" class="btn btn-primary" th:if="${squadra.torneo.iscrizioneInCorso}">Modifica
+                                squadra</a>
+                            <div th:if="${!squadra.torneo.iscrizioneInCorso}">
+                                <button type="button" class="btn btn-primary" disabled>Non puoi modificare la squadra,
+                                    il torneo non è in fase di iscrizione</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
