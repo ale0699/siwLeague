@@ -32,7 +32,6 @@ public class IndexController {
 	
 	@GetMapping(value = "/dashboard")
 	public String getDashboardPage(Model model) {
-		//va cambiato
 		UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		GestoreSquadra manager = this.gestoreSquadraService.findGestoreSquadraByCredenziali(this.credenzialiService.findCredenzialiByUsername(user.getUsername()));
 		model.addAttribute("squadre", this.squadreService.findSquadreIdGestoreSquadra(manager.getIdGestoreSquadra()));
