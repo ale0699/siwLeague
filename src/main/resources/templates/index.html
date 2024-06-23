@@ -42,7 +42,7 @@
                     </div>
                     <div th:if="${userDetails}!=null">
                         <div class="user-info">
-                            <span>Benvenuto <span th:text="${userDetails.username}"></span></span>
+                            <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} +')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole==admin}">Dashboard admin</a>
                             <a href="/dashboard" th:if="${userRole!=admin}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
