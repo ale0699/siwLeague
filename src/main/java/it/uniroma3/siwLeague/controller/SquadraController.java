@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.model.Torneo;
 import it.uniroma3.siwLeague.service.GiocatoreService;
@@ -53,6 +54,7 @@ public class SquadraController {
 			return "squadra/formAddSquadra.html";
 		}
 		else {
+			//va implementato lato frontend l'errore
 			model.addAttribute("error", "Non puoi iscrivere la tua squadra al torneo "+torneo.getNome());
 			model.addAttribute("torneiAperteIscrizioni", this.torneoService.findTorneiByIscrizioneInCorso(true));
 			model.addAttribute("torneiChiuseIscrizioni", this.torneoService.findTorneiByIscrizioneInCorso(false));
@@ -73,7 +75,15 @@ public class SquadraController {
 		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 		squadra.setTorneo(torneo);
 		this.squadraService.save(squadra); //forse non qua
-		return "redirect:/formAddGiocatoriSquadra/"+squadra.getIdSquadra();
+		return "redirect:/manageSquadra/"+squadra.getIdSquadra();
+	}
+	
+	@GetMapping(value = "/formManageSquadra/{idSquadra}")
+	public String getFormAddGiocatoriSquadra(@PathVariable("idSquadra") Long idSquadra, Model model) {
+		model.addAttribute("squadra", this.squadraService.findSquadraByIdSquadra(idSquadra));
+		model.addAttribute("giocatori", this.giocatoreService.findGiocatoriBySquadraIdSquadra(idSquadra));
+		model.addAttribute(new Giocatore());
+		return "squadra/formManageSquadra.html";
 	}
 	
 	@GetMapping(value = "/removeSquadra/{idSquadra}")

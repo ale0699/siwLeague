@@ -92,7 +92,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title" th:text="${squadra.nome}"></h5>
-                            <a th:href="@{'/formAddGiocatoriSquadra/'+${squadra.idSquadra}}" class="btn btn-primary" th:if="${squadra.torneo.iscrizioneInCorso}">Modifica
+                            <a th:href="@{'/formManageSquadra/'+${squadra.idSquadra}}" class="btn btn-primary" th:if="${squadra.torneo.iscrizioneInCorso}">Modifica
                                 squadra</a>
                             <div th:if="${!squadra.torneo.iscrizioneInCorso}">
                                 <button type="button" class="btn btn-primary" disabled>Non puoi modificare la squadra,

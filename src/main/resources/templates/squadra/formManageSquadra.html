@@ -59,7 +59,14 @@
             <div class="col text-center">
                 <div class="nome-squadra">
                     <img id="logo-nav" th:src="@{${squadra.logo}}">
-                    <h1 th:text="'Aggiungi giocatori alla squadra: ' + ${squadra.nome}"></h1>
+                    <h1 th:text="'Gestisci squadra: ' + ${squadra.nome}"></h1>
+                </div>
+                <div class="gestione-squadra">
+                    <div th:if="${squadra.torneo.iscrizioneInCorso}">
+                        <a th:href="@{'/removeSquadra/'+${squadra.idSquadra}}">
+                            <button type="button" class="btn btn-primary">Elimina squadra</button>
+                        </a>
+                    </div>
                 </div>
                 <div class="torneo-squadra">
                     <h5 th:text="'Partecipa al torneo: ' + ${squadra.torneo.nome}"></h5>
@@ -146,8 +153,7 @@
             </div>
             <div class="row text-center mt-5">
                 <a th:href="@{'/squadra/'+${squadra.idSquadra}}"><button type="button"
-                        class="btn btn-primary">Termina
-                        Inserimento</button></a>
+                        class="btn btn-primary">Termina attività</button></a>
             </div>
         </div>
     </section>

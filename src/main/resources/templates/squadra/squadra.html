@@ -60,13 +60,6 @@
                 <div class="nome-squadra">
                     <img th:src="@{${squadra.logo}}" alt="logo" id="logo-nav">
                     <h1 th:text="${squadra.nome}"></h1>
-                    <div class="gestione-squadra">
-                        <div th:if="${squadra.torneo.iscrizioneInCorso}">
-                            <a th:href="@{'/removeSquadra/'+${squadra.idSquadra}}">
-                                <button type="button" class="btn btn-secondary">Elimina squadra</button>
-                            </a>
-                        </div>
-                    </div>
                     <div class="nome-torneo">
                         <h5 th:text="'Partecipa al torneo: ' + ${squadra.torneo.nome}"></h5>
                     </div>
@@ -92,7 +85,6 @@
                                         <th scope="col">Numero Maglia</th>
                                         <th scope="col">Data di nascita</th>
                                         <th scope="col">Gol Segnati</th>
-                                        <th th:if="${squadra.torneo.iscrizioneInCorso}" scope="col">Azioni</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
@@ -101,12 +93,6 @@
                                         <td th:text="${giocatore.numeroMaglia}"></td>
                                         <td th:text="${giocatore.dataNascita}"></td>
                                         <td th:text="${giocatore.getGolSegnati()}"></td>
-                                        <td th:if="${squadra.torneo.iscrizioneInCorso}">
-                                            <a th:href="@{'/removeGiocatoreSquadra/'+${giocatore.idGiocatore}}">
-                                                <button type="button" class="btn btn-secondary">Elimina
-                                                    giocatore</button>
-                                            </a>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
