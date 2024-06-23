@@ -21,7 +21,7 @@ public class GiocatoreController {
 	@Autowired
 	private GiocatoreService giocatoreService;
 
-	@PostMapping(value = "addGiocatoriSquadra")
+	@PostMapping(value = "/addGiocatoriSquadra")
 	public String postAddGiocatoriSquadra(@RequestParam("idSquadra") Long idSquadra,
 			@ModelAttribute Giocatore giocatore) {
 		giocatore.setSquadra(this.squadraService.findSquadraByIdSquadra(idSquadra));
