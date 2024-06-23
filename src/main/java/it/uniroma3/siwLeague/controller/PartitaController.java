@@ -42,7 +42,7 @@ public class PartitaController {
 		return "partita/partita.html";
 	}
 	
-	@GetMapping(value = "/formManagePartita/{idTorneo}")
+	@GetMapping(value = "/admin/formManagePartita/{idTorneo}")
 	public String getFormAddPartita(@PathVariable("idTorneo")Long idTorneo, Model model) {
 		model.addAttribute(new Partita());
 		model.addAttribute("torneo", this.torneoService.findTorneoByIdTorneo(idTorneo));
@@ -51,21 +51,21 @@ public class PartitaController {
 		return "partita/formManagePartita.html";
 	}
 	
-	@PostMapping(value = "/addPartita")
+	@PostMapping(value = "/admin/addPartita")
 	public String postAddPartita(@ModelAttribute Partita partita) {
 		partita.setTorneo(partita.getSquadraCasa().getTorneo());
 		this.partitaService.save(partita);
 		return "redirect:/formAddMarcatori/"+partita.getIdPartita();
 	}
 	
-	@GetMapping(value = "/formAddMarcatori/{idPartita}")
+	@GetMapping(value = "/admin/formAddMarcatori/{idPartita}")
 	public String getFormAddMarcatori(@PathVariable("idPartita") Long idPartita, Model model){
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
 		model.addAttribute("partita", partita);
 		return "partita/formAddMarcatori.html";
 	}
 	
-	@GetMapping(value = "/addMarcatori/{idPartita}")
+	@GetMapping(value = "/admin/addMarcatori/{idPartita}")
 	public String postAddMarcatori(@PathVariable("idPartita")Long idPartita, @RequestParam("giocatore") List<Long> giocatori, @RequestParam("minuto") List<Integer> minuti ) {
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
 		
@@ -81,7 +81,7 @@ public class PartitaController {
 		return "redirect:/formManagePartita/"+partita.getTorneo().getIdTorneo();
 	}
 	
-	@GetMapping(value = "/removePartita/{idPartita}")
+	@GetMapping(value = "/admin/removePartita/{idPartita}")
 	public String getRemovePartita(@PathVariable("idPartita")Long idPartita) {
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
 		this.partitaService.remove(partita);
