@@ -9,4 +9,6 @@ import it.uniroma3.siwLeague.model.Squadra;
 public interface SquadraRepository extends CrudRepository<Squadra, Long> {
 	
 	public List<Squadra> findByTorneoIdTorneo (Long idTorneo);
+	
+	public List<Squadra> findByTeamManagerIdGestoreSquadra(Long idGestoreSquadra);
 }

@@ -23,6 +23,11 @@ public class SquadraService {
 		return this.squadraRepository.findById(idSquadra).get();
 	}
 	
+	public List<Squadra> findSquadreIdGestoreSquadra(Long idGestoreSquadra){
+	
+		return this.squadraRepository.findByTeamManagerIdGestoreSquadra(idGestoreSquadra);
+	}
+	
 	public List<Squadra> findSquadrePartecipantiTorneoByIdTorneo(Long idTorneo){
 		
 		return this.squadraRepository.findByTorneoIdTorneo(idTorneo);
