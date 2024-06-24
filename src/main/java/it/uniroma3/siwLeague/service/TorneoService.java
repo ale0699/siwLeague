@@ -28,4 +28,9 @@ public class TorneoService {
 		
 		return this.torneoRepository.findByIscrizioneInCorsoOrderByNomeAsc(iscrizioneInCorso);
 	}
+	
+	public void save(Torneo torneo) {
+		
+		this.torneoRepository.save(torneo);
+	}
 }

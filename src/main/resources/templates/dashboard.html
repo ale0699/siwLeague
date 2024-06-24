@@ -88,9 +88,9 @@
             <div class="row pt-5 pb-5">
                 <h2 class="text-center">Gestisci Squadre</h2>
                 <div class="col text-center" th:each="squadra : ${squadre}">
-                    <div class="card squadra-card mb-2 p-2" style="width: 18rem;">
+                    <div class="card object-card mb-2 p-2" style="width: 18rem;">
                         <div class="card-logo-container">
-                            <img th:src="@{${squadra.logo}}" class="card-img-top squadra-logo" alt="logo">
+                            <img th:src="@{${squadra.logo}}" class="card-img-top img-logo" alt="logo">
                         </div>
                         <div class="card-body">
                             <h5 class="card-title" th:text="${squadra.nome}"></h5>

@@ -11,6 +11,7 @@ import it.uniroma3.siwLeague.model.GestoreSquadra;
 import it.uniroma3.siwLeague.service.CredenzialiService;
 import it.uniroma3.siwLeague.service.GestoreSquadraService;
 import it.uniroma3.siwLeague.service.SquadraService;
+import it.uniroma3.siwLeague.service.TorneoService;
 
 @Controller
 public class IndexController {
@@ -23,6 +24,9 @@ public class IndexController {
 	
 	@Autowired
 	private GestoreSquadraService gestoreSquadraService;
+	
+	@Autowired
+	private TorneoService torneoService;
 	
 	@GetMapping(value = "/")
 	public String getIndexPage(Model model) {
@@ -40,6 +44,7 @@ public class IndexController {
 	
 	@GetMapping(value = "/admin/dashboard")
 	public String getAdminDashboardPage(Model model) {
+		model.addAttribute("tornei", this.torneoService.findAllTornei());
 		return "admin/dashboard.html";
 	}
 }
