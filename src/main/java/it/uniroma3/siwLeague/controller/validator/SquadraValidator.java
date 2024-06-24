@@ -24,9 +24,17 @@ public class SquadraValidator implements Validator {
 		
 		Squadra squadra = (Squadra) target;
 		
-		if(this.squadraService.existsSquadraByNomeAndTorneo(squadra.getNome(), squadra.getTorneo().getIdTorneo())) {
+		if(squadra.getTorneo().getNumeroMassimoSquadrePartecipanti()==squadra.getTorneo().getSquadreIscritte().size()) {
 			
-			errors.reject("message.squadraGiaEsistenteNelTorneo");
+			errors.reject("message.numeroSquadreMassimoIscrivibiliAlTorneo");
 		}
+		else {
+			
+			if(this.squadraService.existsSquadraByNomeAndTorneo(squadra.getNome(), squadra.getTorneo().getIdTorneo())) {
+				
+				errors.reject("message.squadraGiaEsistenteNelTorneo");
+			}
+		}
+
 	}	
 }
