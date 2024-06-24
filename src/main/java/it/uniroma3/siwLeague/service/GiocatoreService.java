@@ -1,5 +1,6 @@
 package it.uniroma3.siwLeague.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,16 @@ public class GiocatoreService {
 	public List<Giocatore> findGiocatoriBySquadraIdSquadra(Long idSquadra){
 		
 		return this.giocatoreRepository.findBySquadraIdSquadraOrderByNumeroMaglia(idSquadra);
+	}
+	
+	public boolean existsGiocatoreByNumeroMagliaAndSquadra(Integer numeroMaglia, Long idSquadra) {
+		
+		return this.giocatoreRepository.existsByNumeroMagliaAndSquadraIdSquadra(numeroMaglia, idSquadra);
+	}
+	
+	public boolean existsGiocatoreByNomeAndCognomeAndDataNascitaAndSquadra(String nome, String cognome, LocalDate dataNascita,Long idSquadra) {
+		
+		return this.giocatoreRepository.existsByNomeAndCognomeAndDataNascitaAndSquadraIdSquadra(nome, cognome, dataNascita, idSquadra);
 	}
 	
 	public void save(Giocatore giocatore) {

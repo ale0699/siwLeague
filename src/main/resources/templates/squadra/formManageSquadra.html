@@ -125,6 +125,9 @@
                         <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
                             <form th:action="@{/addGiocatoriSquadra}" th:object="${giocatore}" method="post">
                                 <input type="hidden" th:value="${squadra.idSquadra}" name="idSquadra">
+                                <div class="error" th:if="${#fields.hasGlobalErrors()}">
+                                    <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                                </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="floatingNome" placeholder="Nome"
                                         th:field="*{nome}">
