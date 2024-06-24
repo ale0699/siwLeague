@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Register</title>
+    <link href="/css/style_index.css?version7" rel="stylesheet">
     <link href="/css/style_login.css?version7" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -56,36 +57,40 @@
                 </div>
             </nav>
         </div>
+        <div class="row title">
+            <div class="col text-center">
+                <div class="registrazione-utente">
+                    <h1>Registrazione</h1>
+                </div>
+            </div>
+        </div>
     </header>
-
-    <section>
-        <div class="container">
+    <section class="d-flex justify-content-center">
+        <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
             <form th:action="@{/register}" method="post" th:object="${gestoreSquadra}">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Nome utente</label>
-                    <input type="text" class="form-control" id="username" name="username"
-                        th:field="${gestoreSquadra.credenziali.username}" required>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingUsername" placeholder="Username" th:field="${gestoreSquadra.credenziali.username}" required>
+                    <label for="floatingNome">Username</label>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" th:field="${gestoreSquadra.credenziali.password}"
-                        required>
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" th:field="${gestoreSquadra.credenziali.password}" required>
+                    <label for="floatingPassword">Password</label>
                 </div>
-                <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" th:field="${gestoreSquadra.nome}" required>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingNome" placeholder="Nome" th:field="${gestoreSquadra.nome}" required>
+                    <label for="floatingNome">Nome</label>
                 </div>
-                <div class="mb-3">
-                    <label for="cognome" class="form-label">Cognome</label>
-                    <input type="text" class="form-control" th:field="${gestoreSquadra.cognome}" required>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingCognome" placeholder="Cognome" th:field="${gestoreSquadra.cognome}" required>
+                    <label for="floatingCognome">Cognome</label>
                 </div>
-                <button type="submit" class="btn btn-primary">Registrati</button>
+                <div class="button text-center">
+                    <button type="submit" class="btn btn-primary">Registrati</button>
+                </div>
+                <p>Hai già un account? <a href="/login">Accedi</a></p>
             </form>
-            <p>Hai già un account? <a href="/login">Accedi</a></p>
         </div>
     </section>
-
-
     <footer>
         <div class="container-fluid">
             <div class="container text-center">
