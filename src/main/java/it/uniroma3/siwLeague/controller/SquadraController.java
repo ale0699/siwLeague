@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import it.uniroma3.siwLeague.controller.validator.SquadraValidator;
 import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.model.Torneo;
 import it.uniroma3.siwLeague.service.GiocatoreService;
 import it.uniroma3.siwLeague.service.SquadraService;
 import it.uniroma3.siwLeague.service.TorneoService;
+import jakarta.validation.Valid;
 
 @Controller
 public class SquadraController {
@@ -34,6 +37,9 @@ public class SquadraController {
 	
 	@Autowired
 	private GiocatoreService giocatoreService;
+	
+	@Autowired
+	private SquadraValidator squadraValidator;
 	
 	@GetMapping(value = "/squadra/{idSquadra}")
 	public String getSquadra(@PathVariable("idSquadra")Long idSquadra, Model model){
@@ -63,7 +69,16 @@ public class SquadraController {
 	}
 	
 	@PostMapping(value = "/addSquadra")
-	public String postAddSquadra(@RequestParam("logo-image")MultipartFile logo, @RequestParam("idTorneo")Long idTorneo, @ModelAttribute Squadra squadra) throws IOException {
+	public String postAddSquadra(@RequestParam("logo-image")MultipartFile logo, @RequestParam("idTorneo")Long idTorneo,@Valid @ModelAttribute Squadra squadra, BindingResult bindingResult, Model model) throws IOException {
+		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
+		squadra.setTorneo(torneo);
+		this.squadraValidator.validate(squadra, bindingResult);
+		if(bindingResult.hasErrors()) {
+			System.out.println(bindingResult.getAllErrors().toString());
+			model.addAttribute("torneo", torneo);
+			model.addAttribute("squadra", squadra);
+			return "squadra/formAddSquadra.html";
+		}
 		
     	if (!logo.isEmpty()) { // Verifica se il file è vuoto
 
@@ -72,10 +87,8 @@ public class SquadraController {
             squadra.setLogo("/images/squadre/loghi/" + logo.getOriginalFilename());
         }
 		
-		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
-		squadra.setTorneo(torneo);
 		this.squadraService.save(squadra); //forse non qua
-		return "redirect:/manageSquadra/"+squadra.getIdSquadra();
+		return "redirect:/formManageSquadra/"+squadra.getIdSquadra();
 	}
 	
 	@GetMapping(value = "/formManageSquadra/{idSquadra}")

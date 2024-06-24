@@ -33,6 +33,11 @@ public class SquadraService {
 		return this.squadraRepository.findByTorneoIdTorneo(idTorneo);
 	}
 	
+	public boolean existsSquadraByNomeAndTorneo(String nome, Long idTorneo) {
+		
+		return this.squadraRepository.existsByNomeIgnoreCaseAndTorneoIdTorneo(nome, idTorneo);
+	}
+	
 	public void save(Squadra squadra) {
 		
 		this.squadraRepository.save(squadra);
