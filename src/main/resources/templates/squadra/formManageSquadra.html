@@ -64,7 +64,7 @@
                     <h1 th:text="'Gestisci squadra: ' + ${squadra.nome}"></h1>
                 </div>
                 <div class="gestione-squadra">
-                    <div th:if="${squadra.torneo.iscrizioneInCorso}">
+                    <div th:if="${squadra.torneo.iscrizioneInCorso || userRole == 'admin'}">
                         <a th:href="@{'/removeSquadra/'+${squadra.idSquadra}}">
                             <button type="button" class="btn btn-primary">Elimina squadra</button>
                         </a>
@@ -93,7 +93,7 @@
                                             <th scope="col">Nome</th>
                                             <th scope="col">Numero Maglia</th>
                                             <th scope="col">Data di nascita</th>
-                                            <th th:if="${squadra.torneo.iscrizioneInCorso}" scope="col">Azioni</th>
+                                            <th th:if="${squadra.torneo.iscrizioneInCorso || userRole == 'admin'}" scope="col">Azioni</th>
                                         </tr>
                                     </thead>
                                     <tbody class="table-group-divider">
@@ -101,7 +101,7 @@
                                             <td th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></td>
                                             <td th:text="${giocatore.numeroMaglia}"></td>
                                             <td th:text="${#temporals.format(giocatore.dataNascita, 'dd-MM-yyyy')}"></td>
-                                            <td th:if="${squadra.torneo.iscrizioneInCorso}">
+                                            <td th:if="${squadra.torneo.iscrizioneInCorso || userRole == 'admin'}">
                                                 <a th:href="@{'/removeGiocatore/'+${giocatore.idGiocatore}}">
                                                     <button type="button" class="btn btn-primary">Elimina
                                                         giocatore</button>
