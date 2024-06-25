@@ -55,7 +55,7 @@ public class PartitaController {
 	public String postAddPartita(@ModelAttribute Partita partita) {
 		partita.setTorneo(partita.getSquadraCasa().getTorneo());
 		this.partitaService.save(partita);
-		return "redirect:/formAddMarcatori/"+partita.getIdPartita();
+		return "redirect:/admin/formAddMarcatori/"+partita.getIdPartita();
 	}
 	
 	@GetMapping(value = "/admin/formAddMarcatori/{idPartita}")
@@ -78,7 +78,7 @@ public class PartitaController {
 		}
 		
 		this.partitaService.save(partita);
-		return "redirect:/formManagePartita/"+partita.getTorneo().getIdTorneo();
+		return "redirect:/admin/formManagePartita/"+partita.getTorneo().getIdTorneo();
 	}
 	
 	@GetMapping(value = "/admin/removePartita/{idPartita}")
