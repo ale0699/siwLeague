@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,9 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siwLeague.controller.validator.SquadraValidator;
+import it.uniroma3.siwLeague.model.Credenziali;
 import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.model.Torneo;
+import it.uniroma3.siwLeague.service.CredenzialiService;
+import it.uniroma3.siwLeague.service.GestoreSquadraService;
 import it.uniroma3.siwLeague.service.GiocatoreService;
 import it.uniroma3.siwLeague.service.SquadraService;
 import it.uniroma3.siwLeague.service.TorneoService;
@@ -40,6 +45,12 @@ public class SquadraController {
 	
 	@Autowired
 	private SquadraValidator squadraValidator;
+	
+	@Autowired
+	private CredenzialiService credenzialiService;
+	
+	@Autowired
+	private GestoreSquadraService gestoreSquadraService;
 	
 	@GetMapping(value = "/squadra/{idSquadra}")
 	public String getSquadra(@PathVariable("idSquadra")Long idSquadra, Model model){
@@ -74,7 +85,7 @@ public class SquadraController {
 		squadra.setTorneo(torneo);
 		this.squadraValidator.validate(squadra, bindingResult);
 		if(bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getAllErrors().toString());
+
 			model.addAttribute("torneo", torneo);
 			model.addAttribute("squadra", squadra);
 			return "squadra/formAddSquadra.html";
@@ -87,6 +98,10 @@ public class SquadraController {
             squadra.setLogo("/images/squadre/loghi/" + logo.getOriginalFilename());
         }
 		
+    	UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credenziali credenziali = this.credenzialiService.findCredenzialiByUsername(user.getUsername());
+    	
+    	squadra.setTeamManager(this.gestoreSquadraService.findGestoreSquadraByCredenziali(credenziali));
 		this.squadraService.save(squadra); //forse non qua
 		return "redirect:/formManageSquadra/"+squadra.getIdSquadra();
 	}
