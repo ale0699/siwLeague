@@ -16,4 +16,9 @@ public class CredenzialiService {
 		
 		return this.credenzialiRepository.findByUsername(username);
 	}
+	
+	public boolean existsCredenzialiByUsername(String username) {
+		
+		return this.credenzialiRepository.existsByUsername(username);
+	}
 }

@@ -68,6 +68,9 @@
     <section class="d-flex justify-content-center">
         <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
             <form th:action="@{/register}" method="post" th:object="${gestoreSquadra}">
+                <div class="error" th:if="${#fields.hasGlobalErrors()}">
+                    <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+                </div>
                 <div class="form-floating mb-3">
                     <input type="text" class="form-control" id="floatingUsername" placeholder="Username" th:field="${gestoreSquadra.credenziali.username}" required>
                     <label for="floatingNome">Username</label>
@@ -87,7 +90,7 @@
                 <div class="button text-center">
                     <button type="submit" class="btn btn-primary">Registrati</button>
                 </div>
-                <p>Hai già un account? <a href="/login">Accedi</a></p>
+                <p class="text-center">Hai già un account? <a href="/login">Accedi</a></p>
             </form>
         </div>
     </section>
