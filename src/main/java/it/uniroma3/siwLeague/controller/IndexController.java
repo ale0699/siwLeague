@@ -47,4 +47,10 @@ public class IndexController {
 		model.addAttribute("tornei", this.torneoService.findAllTornei());
 		return "admin/dashboard.html";
 	}
+	
+	@GetMapping(value = "/contatti")
+	public String getContatti() {
+		
+		return "contatti.html";
+	}
 }

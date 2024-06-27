@@ -1,0 +1,21 @@
+header {
+    height: 50vh;
+    background-image: url(/images/navbar.png);
+    background-size: cover;
+    background-position: center; /* Centra l'immagine */
+}
+
+section{
+
+    background-color: #ececed;
+}
+
+.container-form{
+
+    background-color: #ececed;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+    max-width: 200px;
+    width: 100%;
+}
