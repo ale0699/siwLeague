@@ -73,6 +73,25 @@ public class TorneoController {
 		return "torneo/formAddTorneo.html";
 	}
 	
+	@GetMapping(value = "/admin/tournaments/edit/{idTorneo}")
+	public String getFormEditTorneo(@PathVariable("idTorneo")Long idTorneo, Model model) {
+		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
+		model.addAttribute("torneo", torneo);
+		return "torneo/formEditTorneo.html";
+	}
+	
+	@PostMapping(value = "/admin/tournaments/update")
+	public String postUpdateTorneo(@ModelAttribute Torneo torneoEdited, Model model) {
+		Torneo torneo = this.torneoService.findTorneoByIdTorneo(torneoEdited.getIdTorneo());
+		torneo.setNome(torneoEdited.getNome());
+		torneo.setDescrizione(torneoEdited.getDescrizione());
+		torneo.setNumeroMassimoSquadrePartecipanti(torneoEdited.getNumeroMassimoSquadrePartecipanti());
+		torneo.setNumeroMassimoGiocatoriIscrivibili(torneoEdited.getNumeroMassimoGiocatoriIscrivibili());
+		torneo.setMontepremi(torneoEdited.getMontepremi());
+		this.torneoService.save(torneo);
+		return "redirect:/admin/dashboard";
+	}
+	
 	@PostMapping(value = "/admin/tournaments/add")
 	public String postAddTorneo(@ModelAttribute Torneo torneo, @RequestParam("logo-image")MultipartFile logo) throws IOException {
 		

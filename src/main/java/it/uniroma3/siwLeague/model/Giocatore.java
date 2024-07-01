@@ -20,7 +20,6 @@ public class Giocatore {
 	private String nome;
 	@NotBlank
 	private String cognome;
-	@NotBlank
 	private int numeroMaglia;
 	@NotBlank
 	private LocalDate dataNascita;

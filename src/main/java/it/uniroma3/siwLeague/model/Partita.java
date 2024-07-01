@@ -26,9 +26,7 @@ public class Partita {
 	private LocalDateTime dataEOra;
 	@NotBlank
 	private String campo;
-	@NotBlank
 	private int golSquadraCasa;
-	@NotBlank
 	private int golSquadraFuoriCasa;
 	
 	//serve?

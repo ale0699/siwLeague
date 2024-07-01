@@ -23,15 +23,10 @@ public class Torneo {
 	private String logo;
 	@NotBlank
 	private String descrizione;
-	@NotBlank
 	private LocalDate dataInizio;
-	@NotBlank
 	private LocalDate dataFine;
-	@NotBlank
 	private int numeroMassimoSquadrePartecipanti;
-	@NotBlank
 	private int numeroMassimoGiocatoriIscrivibili;
-	@NotBlank
 	private int montepremi;
 	private boolean iscrizioneInCorso;
 	private boolean svolgimentoInCorso;
