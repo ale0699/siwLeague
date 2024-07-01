@@ -18,8 +18,11 @@ public class Giocatore {
 	private Long idGiocatore;
 	@NotBlank
 	private String nome;
+	@NotBlank
 	private String cognome;
+	@NotBlank
 	private int numeroMaglia;
+	@NotBlank
 	private LocalDate dataNascita;
 	private int golSegnati = 0;
 	
