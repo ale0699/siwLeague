@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Contatti</title>
+    <title>About</title>
     <link href="/css/style_index.css?version7" rel="stylesheet">
     <link href="/css/style_contatti.css?version7" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -34,10 +34,10 @@
                                 <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/about">About</a>
+                                <a class="nav-link active" aria-current="page" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/contacts">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
@@ -58,51 +58,52 @@
             </nav>
         </div>
         <div class="row title">
-            <h1>Contatti</h1>
+            <h1>About</h1>
         </div>
     </header>
 
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="row">
-                        <h5>Telefono: 06 00000000</h5>
-                        <h5>Email: noreply@amministrazione.siwLeague.com</h5>
-                    </div>
-                    <div class="row">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1248.4520155708376!2d12.482019361717315!3d41.90713433104898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132f6055a1677f31%3A0xc4ec7c373105cf26!2sVia%20del%20Babuino%2C%20119%2C%2000187%20Roma%20RM!5e0!3m2!1sit!2sit!4v1719528621696!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
-                </div>
-                <div class="col ms-4">
-                    <div class="row">
-                        <h2 class="text-center">Modulo di contatto</h2>
-                    </div>
-                    <div class="row">
-                        <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
-                            <form th:action="@{/}" method="post">
-                                <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="floatingNome" placeholder="Nome">
-                                    <label for="floatingNome">Nome</label>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingEmail" placeholder="Email">
-                                    <label for="floatingEmail">Email</label>
-                                </div>
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Aggiungi un commento" id="floatingTextarea2" style="height: 100px"></textarea>
-                                    <label for="floatingTextarea2">Aggiungi un commento</label>
-                                  </div>
-                                <div class="button text-center">
-                                    <button type="submit" class="btn btn-primary">Invia</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="container my-5">
+        <section class="about">
+            <h1 class="text-center">Benvenuti su siwLeague</h1>
+            <p class="lead text-center">Il punto di riferimento per tutti gli appassionati di calcio a 5!</p>
+            
+            <h2>Chi Siamo</h2>
+            <p>siwLeague è stata fondata da un gruppo di amici con la passione per il calcio a 5. La nostra lega è cresciuta rapidamente, attirando giocatori e squadre di ogni livello, dai dilettanti agli esperti. Crediamo nel valore dello sport come strumento di aggregazione e divertimento, e ci impegniamo a organizzare tornei che rispecchino questi valori.</p>
+            
+            <h2>Cosa Offriamo</h2>
+            <ul>
+                <li><strong>Iscrizione ai Tornei:</strong> Iscriviti facilmente ai nostri tornei in corso di iscrizione tramite il nostro sito. Basta registrarsi, creare o unirsi a una squadra e prepararsi per la competizione!</li>
+                <li><strong>Visualizzazione Tornei:</strong> Visualizza tutti i tornei attualmente in corso. Ogni torneo ha la sua pagina dedicata con tutte le informazioni necessarie, dalle squadre partecipanti agli orari delle partite.</li>
+                <li><strong>Classifiche e Risultati:</strong> Tieni traccia delle tue performance e confrontati con gli altri partecipanti grazie alle classifiche costantemente aggiornate. Ogni torneo ha la sua classifica, in modo da sapere sempre chi è in testa.</li>
+            </ul>
+            
+            <h2>Come Iscriversi</h2>
+            <ol>
+                <li><strong>Registrazione:</strong> Crea un account sul nostro sito.</li>
+                <li><strong>Creazione Squadra:</strong> Forma una nuova squadra o unisciti a una già esistente.</li>
+                <li><strong>Iscrizione al Torneo:</strong> Scegli il torneo a cui vuoi partecipare e completa l'iscrizione. È semplice e veloce!</li>
+            </ol>
+            
+            <h2>Tornei in Corso</h2>
+            <p>Scopri i tornei attualmente attivi, le squadre partecipanti e gli ultimi risultati. Le nostre classifiche ti permettono di seguire l'andamento del tuo torneo preferito in tempo reale.</p>
+            
+            <h3>Esempio di Tornei Attivi</h3>
+            <ul>
+                <li><strong>Torneo di Primavera:</strong> 10 squadre in competizione, classifica aggiornata settimanalmente.</li>
+                <li><strong>Torneo Estivo:</strong> 8 squadre in gara, con partite ogni weekend.</li>
+                <li><strong>Coppa Autunnale:</strong> Il torneo più atteso dell'anno, con 12 squadre che lottano per il titolo.</li>
+            </ul>
+            
+            <h2>Contattaci</h2>
+            <p>Hai domande o bisogno di assistenza? Il nostro team è sempre disponibile per aiutarti. Puoi contattarci tramite email, telefono o sui nostri canali social.</p>
+            <ul>
+                <li><strong>Email:</strong> <a href="mailto:support@siwleague.com">support@siwleague.com</a></li>
+                <li><strong>Telefono:</strong> +39 123 456 7890</li>
+                <li><strong>Facebook:</strong> <a href="https://www.facebook.com/siwLeague">siwLeague Facebook</a></li>
+                <li><strong>Instagram:</strong> <a href="https://www.instagram.com/siwLeague">siwLeague Instagram</a></li>
+            </ul>
+        </section>
+    </div>
 
     <footer>
         <div class="container-fluid">

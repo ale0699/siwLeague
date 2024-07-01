@@ -34,4 +34,10 @@ public class IndexController {
 		
 		return "contatti.html";
 	}
+	
+	@GetMapping(value = "/about")
+	public String getAbout() {
+		
+		return "about.html";
+	}
 }
