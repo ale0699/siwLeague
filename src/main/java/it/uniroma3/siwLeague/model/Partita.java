@@ -38,6 +38,20 @@ public class Partita {
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@MapKeyColumn(name="minuto_gol")
 	private Map<Integer ,Giocatore> marcatori;
+	
+	public Squadra getSquadraVincente() {
+		
+		if(this.golSquadraCasa>this.golSquadraFuoriCasa) {
+			
+			return this.squadraCasa;
+		}
+		else if(this.golSquadraCasa<this.golSquadraFuoriCasa){
+			
+			return this.squadraFuoriCasa;
+		}
+		
+		return null; //pareggio
+	}
 
 	public Long getIdPartita() {
 		return idPartita;
@@ -117,20 +131,6 @@ public class Partita {
 
 	public void setMarcatori(Map<Integer, Giocatore> marcatori) {
 		this.marcatori = marcatori;
-	}
-
-	public Squadra getSquadraVincente() {
-		
-		if(this.golSquadraCasa>this.golSquadraFuoriCasa) {
-			
-			return this.squadraCasa;
-		}
-		return this.squadraFuoriCasa;
-	}
-	
-	public boolean isPareggio() {
-
-		return this.golSquadraCasa==this.golSquadraFuoriCasa;
 	}
 
 	@Override

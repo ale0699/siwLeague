@@ -136,14 +136,14 @@
                                         <span th:text="${squadra.nome}"></span>
                                     </a>
                                 </td>
-                                <td th:text="${squadra.getPunti()}"></td>
-                                <td th:text="${squadra.calcolaPartiteGiocate()}"></td>
-                                <td th:text="${squadra.calcolaVittorie()}"></td>
-                                <td th:text="${squadra.calcolaPareggi()}"></td>
-                                <td th:text="${squadra.calcolaSconfitte()}"></td>
-                                <td th:text="${squadra.calcolaGolFatti()}"></td>
-                                <td th:text="${squadra.calcolaGolSubiti()}"></td>
-                                <td th:text="${squadra.calcolaGolFatti() - squadra.calcolaGolSubiti()}"></td>
+                                <td th:text="${squadra.punti}"></td>
+                                <td th:text="${squadra.partiteGiocate()}"></td>
+                                <td th:text="${squadra.vittorie}"></td>
+                                <td th:text="${squadra.pareggi}"></td>
+                                <td th:text="${squadra.sconfitte}"></td>
+                                <td th:text="${squadra.golFatti}"></td>
+                                <td th:text="${squadra.golSubiti}"></td>
+                                <td th:text="${squadra.golFatti - squadra.golSubiti}"></td>
                             </tr>
                         </th:block>
                     </tbody>

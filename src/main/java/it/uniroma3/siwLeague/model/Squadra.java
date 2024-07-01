@@ -22,6 +22,12 @@ public class Squadra {
 	@NotBlank
 	private String nome;
 	private String logo;
+	private int punti = 0;
+	private int vittorie = 0;
+	private int pareggi = 0;
+	private int sconfitte = 0;
+	private int golFatti = 0;
+	private int golSubiti = 0;
 	
 	@ManyToOne
 	private GestoreSquadra teamManager;
@@ -37,6 +43,57 @@ public class Squadra {
 	
 	@OneToMany(mappedBy = "squadra", cascade = CascadeType.REMOVE)
 	private List<Giocatore> giocatori;
+	
+	public void setVittoria(int golSegnati, int golSubiti) {
+		
+		this.punti += 3;
+		this.vittorie += 1;
+		this.golFatti += golSegnati;
+		this.golSubiti += golSubiti;
+	}
+	
+	public void setPareggio(int gol) {
+		
+		this.punti += 1;
+		this.pareggi += 1;
+		this.golFatti += gol;
+		this.golSubiti += gol;
+	}
+	
+	public void setSconfitta(int golSegnati, int golSubiti) {
+		
+		this.sconfitte += 1;
+		this.golFatti += golSegnati;
+		this.golSubiti += golSubiti;
+	}
+	
+	public void removeVittoria(int golSegnati, int golSubiti) {
+		
+		this.punti -= 3;
+		this.vittorie -= 1;
+		this.golFatti -= golSegnati;
+		this.golSubiti -= golSubiti;
+	}
+	
+	public void removePareggio(int gol) {
+		
+		this.punti -= 1;
+		this.pareggi -= 1;
+		this.golFatti -= gol;
+		this.golSubiti -= gol;
+	}
+	
+	public void removeSconfitta(int golSegnati, int golSubiti) {
+		
+		this.sconfitte -= 1;
+		this.golFatti -= golSegnati;
+		this.golSubiti -= golSubiti;
+	}
+	
+	public int partiteGiocate() {
+		
+		return this.partiteCasa.size() + this.partiteFuoriCasa.size();
+	}
 
 	public Long getIdSquadra() {
 		return idSquadra;
@@ -103,83 +160,57 @@ public class Squadra {
 	}
 	
 	public int getPunti() {
-		return (this.calcolaVittorie() * 3) + this.calcolaPareggi();
-	}
-	
-	public int calcolaPartiteGiocate() {
-	    return partiteCasa.size() + partiteFuoriCasa.size();
-	}
-	
-	public int calcolaVittorie() {
-	    int vittorie = 0;
-	    for (Partita partita : partiteCasa) {
-	        if (partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
-	            vittorie++;
-	        }
-	    }
-	    for (Partita partita : partiteFuoriCasa) {
-	        if (partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
-	            vittorie++;
-	        }
-	    }
-	    return vittorie;
+		return punti;
 	}
 
-	public int calcolaPareggi() {
-	    int pareggi = 0;
-	    for (Partita partita : partiteCasa) {
-	        if (partita.isPareggio()) {
-	            pareggi++;
-	        }
-	    }
-	    for (Partita partita : partiteFuoriCasa) {
-	        if (partita.isPareggio()) {
-	            pareggi++;
-	        }
-	    }
-	    return pareggi;
+	public void setPunti(int punti) {
+		this.punti = punti;
 	}
 
-	public int calcolaSconfitte() {
-	    int sconfitte = 0;
-	    for (Partita partita : partiteCasa) {
-	        if (!partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
-	            sconfitte++;
-	        }
-	    }
-	    for (Partita partita : partiteFuoriCasa) {
-	        if (!partita.getSquadraVincente().equals(this) && !partita.isPareggio()) {
-	            sconfitte++;
-	        }
-	    }
-	    return sconfitte;
+	public int getVittorie() {
+		return vittorie;
 	}
 
-	public int calcolaGolFatti() {
-	    int golFatti = 0;
-	    for (Partita partita : partiteCasa) {
-	        golFatti += partita.getGolSquadraCasa();
-	    }
-	    for (Partita partita : partiteFuoriCasa) {
-	        golFatti += partita.getGolSquadraFuoriCasa();
-	    }
-	    return golFatti;
+	public void setVittorie(int vittorie) {
+		this.vittorie = vittorie;
 	}
 
-	public int calcolaGolSubiti() {
-	    int golSubiti = 0;
-	    for (Partita partita : partiteCasa) {
-	        golSubiti += partita.getGolSquadraFuoriCasa();
-	    }
-	    for (Partita partita : partiteFuoriCasa) {
-	        golSubiti += partita.getGolSquadraCasa();
-	    }
-	    return golSubiti;
+	public int getPareggi() {
+		return pareggi;
+	}
+
+	public void setPareggi(int pareggi) {
+		this.pareggi = pareggi;
+	}
+
+	public int getSconfitte() {
+		return sconfitte;
+	}
+
+	public void setSconfitte(int sconfitte) {
+		this.sconfitte = sconfitte;
+	}
+
+	public int getGolFatti() {
+		return golFatti;
+	}
+
+	public void setGolFatti(int golFatti) {
+		this.golFatti = golFatti;
+	}
+
+	public int getGolSubiti() {
+		return golSubiti;
+	}
+
+	public void setGolSubiti(int golSubiti) {
+		this.golSubiti = golSubiti;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(giocatori, idSquadra, logo, nome, partiteCasa, partiteFuoriCasa, teamManager, torneo);
+		return Objects.hash(giocatori, golFatti, golSubiti, idSquadra, logo, nome, pareggi, partiteCasa,
+				partiteFuoriCasa, punti, sconfitte, teamManager, torneo, vittorie);
 	}
 
 	@Override
@@ -191,19 +222,21 @@ public class Squadra {
 		if (getClass() != obj.getClass())
 			return false;
 		Squadra other = (Squadra) obj;
-		return Objects.equals(giocatori, other.giocatori) && Objects.equals(idSquadra, other.idSquadra)
-				&& Objects.equals(logo, other.logo) && Objects.equals(nome, other.nome)
+		return Objects.equals(giocatori, other.giocatori) && golFatti == other.golFatti && golSubiti == other.golSubiti
+				&& Objects.equals(idSquadra, other.idSquadra) && Objects.equals(logo, other.logo)
+				&& Objects.equals(nome, other.nome) && pareggi == other.pareggi
 				&& Objects.equals(partiteCasa, other.partiteCasa)
-				&& Objects.equals(partiteFuoriCasa, other.partiteFuoriCasa)
-				&& Objects.equals(teamManager, other.teamManager) && Objects.equals(torneo, other.torneo);
+				&& Objects.equals(partiteFuoriCasa, other.partiteFuoriCasa) && punti == other.punti
+				&& sconfitte == other.sconfitte && Objects.equals(teamManager, other.teamManager)
+				&& Objects.equals(torneo, other.torneo) && vittorie == other.vittorie;
 	}
 
 	@Override
 	public String toString() {
-		return "Squadra [idSquadra=" + idSquadra + ", nome=" + nome + ", logo=" + logo + ", teamManager=" + teamManager
-				+ ", torneo=" + torneo + ", partiteCasa=" + partiteCasa + ", partiteFuoriCasa=" + partiteFuoriCasa
-				+ ", giocatori=" + giocatori + "]";
+		return "Squadra [idSquadra=" + idSquadra + ", nome=" + nome + ", logo=" + logo + ", punti=" + punti
+				+ ", vittorie=" + vittorie + ", pareggi=" + pareggi + ", sconfitte=" + sconfitte + ", golFatti="
+				+ golFatti + ", golSubiti=" + golSubiti + ", teamManager=" + teamManager + ", torneo=" + torneo
+				+ ", partiteCasa=" + partiteCasa + ", partiteFuoriCasa=" + partiteFuoriCasa + ", giocatori=" + giocatori
+				+ "]";
 	}
-	
-	
 }

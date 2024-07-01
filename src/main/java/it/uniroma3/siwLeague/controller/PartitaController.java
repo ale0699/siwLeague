@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Partita;
+import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.service.GiocatoreService;
 import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
@@ -54,6 +55,32 @@ public class PartitaController {
 	@PostMapping(value = "/admin/addPartita")
 	public String postAddPartita(@ModelAttribute Partita partita) {
 		partita.setTorneo(partita.getSquadraCasa().getTorneo());
+		
+		Squadra squadraCasa = partita.getSquadraCasa();
+		Squadra squadraFuoriCasa = partita.getSquadraFuoriCasa();
+		int golSquadraCasa = partita.getGolSquadraCasa();
+		int golSquadraFuoriCasa = partita.getGolSquadraFuoriCasa();
+		
+		if(partita.getSquadraVincente()!=null) { //se non c'è un pareggio
+			
+			if(partita.getSquadraVincente().equals(squadraCasa)) {
+				
+				squadraCasa.setVittoria(golSquadraCasa, golSquadraFuoriCasa);
+				squadraFuoriCasa.setSconfitta(golSquadraFuoriCasa, golSquadraCasa);
+			}
+			else {
+				
+				squadraCasa.setSconfitta(golSquadraCasa, golSquadraFuoriCasa);
+				squadraFuoriCasa.setVittoria(golSquadraFuoriCasa, golSquadraCasa);
+			}
+		}
+		else {
+			
+			squadraCasa.setPareggio(golSquadraCasa);
+			squadraFuoriCasa.setPareggio(golSquadraFuoriCasa);
+		}
+		
+		
 		this.partitaService.save(partita);
 		return "redirect:/admin/formAddMarcatori/"+partita.getIdPartita();
 	}
@@ -73,6 +100,7 @@ public class PartitaController {
 		for(Long idGiocatore : giocatori) {
 			
 			Giocatore giocatoreCorrente = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
+			giocatoreCorrente.setGolSegnato();
 			partita.getMarcatori().put(minuti.get(i), giocatoreCorrente);
 			i++;
 		}
@@ -84,8 +112,38 @@ public class PartitaController {
 	@GetMapping(value = "/admin/removePartita/{idPartita}")
 	public String getRemovePartita(@PathVariable("idPartita")Long idPartita) {
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
+		
+		Squadra squadraCasa = partita.getSquadraCasa();
+		Squadra squadraFuoriCasa = partita.getSquadraFuoriCasa();
+		int golSquadraCasa = partita.getGolSquadraCasa();
+		int golSquadraFuoriCasa = partita.getGolSquadraFuoriCasa();
+		
+		if(partita.getSquadraVincente()!=null) { //se non c'è un pareggio
+			
+			if(partita.getSquadraVincente().equals(squadraCasa)) {
+				
+				squadraCasa.removeVittoria(golSquadraCasa, golSquadraFuoriCasa);
+				squadraFuoriCasa.removeSconfitta(golSquadraFuoriCasa, golSquadraCasa);
+			}
+			else {
+				
+				squadraCasa.removeSconfitta(golSquadraCasa, golSquadraFuoriCasa);
+				squadraFuoriCasa.removeVittoria(golSquadraFuoriCasa, golSquadraCasa);
+			}
+		}
+		else {
+			
+			squadraCasa.removePareggio(golSquadraCasa);
+			squadraFuoriCasa.removePareggio(golSquadraFuoriCasa);
+		}
+		
+		for(Giocatore giocatore : partita.getMarcatori().values()) {
+			
+			giocatore.removeGolSegnato();
+		}
+		
 		this.partitaService.remove(partita);
-		return "redirect:/formManagePartita/"+partita.getTorneo().getIdTorneo();
+		return "redirect:/admin/formManagePartita/"+partita.getTorneo().getIdTorneo();
 	}
 	
 }

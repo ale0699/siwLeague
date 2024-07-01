@@ -96,7 +96,7 @@
                             </div>
                             <div th:if="${!torneo.iscrizioneInCorso && torneo.svolgimentoInCorso}">
                                 <p class="card-text">Fase torneo: In corso di svolgimento</p>
-                                <a th:href="@{'/admin/formManagePartita/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Aggiungi Partita giocata</a>
+                                <a th:href="@{'/admin/formManagePartita/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Gestisci Partite</a>
                                 <a th:href="@{'/admin/torneoTerminaCompetizione/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Termina lo svolgimento della competizione</a>
                             </div>
                             <div th:if="${!torneo.iscrizioneInCorso && !torneo.svolgimentoInCorso}">

@@ -99,7 +99,7 @@
                                     <td th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td th:text="${partita.campo}"></td>
                                     <td>
-                                        <a th:href="@{'/removePartita/'+${partita.idPartita}}">
+                                        <a th:href="@{'/admin/removePartita/'+${partita.idPartita}}">
                                             <button type="button" class="btn btn-primary">Elimina Partita</button>
                                         </a>
                                     </td>
