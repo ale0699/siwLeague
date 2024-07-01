@@ -19,12 +19,19 @@ public class Torneo {
 	private Long idTorneo;
 	@NotBlank
 	private String nome;
+	@NotBlank
 	private String logo;
+	@NotBlank
 	private String descrizione;
+	@NotBlank
 	private LocalDate dataInizio;
+	@NotBlank
 	private LocalDate dataFine;
+	@NotBlank
 	private int numeroMassimoSquadrePartecipanti;
+	@NotBlank
 	private int numeroMassimoGiocatoriIscrivibili;
+	@NotBlank
 	private int montepremi;
 	private boolean iscrizioneInCorso;
 	private boolean svolgimentoInCorso;

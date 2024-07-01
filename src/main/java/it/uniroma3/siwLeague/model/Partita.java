@@ -12,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapKeyColumn;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 public class Partita {
@@ -19,10 +20,15 @@ public class Partita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idPartita;
+	@NotBlank
 	private int numeroGiornata;
+	@NotBlank
 	private LocalDateTime dataEOra;
+	@NotBlank
 	private String campo;
+	@NotBlank
 	private int golSquadraCasa;
+	@NotBlank
 	private int golSquadraFuoriCasa;
 	
 	//serve?
