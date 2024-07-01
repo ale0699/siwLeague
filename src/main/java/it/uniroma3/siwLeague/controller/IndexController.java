@@ -20,6 +20,7 @@ public class IndexController {
 	@GetMapping(value = "/")
 	public String getIndexPage(Model model) {
 		model.addAttribute("squadre", this.squadreService.findAllSquadre());
+		model.addAttribute("tornei", this.torneoService.findTorneiByIscrizioneInCorso(false));
 		return "index.html";
 	}
 	

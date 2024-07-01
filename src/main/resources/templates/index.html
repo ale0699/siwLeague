@@ -76,6 +76,75 @@
                 </div>
             </div>
         </div>
+
+        <div class="container">
+            <div class="row mt-5">
+                <h2 class="text-center">Ecco alcune classifiche dei nostri tornei</h2>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="row table-responsive">
+                        <table class="tabella-classifica table table-hover text-center table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Posizione</th>
+                                    <th scope="col">Squadra</th>
+                                    <th scope="col">Punti</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <th:block th:each="squadra, pos : ${tornei[0].squadreIscritte}">
+                                    <tr class="statistiche-classifica-squadra">
+                                        <th scope="row" th:text="${pos.index + 1}"></th>
+                                        <td>
+                                            <a th:href="@{'/teams/'+${squadra.idSquadra}}">
+                                                <span th:text="${squadra.nome}"></span>
+                                            </a>
+                                        </td>
+                                        <td th:text="${squadra.punti}"></td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="button text-center"> 
+                        <a th:href="@{'/tournaments/'+${tornei[0].idTorneo}}" class="btn btn-primary">Vai a torneo</a>
+                    </div>
+                </div>
+                <div class="col ms-4">
+                    <div class="row table-responsive">
+                        <table class="tabella-classifica table table-hover text-center table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Posizione</th>
+                                    <th scope="col">Squadra</th>
+                                    <th scope="col">Punti</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <th:block th:each="squadra, pos : ${tornei[1].squadreIscritte}">
+                                    <tr class="statistiche-classifica-squadra">
+                                        <th scope="row" th:text="${pos.index + 1}"></th>
+                                        <td>
+                                            <a th:href="@{'/teams/'+${squadra.idSquadra}}">
+                                                <span th:text="${squadra.nome}"></span>
+                                            </a>
+                                        </td>
+                                        <td th:text="${squadra.punti}"></td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="button text-center"> 
+                        <a th:href="@{'/tournaments/'+${tornei[1].idTorneo}}" class="btn btn-primary">Vai a torneo</a>
+                    </div>
+                </div>
+                <div class="col d-flex align-items-center justify-content-center ms-4">
+                    <a href="/tournaments">Vedi tutti i tornei</a>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer>
