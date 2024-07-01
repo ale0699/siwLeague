@@ -81,8 +81,8 @@
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
                             <p class="card-text" th:text="${torneo.descrizione}"></p>
                             <p class="card-text"><strong>Data inizio:</strong> <span
-                                    th:text="${torneo.dataInizio}"></span></p>
-                            <p class="card-text"><strong>Data fine:</strong> <span th:text="${torneo.dataFine}"></span>
+                                    th:text="${#temporals.format(torneo.dataInizio, 'dd-MM-yyyy')}"></span></p>
+                            <p class="card-text"><strong>Data fine:</strong> <span th:text="${#temporals.format(torneo.dataFine, 'dd-MM-yyyy')}"></span>
                             </p>
                             <p class="card-text"><strong>Montepremi:</strong> <span
                                     th:text="${torneo.montepremi}"></span></p>

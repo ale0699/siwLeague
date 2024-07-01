@@ -93,7 +93,7 @@
                                     <tr th:each="giocatore : ${giocatori}">
                                         <td th:text="${giocatore.nome} + ' ' + ${giocatore.cognome}"></td>
                                         <td th:text="${giocatore.numeroMaglia}"></td>
-                                        <td th:text="${giocatore.dataNascita}"></td>
+                                        <td th:text="${#temporals.format(giocatore.dataNascita, 'dd-MM-yyyy')}"></td>
                                         <td th:text="${giocatore.getGolSegnati()}"></td>
                                     </tr>
                                 </tbody>

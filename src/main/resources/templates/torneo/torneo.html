@@ -85,13 +85,13 @@
             <div class="row">
                 <div class="col informazioni-torneo">
                     <h2>Informazioni Torneo</h2>
-                    <p>Data Inizio: <span th:text="${torneo.dataInizio}"></span></p>
-                    <p>Data Fine: <span th:text="${torneo.dataFine}"></span></p>
-                    <p>Numero Massimo Squadre Partecipanti: <span
-                            th:text="${torneo.numeroMassimoSquadrePartecipanti}"></span></p>
-                    <p>Numero Massimo Giocatori Iscrivibili: <span
-                            th:text="${torneo.numeroMassimoGiocatoriIscrivibili}"></span></p>
-                    <p>Montepremi: <span th:text="${torneo.montepremi}"></span></p>
+                    <p>Data Inizio: <strong><span th:text="${#temporals.format(torneo.dataInizio, 'dd-MM-yyyy')}"></span></strong></p>
+                    <p>Data Fine: <strong><span th:text="${#temporals.format(torneo.dataFine, 'dd-MM-yyyy')}"></span></strong></p>
+                    <p>Numero Massimo di Squadre Partecipanti: <strong><span
+                            th:text="${torneo.numeroMassimoSquadrePartecipanti}"></span></strong></p>
+                    <p>Numero Massimo di Giocatori Iscrivibili per singola Squadra: <strong><span
+                            th:text="${torneo.numeroMassimoGiocatoriIscrivibili}"></span></strong></p>
+                    <p>Montepremi: <strong><span th:text="${torneo.montepremi} + '€'"></span></strong></p>
                 </div>
                 <div class="col loghi-squadre-partecipanti">
                     <div class="row row-cols-auto">
