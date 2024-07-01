@@ -21,7 +21,6 @@ public class Giocatore {
 	@NotBlank
 	private String cognome;
 	private int numeroMaglia;
-	@NotBlank
 	private LocalDate dataNascita;
 	private int golSegnati = 0;
 	

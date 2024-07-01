@@ -20,9 +20,7 @@ public class Partita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long idPartita;
-	@NotBlank
 	private int numeroGiornata;
-	@NotBlank
 	private LocalDateTime dataEOra;
 	@NotBlank
 	private String campo;
