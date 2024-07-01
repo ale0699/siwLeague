@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,12 +52,6 @@ public class TorneoController {
 		List<Squadra> squadrePartecipantiTorneo = this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo);
 		List<Giocatore> giocatoriTorneo = this.giocatoreService.findGiocatoriBySquadraTorneoIdTorneo(idTorneo);
 		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
-
-		//Ordinamento giocatoriTorneo per golSegnati
-		giocatoriTorneo.sort(Comparator.comparingInt(Giocatore::getGolSegnati).reversed());
-
-		//Ordinamento squadrePartecipantiTorneo per punti
-		squadrePartecipantiTorneo.sort(Comparator.comparingInt(Squadra::getPunti).reversed());
 
 		model.addAttribute("torneo", torneo);
 		model.addAttribute("partite", tuttePartiteTorneo);

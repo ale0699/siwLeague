@@ -30,7 +30,7 @@ public class SquadraService {
 	
 	public List<Squadra> findSquadrePartecipantiTorneoByIdTorneo(Long idTorneo){
 		
-		return this.squadraRepository.findByTorneoIdTorneo(idTorneo);
+		return this.squadraRepository.findByTorneoIdTorneoOrderByPuntiDesc(idTorneo);
 	}
 	
 	public boolean existsSquadraByNomeAndTorneo(String nome, Long idTorneo) {

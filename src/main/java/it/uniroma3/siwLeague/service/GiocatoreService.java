@@ -22,7 +22,7 @@ public class GiocatoreService {
 	
 	public List<Giocatore> findGiocatoriBySquadraTorneoIdTorneo(Long idTorneo){
 		
-		return this.giocatoreRepository.findBySquadraTorneoIdTorneo(idTorneo);
+		return this.giocatoreRepository.findBySquadraTorneoIdTorneoOrderByGolSegnatiDesc(idTorneo);
 	}
 	
 	public List<Giocatore> findGiocatoriBySquadraIdSquadra(Long idSquadra){

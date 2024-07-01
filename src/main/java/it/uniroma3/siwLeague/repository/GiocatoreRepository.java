@@ -11,7 +11,7 @@ public interface GiocatoreRepository extends CrudRepository<Giocatore, Long> {
 	
 	public List<Giocatore> findBySquadraIdSquadraOrderByNumeroMaglia(Long idSquadra);
 	
-	public List<Giocatore> findBySquadraTorneoIdTorneo(Long idTorneo);
+	public List<Giocatore> findBySquadraTorneoIdTorneoOrderByGolSegnatiDesc(Long idTorneo);
 	
 	public boolean existsByNumeroMagliaAndSquadraIdSquadra(Integer numeroMaglia, Long idSquadra);
 	
