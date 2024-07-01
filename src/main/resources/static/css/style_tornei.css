@@ -10,12 +10,8 @@ section{
     background-color: #ececed;
 }
 
-.card {
-    height: 100%;
-}
-
 .card-img-top {
     object-fit: contain;
-    height: 400px;
+    height: 200px;
     width: 100%;
 }

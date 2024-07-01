@@ -81,10 +81,12 @@
                     </ul>
                 </div>
             </div>
-            <div class="row pt-5 pb-5">
+            <div class="row pt-2">
                 <h2 class="text-center">Gestione Tornei</h2>
-                <div class="col text-center" th:each="torneo : ${tornei}">
-                    <div class="card object-card mb-2 p-2" style="width: 18rem;">
+            </div>
+            <div class="row pt-5 pb-5 container d-flex justify-content-around row-cols-auto">
+                <div class="col mt-2 text-center" th:each="torneo : ${tornei}">
+                    <div class="card object-card mb-2 p-2 h-100" style="width: 18rem;">
                         <div class="card-logo-container">
                             <img th:src="@{${torneo.logo}}" class="card-img-top img-logo" alt="logo">
                         </div>

@@ -73,9 +73,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col text-center" th:each="torneo: ${torneiAperteIscrizioni}">
-                    <div class="card mb-3">
+            <div class="row container d-flex justify-content-around row-cols-auto">
+                <div class="col mt-3 text-center" th:each="torneo: ${torneiAperteIscrizioni}">
+                    <div class="card h-100" style="width: 18rem;">
                         <img th:src="@{${torneo.logo}}" class="card-img-top" alt="Logo Torneo">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
@@ -100,9 +100,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col text-center" th:each="torneo: ${torneiChiuseIscrizioni}">
-                    <div class="card mb-3">
+            <div class="row container d-flex justify-content-around row-cols-auto">
+                <div class="col mt-3 text-center" th:each="torneo: ${torneiChiuseIscrizioni}">
+                    <div class="card h-100" style="width: 18rem;">
                         <img th:src="@{${torneo.logo}}" class="card-img-top" alt="Logo Torneo">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
