@@ -31,13 +31,13 @@
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="user-info">
                             <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole == 'admin'}">Dashboard admin</a>
-                            <a href="/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
+                            <a href="/manager/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
     </header>
     <section class="d-flex justify-content-center">
         <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
-            <form th:action="@{/addSquadra}" method="post" th:object="${squadra}" enctype="multipart/form-data">
+            <form th:action="@{/manager/teams/add}" method="post" th:object="${squadra}" enctype="multipart/form-data">
                 <input type="hidden" name="idTorneo" th:value="${torneo.idTorneo}"/>
                 <div class="error" th:if="${#fields.hasGlobalErrors()}">
                     <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>

@@ -31,13 +31,13 @@
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="user-info">
                             <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole == 'admin'}">Dashboard admin</a>
-                            <a href="/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
+                            <a href="/manager/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                                 <tr>
                                     <td th:text="${partita.numeroGiornata}"></td>
                                     <td>
-                                        <a th:href="@{'/partita/'+${partita.idPartita}}">
+                                        <a th:href="@{'/matches/'+${partita.idPartita}}">
                                             <span th:text="${partita.squadraCasa.nome}"></span>
                                             <span class="gol" th:text="${partita.golSquadraCasa}"></span>
                                             -
@@ -99,7 +99,7 @@
                                     <td th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></td>
                                     <td th:text="${partita.campo}"></td>
                                     <td>
-                                        <a th:href="@{'/admin/removePartita/'+${partita.idPartita}}">
+                                        <a th:href="@{'/admin/matches/remove/'+${partita.idPartita}}">
                                             <button type="button" class="btn btn-primary">Elimina Partita</button>
                                         </a>
                                     </td>
@@ -112,7 +112,7 @@
             <div class="col">
                 <h2 class="text-center">Aggiungi partita</h2>
                 <div class="contianer-sm container-form d-flex justify-content-center align-items-center text-center">
-                    <form th:action="@{/admin/addPartita}" method="post" th:object="${partita}">
+                    <form th:action="@{/admin/matches/add}" method="post" th:object="${partita}">
                         <div class="row">
                             <div class="col">
                                 <h2>Dettagli squadra casa</h2>

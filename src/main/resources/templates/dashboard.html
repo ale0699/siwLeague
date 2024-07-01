@@ -31,13 +31,13 @@
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="user-info">
                             <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole == 'admin'}">Dashboard admin</a>
-                            <a href="/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
+                            <a href="/manager/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
@@ -74,11 +74,11 @@
                     <ul class="ul-nav container d-flex justify-content-around">
                         <li class="li-nav">
                             <a href="/" class="full-link">
-                                Modifica Profilo
+                                Modifica Profilo (va implementato)
                             </a>
                         </li>
                         <li class="li-nav">
-                            <a href="/selectTorneo" class="full-link">
+                            <a href="/manager/tournaments/selectTorneo" class="full-link">
                                 Iscrivi nuova squadra
                             </a>
                         </li>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title" th:text="${squadra.nome}"></h5>
-                            <a th:href="@{'/formManageSquadra/'+${squadra.idSquadra}}" class="btn btn-primary" th:if="${squadra.torneo.iscrizioneInCorso}">Modifica
+                            <a th:href="@{'/manager/teams/edit/'+${squadra.idSquadra}}" class="btn btn-primary" th:if="${squadra.torneo.iscrizioneInCorso}">Modifica
                                 squadra</a>
                             <div th:if="${!squadra.torneo.iscrizioneInCorso}">
                                 <button type="button" class="btn btn-primary" disabled>Non puoi modificare la squadra,

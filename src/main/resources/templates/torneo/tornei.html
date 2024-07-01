@@ -28,16 +28,16 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav container d-flex justify-content-center">
                             <li class="nav-item">
-                                <a class="nav-link" href="/">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="user-info">
                             <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole == 'admin'}">Dashboard admin</a>
-                            <a href="/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
+                            <a href="/manager/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             </div>
 
                             <p class="card-text" th:text="${torneo.descrizione}"></p>
-                            <a th:href="@{'/torneo/'+${torneo.idTorneo}}" class="btn btn-primary">Vai a torneo</a>
+                            <a th:href="@{'/tournaments/'+${torneo.idTorneo}}" class="btn btn-primary">Vai a torneo</a>
                         </div>
                     </div>
                 </div>

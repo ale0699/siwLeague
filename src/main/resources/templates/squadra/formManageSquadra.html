@@ -31,13 +31,13 @@
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="user-info">
                             <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole == 'admin'}">Dashboard admin</a>
-                            <a href="/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
+                            <a href="/manager/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="gestione-squadra">
                     <div th:if="${squadra.torneo.iscrizioneInCorso || userRole == 'admin'}">
-                        <a th:href="@{'/removeSquadra/'+${squadra.idSquadra}}">
+                        <a th:href="@{'/manager/teams/remove/'+${squadra.idSquadra}}">
                             <button type="button" class="btn btn-primary">Elimina squadra</button>
                         </a>
                     </div>
@@ -102,7 +102,7 @@
                                             <td th:text="${giocatore.numeroMaglia}"></td>
                                             <td th:text="${#temporals.format(giocatore.dataNascita, 'dd-MM-yyyy')}"></td>
                                             <td th:if="${squadra.torneo.iscrizioneInCorso || userRole == 'admin'}">
-                                                <a th:href="@{'/removeGiocatore/'+${giocatore.idGiocatore}}">
+                                                <a th:href="@{'/manager/players/remove/'+${giocatore.idGiocatore}}">
                                                     <button type="button" class="btn btn-primary">Elimina
                                                         giocatore</button>
                                                 </a>
@@ -123,7 +123,7 @@
                     </div>
                     <div class="row">
                         <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
-                            <form th:action="@{/addGiocatoriSquadra}" th:object="${giocatore}" method="post">
+                            <form th:action="@{/manager/players/add}" th:object="${giocatore}" method="post">
                                 <input type="hidden" th:value="${squadra.idSquadra}" name="idSquadra">
                                 <div class="error" th:if="${#fields.hasGlobalErrors()}">
                                     <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
@@ -157,7 +157,7 @@
                 </div>
             </div>
             <div class="row text-center mt-5">
-                <a th:href="@{'/squadra/'+${squadra.idSquadra}}"><button type="button"
+                <a th:href="@{'/teams/'+${squadra.idSquadra}}"><button type="button"
                         class="btn btn-primary">Termina attività</button></a>
             </div>
         </div>

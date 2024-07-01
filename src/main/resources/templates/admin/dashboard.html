@@ -31,22 +31,21 @@
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
                     <div th:if="${userDetails}!=null">
                         <div class="user-info">
-                            <span>Benvenuto <span
-                                    th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
+                            <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole == 'admin'}">Dashboard admin</a>
-                            <a href="/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
+                            <a href="/manager/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
@@ -74,7 +73,7 @@
                 <div class="col col-ul">
                     <ul class="ul-nav container d-flex justify-content-around">
                         <li class="li-nav">
-                            <a href="/admin/formAddTorneo" class="full-link">
+                            <a href="/admin/tournaments/add" class="full-link">
                                 Aggiungi Torneo
                             </a>
                         </li>
@@ -94,18 +93,18 @@
                             <h5 class="card-title" th:text="${torneo.nome}"></h5>
                             <div th:if="${torneo.iscrizioneInCorso}">
                                 <p class="card-text">Fase torneo: Iscrizioni in corso</p>
-                                <a th:href="@{'/admin/torneoTerminaIscrizioni/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Termina iscrizioni del torneo e avvia la competizione</a>
+                                <a th:href="@{'/admin/tournaments/'+${torneo.idTorneo}+'/registrationDeadline'}" class="btn btn-primary mt-2">Termina iscrizioni del torneo e avvia la competizione</a>
                             </div>
                             <div th:if="${!torneo.iscrizioneInCorso && torneo.svolgimentoInCorso}">
                                 <p class="card-text">Fase torneo: In corso di svolgimento</p>
-                                <a th:href="@{'/admin/formManagePartita/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Gestisci Partite</a>
-                                <a th:href="@{'/admin/torneoTerminaCompetizione/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Termina lo svolgimento della competizione</a>
+                                <a th:href="@{'/admin/matches/edit/tournaments/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Gestisci Partite</a>
+                                <a th:href="@{'/admin/tournaments/'+${torneo.idTorneo}+'/competitionDeadline'}" class="btn btn-primary mt-2">Termina lo svolgimento della competizione</a>
                             </div>
                             <div th:if="${!torneo.iscrizioneInCorso && !torneo.svolgimentoInCorso}">
                                 <p class="card-text">Fase torneo: Terminato</p>
                             </div>
-                            <a th:href="@{'/torneo/'+${torneo.idTorneo}}" class="btn btn-primary mt-2"> Modifica
-                                torneo</a>
+                            <a th:href="@{'/tournaments/'+${torneo.idTorneo}}" class="btn btn-primary mt-2"> Modifica
+                                torneo (va implementato)</a>
                         </div>
                     </div>
                 </div>

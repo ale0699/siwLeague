@@ -34,7 +34,7 @@ public class IndexController {
 		return "index.html";
 	}
 	
-	@GetMapping(value = "/dashboard")
+	@GetMapping(value = "/manager/dashboard")
 	public String getDashboardPage(Model model) {
 		UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		GestoreSquadra manager = this.gestoreSquadraService.findGestoreSquadraByCredenziali(this.credenzialiService.findCredenzialiByUsername(user.getUsername()));
@@ -48,7 +48,7 @@ public class IndexController {
 		return "admin/dashboard.html";
 	}
 	
-	@GetMapping(value = "/contatti")
+	@GetMapping(value = "/contacts")
 	public String getContatti() {
 		
 		return "contatti.html";

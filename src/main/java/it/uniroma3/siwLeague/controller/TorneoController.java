@@ -40,13 +40,13 @@ public class TorneoController {
 	@Autowired
 	private GiocatoreService giocatoreService;
 
-	@GetMapping(value = "/tornei")
+	@GetMapping(value = "/tournaments")
 	public String getAllTornei(Model model) {
 		model.addAttribute("tornei", this.torneoService.findAllTornei());
 		return "torneo/tornei.html";
 	}
 
-	@GetMapping(value = "/torneo/{idTorneo}")
+	@GetMapping(value = "/tournaments/{idTorneo}")
 	public String getTorneo(@PathVariable("idTorneo") Long idTorneo, Model model) {
 		List<Partita> tuttePartiteTorneo = this.partitaService.findAllPartiteByIdTorneo(idTorneo);
 		List<Squadra> squadrePartecipantiTorneo = this.squadraService.findSquadrePartecipantiTorneoByIdTorneo(idTorneo);
@@ -60,20 +60,20 @@ public class TorneoController {
 		return "torneo/torneo.html";
 	}
 
-	@GetMapping(value = "/selectTorneo")
+	@GetMapping(value = "/manager/tournaments/selectTorneo")
 	public String getSelectTorneo(Model model) {
 		model.addAttribute("torneiAperteIscrizioni", this.torneoService.findTorneiByIscrizioneInCorso(true));
 		model.addAttribute("torneiChiuseIscrizioni", this.torneoService.findTorneiByIscrizioneInCorso(false));
 		return "torneo/selectTorneo.html";
 	}
 	
-	@GetMapping(value = "/admin/formAddTorneo")
+	@GetMapping(value = "/admin/tournaments/add")
 	public String getFormAddTorneo(Model model) {
 		model.addAttribute(new Torneo());
 		return "torneo/formAddTorneo.html";
 	}
 	
-	@PostMapping(value = "/admin/addTorneo")
+	@PostMapping(value = "/admin/tournaments/add")
 	public String postAddTorneo(@ModelAttribute Torneo torneo, @RequestParam("logo-image")MultipartFile logo) throws IOException {
 		
 		
@@ -90,7 +90,7 @@ public class TorneoController {
 		return "redirect:/admin/dashboard";
 	}
 	
-	@GetMapping(value = "/admin/torneoTerminaIscrizioni/{idTorneo}")
+	@GetMapping(value = "/admin/tournaments/{idTorneo}/registrationDeadline")
 	public String getTorneoTerminaIscrizioni(@PathVariable("idTorneo")Long idTorneo) {
 		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 		torneo.setIscrizioneInCorso(false);
@@ -99,7 +99,7 @@ public class TorneoController {
 		return "redirect:/admin/dashboard";
 	}
 	
-	@GetMapping(value = "/admin/torneoTerminaCompetizione/{idTorneo}")
+	@GetMapping(value = "/admin/tournaments/{idTorneo}/competitionDeadline")
 	public String getTorneoTerminaCompetizione(@PathVariable("idTorneo")Long idTorneo) {
 		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 		torneo.setSvolgimentoInCorso(false);

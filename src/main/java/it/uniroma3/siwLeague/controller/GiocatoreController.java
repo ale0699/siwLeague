@@ -28,7 +28,7 @@ public class GiocatoreController {
 	@Autowired
 	private GiocatoreValidator giocatoreValidator;
 
-	@PostMapping(value = "/addGiocatoriSquadra")
+	@PostMapping(value = "manager/players/add")
 	public String postAddGiocatoriSquadra(@RequestParam("idSquadra") Long idSquadra,@Valid @ModelAttribute Giocatore giocatore, BindingResult bindingResult, Model model) {
 		giocatore.setSquadra(this.squadraService.findSquadraByIdSquadra(idSquadra));
 		this.giocatoreValidator.validate(giocatore, bindingResult);
@@ -41,13 +41,13 @@ public class GiocatoreController {
 		}
 		
 		this.giocatoreService.save(giocatore);
-		return "redirect:/formManageSquadra/" + idSquadra;
+		return "redirect:/manager/teams/edit/" + idSquadra;
 	}
 	
-	@GetMapping(value = "/removeGiocatore/{idGiocatore}")
+	@GetMapping(value = "manager/players/remove/{idGiocatore}")
 	public String getRemoveGiocatore(@PathVariable("idGiocatore") Long idGiocatore) {
 		Giocatore giocatore = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
 		this.giocatoreService.remove(giocatore);
-		return "redirect:/formManageSquadra/" + giocatore.getSquadra().getIdSquadra();
+		return "redirect:/manager/teams/edit/" + giocatore.getSquadra().getIdSquadra();
 	}
 }

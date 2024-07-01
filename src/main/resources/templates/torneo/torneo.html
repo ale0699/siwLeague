@@ -31,13 +31,13 @@
                                 <a class="nav-link active" aria-current="page" href="/">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/tornei">Tornei</a>
+                                <a class="nav-link" href="/tournaments">Tornei</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="/about">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Contatti</a>
+                                <a class="nav-link" href="/contacts">Contatti</a>
                             </li>
                         </ul>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="user-info">
                             <span>Benvenuto <span th:text="${userDetails.username} + ' (' + ${userRole} + ')'"></span></span>
                             <a href="/admin/dashboard" th:if="${userRole == 'admin'}">Dashboard admin</a>
-                            <a href="/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
+                            <a href="/manager/dashboard" th:unless="${userRole == 'admin'}">Dashboard Team Manager</a>
                             <a href="/logout">Logout</a>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                 <div class="col loghi-squadre-partecipanti">
                     <div class="row row-cols-auto">
                         <div class="col logo-image" th:each="squadra : ${squadrePartecipanti}">
-                            <a th:href="@{'/squadra/'+${squadra.idSquadra}}">
+                            <a th:href="@{'/teams/'+${squadra.idSquadra}}">
                                 <img th:src="@{${squadra.logo}}" alt="logo squadra" width="100" height="110">
                             </a>
                         </div>
@@ -130,7 +130,7 @@
                             <tr class="statistiche-classifica-squadra">
                                 <th scope="row" th:text="${pos.index + 1}"></th>
                                 <td>
-                                    <a th:href="@{'/squadra/'+${squadra.idSquadra}}">
+                                    <a th:href="@{'/teams/'+${squadra.idSquadra}}">
                                         <span th:text="${squadra.nome}"></span>
                                     </a>
                                 </td>
@@ -165,7 +165,7 @@
                         <tr>
                             <td th:text="${partita.numeroGiornata}"></td>
                             <td>
-                                <a th:href="@{'/partita/'+${partita.idPartita}}">
+                                <a th:href="@{'/matches/'+${partita.idPartita}}">
                                     <span th:text="${partita.squadraCasa.nome}"></span>
                                     <span class="gol" th:text="${partita.golSquadraCasa}"></span>
                                     -

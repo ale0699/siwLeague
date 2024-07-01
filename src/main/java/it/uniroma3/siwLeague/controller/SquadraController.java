@@ -52,14 +52,14 @@ public class SquadraController {
 	@Autowired
 	private GestoreSquadraService gestoreSquadraService;
 	
-	@GetMapping(value = "/squadra/{idSquadra}")
+	@GetMapping(value = "/teams/{idSquadra}")
 	public String getSquadra(@PathVariable("idSquadra")Long idSquadra, Model model){
 		model.addAttribute("squadra", this.squadraService.findSquadraByIdSquadra(idSquadra));
 		model.addAttribute("giocatori", this.giocatoreService.findGiocatoriBySquadraIdSquadra(idSquadra));
 		return "squadra/squadra.html";
 	}
 	
-	@GetMapping(value = "/formAddSquadra/{idTorneo}")
+	@GetMapping(value = "manager/teams/add/tournaments/{idTorneo}")
 	public String getFormAddSquadra(@PathVariable("idTorneo")Long idTorneo, Model model) throws Exception {
 		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 		
@@ -79,7 +79,7 @@ public class SquadraController {
 		}
 	}
 	
-	@PostMapping(value = "/addSquadra")
+	@PostMapping(value = "/manager/teams/add")
 	public String postAddSquadra(@RequestParam("logo-image")MultipartFile logo, @RequestParam("idTorneo")Long idTorneo,@Valid @ModelAttribute Squadra squadra, BindingResult bindingResult, Model model) throws IOException {
 		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
 		squadra.setTorneo(torneo);
@@ -103,10 +103,10 @@ public class SquadraController {
     	
     	squadra.setTeamManager(this.gestoreSquadraService.findGestoreSquadraByCredenziali(credenziali));
 		this.squadraService.save(squadra); //forse non qua
-		return "redirect:/formManageSquadra/"+squadra.getIdSquadra();
+		return "redirect:/manager/teams/edit/"+squadra.getIdSquadra();
 	}
 	
-	@GetMapping(value = "/formManageSquadra/{idSquadra}")
+	@GetMapping(value = "/manager/teams/edit/{idSquadra}")
 	public String getFormAddGiocatoriSquadra(@PathVariable("idSquadra") Long idSquadra, Model model) {
 		model.addAttribute("squadra", this.squadraService.findSquadraByIdSquadra(idSquadra));
 		model.addAttribute("giocatori", this.giocatoreService.findGiocatoriBySquadraIdSquadra(idSquadra));
@@ -114,12 +114,12 @@ public class SquadraController {
 		return "squadra/formManageSquadra.html";
 	}
 	
-	@GetMapping(value = "/removeSquadra/{idSquadra}")
+	@GetMapping(value = "/manager/teams/remove/{idSquadra}")
 	public String getRemoveSquadra(@PathVariable("idSquadra")Long idSquadra) throws IOException {
 		Squadra squadra = this.squadraService.findSquadraByIdSquadra(idSquadra);
 		this.squadraService.remove(squadra);
         Path fileNameAndPath = Paths.get("src/main/resources/static/"+squadra.getLogo());
         Files.delete(fileNameAndPath);
-		return "redirect:/";
+		return "redirect:/manager/dashboard";
 	}
 }
