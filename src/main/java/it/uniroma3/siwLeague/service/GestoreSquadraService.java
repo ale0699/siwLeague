@@ -13,6 +13,11 @@ public class GestoreSquadraService {
 	@Autowired
 	private GestoreSquadraRepository gestoreSquadraRepository;
 	
+	public GestoreSquadra findGestoreSquadraById(Long idGestoreSquadra) {
+		
+		return this.gestoreSquadraRepository.findById(idGestoreSquadra).get();
+	}
+	
 	public GestoreSquadra findGestoreSquadraByCredenziali(Credenziali credenziali) {
 		
 		return this.gestoreSquadraRepository.findByCredenziali(credenziali);
