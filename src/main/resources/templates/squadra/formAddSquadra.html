@@ -87,12 +87,12 @@
                     <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingNome" placeholder="Nome" th:field="*{nome}">
+                    <input type="text" class="form-control" id="floatingNome" placeholder="Nome" th:field="*{nome}" required>
                     <label for="floatingNome">Nome</label>
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Immagine Logo</label>
-                    <input class="form-control" type="file" id="formLogo" name="logo-image" accept="image/*">
+                    <input class="form-control" type="file" id="formLogo" name="logo-image" accept="image/*" required>
                 </div>
                 <div class="button text-center">
                     <button type="submit" class="btn btn-primary">Aggiungi</button>

@@ -68,35 +68,35 @@
         <div class="contianer-sm container-form d-flex justify-content-center align-items-center">
             <form th:action="@{/admin/tournaments/add}" method="post" th:object="${torneo}" enctype="multipart/form-data">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingNome" placeholder="Nome" th:field="*{nome}">
+                    <input type="text" class="form-control" id="floatingNome" placeholder="Nome" th:field="*{nome}" required>
                     <label for="floatingNome">Nome</label>
                 </div>
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Immagine Logo</label>
-                    <input class="form-control" type="file" id="formLogo" name="logo-image" accept="image/*">
+                    <input class="form-control" type="file" id="formLogo" name="logo-image" accept="image/*" required>
                 </div>
                 <div class="form-floating mb-3">
-                    <textarea class="form-control" th:field="*{descrizione}" placeholder="Descrizione" id="floatingTextarea2" style="height: 100px"></textarea>
+                    <textarea class="form-control" th:field="*{descrizione}" placeholder="Descrizione" id="floatingTextarea2" style="height: 100px" required></textarea>
                     <label for="floatingTextarea2">Descrizione</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingDataInizio" placeholder="Data Inizio" th:field="*{dataInizio}">
+                    <input type="date" class="form-control" id="floatingDataInizio" placeholder="Data Inizio" th:field="*{dataInizio}" required>
                     <label for="floatingDataInizio">Data Inizio</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="date" class="form-control" id="floatingDataFine" placeholder="Data Fine" th:field="*{dataFine}">
+                    <input type="date" class="form-control" id="floatingDataFine" placeholder="Data Fine" th:field="*{dataFine}" required>
                     <label for="floatingDataFine">Data Fine</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="floatingNumeroSquadre" placeholder="Numero massimo Squadre" th:field="*{numeroMassimoSquadrePartecipanti}">
+                    <input type="number" class="form-control" id="floatingNumeroSquadre" placeholder="Numero massimo Squadre" th:field="*{numeroMassimoSquadrePartecipanti}" required>
                     <label for="floatingNumeroSquadre">Numero massimo Squadre</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="floatingNumeroGiocatori" placeholder="Numero massimo Giocatori" th:field="*{numeroMassimoGiocatoriIscrivibili}">
+                    <input type="number" class="form-control" id="floatingNumeroGiocatori" placeholder="Numero massimo Giocatori" th:field="*{numeroMassimoGiocatoriIscrivibili}" required>
                     <label for="floatingNumeroGiocatori">Numero massimo Giocatori per squadra</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="number" class="form-control" id="floatingMontepremi" placeholder="Montepremi" th:field="*{montepremi}">
+                    <input type="number" class="form-control" id="floatingMontepremi" placeholder="Montepremi" th:field="*{montepremi}" required>
                     <label for="floatingMontepremi">Montepremi</label>
                 </div>
                 <div class="button text-center">
