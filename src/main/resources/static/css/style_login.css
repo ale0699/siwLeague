@@ -19,3 +19,29 @@ section{
     max-width: 400px;
     width: 100%;
 }
+
+.google{
+
+    padding: 5px;
+    border: 1px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+.google .link-casella{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.google a{
+
+    text-decoration: none;
+    color: black;
+}
+
+.google img{
+
+    width: 10%;
+}
