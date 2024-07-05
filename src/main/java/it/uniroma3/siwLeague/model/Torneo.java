@@ -19,7 +19,6 @@ public class Torneo {
 	private Long idTorneo;
 	@NotBlank
 	private String nome;
-	@NotBlank
 	private String logo;
 	@NotBlank
 	private String descrizione;

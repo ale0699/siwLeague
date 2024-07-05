@@ -22,7 +22,6 @@ public class Squadra {
 	private Long idSquadra;
 	@NotBlank
 	private String nome;
-	@NotBlank
 	private String logo;
 	private int punti = 0;
 	private int vittorie = 0;

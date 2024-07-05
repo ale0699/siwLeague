@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.siwLeague.controller.validator.SquadraValidator;
 import it.uniroma3.siwLeague.model.Credenziali;
+import it.uniroma3.siwLeague.model.GestoreSquadra;
 import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.model.Squadra;
 import it.uniroma3.siwLeague.model.Torneo;
@@ -98,10 +100,25 @@ public class SquadraController {
             squadra.setLogo("/images/squadre/loghi/" + logo.getOriginalFilename());
         }
 		
-    	UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credenziali credenziali = this.credenzialiService.findCredenzialiByUsername(user.getUsername());
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		GestoreSquadra manager = null;
+
+		if(principal instanceof UserDetails) {
+			
+			UserDetails user = (UserDetails) principal;
+		    Credenziali credenziali = this.credenzialiService.findCredenzialiByUsername(user.getUsername());
+		    manager = this.gestoreSquadraService.findGestoreSquadraByCredenziali(credenziali);
+		}
+		else {
+			
+			DefaultOAuth2User user = (DefaultOAuth2User) principal;
+		    String username = user.getAttribute("email");
+		    Credenziali credenziali = this.credenzialiService.findCredenzialiByUsername(username);
+		    manager = this.gestoreSquadraService.findGestoreSquadraByCredenziali(credenziali);
+		}
     	
-    	squadra.setTeamManager(this.gestoreSquadraService.findGestoreSquadraByCredenziali(credenziali));
+    	squadra.setTeamManager(manager);
 		this.squadraService.save(squadra); //forse non qua
 		return "redirect:/manager/teams/edit/"+squadra.getIdSquadra();
 	}
