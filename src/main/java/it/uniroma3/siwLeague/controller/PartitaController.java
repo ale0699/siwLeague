@@ -93,19 +93,23 @@ public class PartitaController {
 	}
 	
 	@GetMapping(value = "/admin/matches/{idPartita}/scorers/add")
-	public String postAddMarcatori(@PathVariable("idPartita")Long idPartita, @RequestParam("giocatore") List<Long> giocatori, @RequestParam("minuto") List<Integer> minuti ) {
+	public String postAddMarcatori(@PathVariable("idPartita")Long idPartita, @RequestParam(value = "giocatore", required = false) List<Long> giocatori, @RequestParam(value = "minuto", required = false) List<Integer> minuti ) {
 		Partita partita = this.partitaService.findPartitaByIdPartita(idPartita);
 		
-		int i = 0;
-		for(Long idGiocatore : giocatori) {
+		if(giocatori!=null) {
 			
-			Giocatore giocatoreCorrente = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
-			giocatoreCorrente.setGolSegnato();
-			partita.getMarcatori().put(minuti.get(i), giocatoreCorrente);
-			i++;
+			int i = 0;
+			for(Long idGiocatore : giocatori) {
+				
+				Giocatore giocatoreCorrente = this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore);
+				giocatoreCorrente.setGolSegnato();
+				partita.getMarcatori().put(minuti.get(i), giocatoreCorrente);
+				i++;
+			}
+			
+			this.partitaService.save(partita);
 		}
 		
-		this.partitaService.save(partita);
 		return "redirect:/admin/matches/edit/tournaments/"+partita.getTorneo().getIdTorneo();
 	}
 	
