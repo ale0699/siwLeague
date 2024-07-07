@@ -62,7 +62,7 @@
                     <img th:src="@{${squadra.logo}}" alt="logo" id="logo-nav">
                     <h1 th:text="${squadra.nome}"></h1>
                     <div class="nome-torneo">
-                        <h5 th:text="'Partecipa al torneo: ' + ${squadra.torneo.nome}"></h5>
+                        <h5>Partecipa al torneo: <a th:href="@{'/tournaments/' + ${squadra.torneo.idTorneo}}"><span th:text="${squadra.torneo.nome}"></span></a></h5>
                     </div>
                 </div>
             </div>
