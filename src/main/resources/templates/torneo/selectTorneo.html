@@ -72,6 +72,13 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col">
+                    <div class="error text-center" th:if="${error!=null}">
+                        <span th:text="${error}"></span>
+                    </div>
+                </div>
+            </div>
             <div class="row container d-flex justify-content-around row-cols-auto">
                 <div class="col mt-3 text-center" th:each="torneo: ${torneiAperteIscrizioni}">
                     <div class="card h-100" style="width: 18rem;">
