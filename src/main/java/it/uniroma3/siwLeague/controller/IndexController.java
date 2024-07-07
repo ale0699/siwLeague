@@ -82,8 +82,8 @@ public class IndexController {
 	}
 	
 	@GetMapping(value = "/about")
-	public String getAbout() {
-		
+	public String getAbout(Model model) {
+		model.addAttribute("tornei", this.torneoService.findTorneiByIscrizioneInCorso(true));
 		return "about.html";
 	}
 }

@@ -67,7 +67,7 @@
             <p class="lead text-center">Il punto di riferimento per tutti gli appassionati di calcio a 5!</p>
             
             <h2>Chi Siamo</h2>
-            <p>siwLeague è stata fondata da un gruppo di amici con la passione per il calcio a 5. La nostra lega è cresciuta rapidamente, attirando giocatori e squadre di ogni livello, dai dilettanti agli esperti. Crediamo nel valore dello sport come strumento di aggregazione e divertimento, e ci impegniamo a organizzare tornei che rispecchino questi valori.</p>
+            <p>siwLeague è una lega per il calcio a 5. La nostra lega è cresciuta rapidamente, attirando giocatori e squadre di ogni livello, dai dilettanti agli esperti. Crediamo nel valore dello sport come strumento di aggregazione e divertimento, e ci impegniamo a organizzare tornei che rispecchino questi valori.</p>
             
             <h2>Cosa Offriamo</h2>
             <ul>
@@ -79,7 +79,7 @@
             <h2>Come Iscriversi</h2>
             <ol>
                 <li><strong>Registrazione:</strong> Crea un account sul nostro sito.</li>
-                <li><strong>Creazione Squadra:</strong> Forma una nuova squadra o unisciti a una già esistente.</li>
+                <li><strong>Creazione Squadra:</strong> Forma una nuova squadra</li>
                 <li><strong>Iscrizione al Torneo:</strong> Scegli il torneo a cui vuoi partecipare e completa l'iscrizione. È semplice e veloce!</li>
             </ol>
             
@@ -88,9 +88,12 @@
             
             <h3>Esempio di Tornei Attivi</h3>
             <ul>
-                <li><strong>Torneo di Primavera:</strong> 10 squadre in competizione, classifica aggiornata settimanalmente.</li>
-                <li><strong>Torneo Estivo:</strong> 8 squadre in gara, con partite ogni weekend.</li>
-                <li><strong>Coppa Autunnale:</strong> Il torneo più atteso dell'anno, con 12 squadre che lottano per il titolo.</li>
+                <li th:each="torneo : ${tornei}">
+                    <a th:href="@{'/tournaments/'+${torneo.idTorneo}}">
+                        <strong th:text="${torneo.nome}"></strong>
+                    </a>
+                    <span th:text="': ' + ${torneo.descrizione}"></span>
+                </li>
             </ul>
             
             <h2>Contattaci</h2>
