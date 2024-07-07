@@ -26,7 +26,7 @@ public class TorneoService {
 	
 	public List<Torneo> findTorneiByIscrizioneInCorso(boolean iscrizioneInCorso){
 		
-		return this.torneoRepository.findByIscrizioneInCorsoOrderByNomeAsc(iscrizioneInCorso);
+		return this.torneoRepository.findByIscrizioneInCorso(iscrizioneInCorso);
 	}
 	
 	public void save(Torneo torneo) {

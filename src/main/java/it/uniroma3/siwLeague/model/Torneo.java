@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -31,6 +32,7 @@ public class Torneo {
 	private boolean svolgimentoInCorso;
 	
 	@OneToMany(mappedBy = "torneo")
+	@OrderBy("punti DESC")
 	private List<Squadra> squadreIscritte;
 	
 	@OneToMany(mappedBy = "torneo")
