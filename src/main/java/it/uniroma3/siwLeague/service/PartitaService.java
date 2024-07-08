@@ -33,4 +33,9 @@ public class PartitaService {
 
 		this.partitaRepository.delete(partita);
 	}
+	
+	public List<Partita> findByMarcatoriIdGiocatore(Long idGiocatore){
+		
+		return this.partitaRepository.findByMarcatoriIdGiocatore(idGiocatore);
+	}
 }

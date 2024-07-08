@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import it.uniroma3.siwLeague.controller.validator.GiocatoreValidator;
 import it.uniroma3.siwLeague.model.Giocatore;
 import it.uniroma3.siwLeague.service.GiocatoreService;
+import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
 import jakarta.validation.Valid;
 
@@ -27,6 +28,16 @@ public class GiocatoreController {
 	
 	@Autowired
 	private GiocatoreValidator giocatoreValidator;
+	
+	@Autowired
+	private PartitaService partitaService;
+	
+	@GetMapping(value = "players/{idGiocatore}")
+	public String getGiocatorePage(@PathVariable("idGiocatore")Long idGiocatore, Model model) {
+		model.addAttribute("giocatore", this.giocatoreService.findGiocatoreByIdGiocatore(idGiocatore));
+		model.addAttribute("partite", this.partitaService.findByMarcatoriIdGiocatore(idGiocatore));
+		return "giocatore/giocatore.html";
+	}
 
 	@PostMapping(value = "manager/players/add")
 	public String postAddGiocatoriSquadra(@RequestParam("idSquadra") Long idSquadra,@Valid @ModelAttribute Giocatore giocatore, BindingResult bindingResult, Model model) {
