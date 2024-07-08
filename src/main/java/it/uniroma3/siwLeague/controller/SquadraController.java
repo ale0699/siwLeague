@@ -78,7 +78,7 @@ public class SquadraController {
 			return "squadra/formAddSquadra.html";
 		}
 		else {
-			//va implementato lato frontend l'errore
+
 			model.addAttribute("error", "Non puoi iscrivere la tua squadra al torneo "+torneo.getNome());
 			model.addAttribute("torneiAperteIscrizioni", this.torneoService.findTorneiByIscrizioneInCorso(true));
 			model.addAttribute("torneiChiuseIscrizioni", this.torneoService.findTorneiByIscrizioneInCorso(false));
