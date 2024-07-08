@@ -17,7 +17,7 @@ import it.uniroma3.siwLeague.service.TorneoService;
 public class IndexController {
 	
 	@Autowired
-	private SquadraService squadreService;
+	private SquadraService squadraService;
 	
 	@Autowired
 	private TorneoService torneoService;
@@ -27,7 +27,7 @@ public class IndexController {
 	
 	@GetMapping(value = "/")
 	public String getIndexPage(Model model) {
-		model.addAttribute("squadre", this.squadreService.findAllSquadre());
+		model.addAttribute("squadre", this.squadraService.findAllSquadre());
 		model.addAttribute("tornei", this.torneoService.findTorneiByIscrizioneInCorso(false));
 		return "index.html";
 	}
