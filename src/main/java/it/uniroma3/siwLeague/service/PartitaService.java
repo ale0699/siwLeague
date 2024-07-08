@@ -38,4 +38,9 @@ public class PartitaService {
 		
 		return this.partitaRepository.findByMarcatoriIdGiocatore(idGiocatore);
 	}
+	
+	public List<Partita> findBySquadraCasaOrSquadraFuoriCasa(Long idSquadraCasa, Long idSquadraFuoriCasa){
+		
+		return this.partitaRepository.findBySquadraCasaIdSquadraOrSquadraFuoriCasaIdSquadra(idSquadraCasa, idSquadraFuoriCasa);
+	}
 }

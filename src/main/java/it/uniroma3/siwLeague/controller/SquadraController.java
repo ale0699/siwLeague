@@ -29,6 +29,7 @@ import it.uniroma3.siwLeague.model.Torneo;
 import it.uniroma3.siwLeague.service.CredenzialiService;
 import it.uniroma3.siwLeague.service.GestoreSquadraService;
 import it.uniroma3.siwLeague.service.GiocatoreService;
+import it.uniroma3.siwLeague.service.PartitaService;
 import it.uniroma3.siwLeague.service.SquadraService;
 import it.uniroma3.siwLeague.service.TorneoService;
 import jakarta.validation.Valid;
@@ -54,8 +55,12 @@ public class SquadraController {
 	@Autowired
 	private GestoreSquadraService gestoreSquadraService;
 	
+	@Autowired
+	private PartitaService partitaService;
+	
 	@GetMapping(value = "/teams/{idSquadra}")
 	public String getSquadra(@PathVariable("idSquadra")Long idSquadra, Model model){
+		model.addAttribute("partiteGiocate", this.partitaService.findBySquadraCasaOrSquadraFuoriCasa(idSquadra, idSquadra));
 		model.addAttribute("squadra", this.squadraService.findSquadraByIdSquadra(idSquadra));
 		model.addAttribute("giocatori", this.giocatoreService.findGiocatoriBySquadraIdSquadra(idSquadra));
 		return "squadra/squadra.html";

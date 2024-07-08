@@ -12,4 +12,6 @@ public interface PartitaRepository extends CrudRepository<Partita, Long> {
 	
 	public List<Partita> findByMarcatoriIdGiocatore(Long idGiocatore);
 	
+	public List<Partita> findBySquadraCasaIdSquadraOrSquadraFuoriCasaIdSquadra(Long idSquadraCasa, Long idSquadraFuoriCasa);
+	
 }

@@ -101,6 +101,46 @@
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col mt-3" th:if="${partiteGiocate!=null && !partiteGiocate.isEmpty()}">
+                    <div class="container text-center">
+                        <h2>Partite giocate dalla squadra:</h2>
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Giornata</th>
+                                    <th scope="col">Partita</th>
+                                    <th scope="col">Data e Ora</th>
+                                    <th scope="col">Campo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <th:block th:each="partita : ${partiteGiocate}">
+                                    <tr>
+                                        <td th:text="${partita.numeroGiornata}"></td>
+                                        <td>
+                                            <a th:href="@{'/matches/'+${partita.idPartita}}">
+                                                <span th:text="${partita.squadraCasa.nome}"></span>
+                                                <span class="gol" th:text="${partita.golSquadraCasa}"></span>
+                                                -
+                                                <span class="gol" th:text="${partita.golSquadraFuoriCasa}"></span>
+                                                <span th:text="${partita.squadraFuoriCasa.nome}"></span>
+                                            </a>
+                                        </td>
+                                        <td th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></td>
+                                        <td th:text="${partita.campo}"></td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col mt-3" th:unless="${partiteGiocate!=null && !partiteGiocate.isEmpty()}">
+                    <h4 class="text-center">La squadra non ha ancora giocato alcuna partita</h4>
+                </div>
+            </div>
+        </div>
     </section>
 
 
