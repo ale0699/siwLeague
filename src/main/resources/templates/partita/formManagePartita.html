@@ -67,149 +67,156 @@
             </div>
         </div>
     </header>
-    <section class="d-flex justify-content-center">
-        <div class="row">
-            <div class="col">
-                <div class="container text-center">
-                    <h2>Partite già registrate</h2>
-                    <table class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Giornata</th>
-                                <th scope="col">Partita</th>
-                                <th scope="col">Data e Ora</th>
-                                <th scope="col">Campo</th>
-                                <th scope="col">Azioni</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-group-divider">
-                            <th:block th:each="partita : ${partite}">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="container text-center">
+                        <h2>Partite già registrate</h2>
+                        <table class="table table-hover table-striped">
+                            <thead>
                                 <tr>
-                                    <td th:text="${partita.numeroGiornata}"></td>
-                                    <td>
-                                        <a th:href="@{'/matches/'+${partita.idPartita}}">
-                                            <span th:text="${partita.squadraCasa.nome}"></span>
-                                            <span class="gol" th:text="${partita.golSquadraCasa}"></span>
-                                            -
-                                            <span class="gol" th:text="${partita.golSquadraFuoriCasa}"></span>
-                                            <span th:text="${partita.squadraFuoriCasa.nome}"></span>
-                                        </a>
-                                    </td>
-                                    <td th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></td>
-                                    <td th:text="${partita.campo}"></td>
-                                    <td>
-                                        <a th:href="@{'/admin/matches/remove/'+${partita.idPartita}}">
-                                            <button type="button" class="btn btn-primary">Elimina Partita</button>
-                                        </a>
-                                    </td>
+                                    <th scope="col">Giornata</th>
+                                    <th scope="col">Partita</th>
+                                    <th scope="col">Data e Ora</th>
+                                    <th scope="col">Campo</th>
+                                    <th scope="col">Azioni</th>
                                 </tr>
-                            </th:block>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <th:block th:each="partita : ${partite}">
+                                    <tr>
+                                        <td th:text="${partita.numeroGiornata}"></td>
+                                        <td>
+                                            <a th:href="@{'/matches/'+${partita.idPartita}}">
+                                                <span th:text="${partita.squadraCasa.nome}"></span>
+                                                <span class="gol" th:text="${partita.golSquadraCasa}"></span>
+                                                -
+                                                <span class="gol" th:text="${partita.golSquadraFuoriCasa}"></span>
+                                                <span th:text="${partita.squadraFuoriCasa.nome}"></span>
+                                            </a>
+                                        </td>
+                                        <td th:text="${#temporals.format(partita.dataEOra, 'dd-MM-yyyy HH:mm')}"></td>
+                                        <td th:text="${partita.campo}"></td>
+                                        <td>
+                                            <a th:href="@{'/admin/matches/remove/'+${partita.idPartita}}">
+                                                <button type="button" class="btn btn-primary">Elimina Partita</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-            <div class="col">
-                <h2 class="text-center">Aggiungi partita</h2>
-                <div class="contianer-sm container-form d-flex justify-content-center align-items-center text-center">
-                    <form th:action="@{/admin/matches/add}" method="post" th:object="${partita}">
-                        <div class="row">
-                            <div class="col">
-                                <h2>Dettagli squadra casa</h2>
+                <div class="col">
+                    <h2 class="text-center">Aggiungi partita</h2>
+                    <div
+                        class="contianer-sm container-form d-flex justify-content-center align-items-center text-center">
+                        <form th:action="@{/admin/matches/add}" method="post" th:object="${partita}">
+                            <div class="row">
+                                <div class="col">
+                                    <h2>Dettagli squadra casa</h2>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="select-squadra">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect" th:field="*{squadraCasa}"
-                                            aria-label="Floating label select example">
-                                            <option value="" selected>Squadra Casa</option>
-                                            <div class="options" th:each="squadra : ${squadre}">
-                                                <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
-                                            </div>
-                                        </select>
-                                        <label for="floatingSelect">Squadra Casa</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="select-squadra">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="floatingSelect" th:field="*{squadraCasa}"
+                                                aria-label="Floating label select example">
+                                                <option value="" selected>Squadra Casa</option>
+                                                <div class="options" th:each="squadra : ${squadre}">
+                                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}">
+                                                    </option>
+                                                </div>
+                                            </select>
+                                            <label for="floatingSelect">Squadra Casa</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3 gol-effettuati">
+                                        <input type="number" class="form-control" id="floatingInput"
+                                            th:field="*{golSquadraCasa}" placeholder="Gol squadra Casa" required>
+                                        <label for="floatingInput">Gol squadra Casa</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 gol-effettuati">
-                                    <input type="number" class="form-control" id="floatingInput" th:field="*{golSquadraCasa}"
-                                        placeholder="Gol squadra Casa" required>
-                                    <label for="floatingInput">Gol squadra Casa</label>
+                            <div class="row">
+                                <div class="col">
+                                    <h2>Dettagli squadra fuori casa</h2>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <h2>Dettagli squadra fuori casa</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="select-squadra">
-                                    <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect" th:field="*{squadraFuoriCasa}"
-                                            aria-label="Floating label select example">
-                                            <option value="" selected>Squadra Fuori Casa</option>
-                                            <div class="options" th:each="squadra : ${squadre}">
-                                                <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}"></option>
-                                            </div>
-                                        </select>
-                                        <label for="floatingSelect">Squadra Fuori Casa</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="select-squadra">
+                                        <div class="form-floating">
+                                            <select class="form-select" id="floatingSelect"
+                                                th:field="*{squadraFuoriCasa}"
+                                                aria-label="Floating label select example">
+                                                <option value="" selected>Squadra Fuori Casa</option>
+                                                <div class="options" th:each="squadra : ${squadre}">
+                                                    <option th:value="${squadra.idSquadra}" th:text="${squadra.nome}">
+                                                    </option>
+                                                </div>
+                                            </select>
+                                            <label for="floatingSelect">Squadra Fuori Casa</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3 gol-effettuati">
+                                        <input type="number" class="form-control" id="floatingInput"
+                                            th:field="*{golSquadraFuoriCasa}" placeholder="Gol squadra Fuori Casa"
+                                            required>
+                                        <label for="floatingInput">Gol squadra Fuori Casa</label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 gol-effettuati">
-                                    <input type="number" class="form-control" id="floatingInput"
-                                        th:field="*{golSquadraFuoriCasa}" placeholder="Gol squadra Fuori Casa" required>
-                                    <label for="floatingInput">Gol squadra Fuori Casa</label>
+                            <div class="row">
+                                <div class="col">
+                                    <h2>Ulteriori dettagli</h2>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <h2>Ulteriori dettagli</h2>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <div class="form-floating mb-3 dataeora">
-                                    <input type="datetime-local" class="form-control" id="floatingInput" th:field="*{dataEOra}"
-                                        placeholder="Data e Ora" required>
-                                    <label for="floatingInput">Data e Ora</label>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-floating mb-3 dataeora">
+                                        <input type="datetime-local" class="form-control" id="floatingInput"
+                                            th:field="*{dataEOra}" placeholder="Data e Ora" required>
+                                        <label for="floatingInput">Data e Ora</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3 campo">
+                                        <input type="text" class="form-control" id="floatingInput" th:field="*{campo}"
+                                            placeholder="Campo" required>
+                                        <label for="floatingInput">Campo</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-floating mb-3 giornata">
+                                        <input type="number" class="form-control" id="floatingInput"
+                                            th:field="*{numeroGiornata}" placeholder="Numero Giornata" required>
+                                        <label for="floatingInput">Numero Giornata</label>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 campo">
-                                    <input type="text" class="form-control" id="floatingInput" th:field="*{campo}"
-                                        placeholder="Campo" required>
-                                    <label for="floatingInput">Campo</label>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <div class="button">
+                                        <button type="submit" class="btn btn-primary">Aggiungi Marcatori</button>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="form-floating mb-3 giornata">
-                                    <input type="number" class="form-control" id="floatingInput" th:field="*{numeroGiornata}"
-                                        placeholder="Numero Giornata" required>
-                                    <label for="floatingInput">Numero Giornata</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
-                            <div class="col">
-                                <div class="button">
-                                    <button type="submit" class="btn btn-primary">Aggiungi Marcatori</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row text-center mt-5">
-            <a th:href="@{'/tournaments/' + ${torneo.idTorneo}}"><button type="button"
-                    class="btn btn-primary">Termina attività</button></a>
+            <div class="row text-center mt-5">
+                <a th:href="@{'/tournaments/' + ${torneo.idTorneo}}"><button type="button"
+                        class="btn btn-primary">Termina attività</button></a>
+            </div>
         </div>
     </section>
 

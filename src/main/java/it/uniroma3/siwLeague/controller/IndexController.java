@@ -36,7 +36,6 @@ public class IndexController {
 	@GetMapping(value = "/dashboard")
 	public String getDashboardPage(Model model) {
 		
-		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		
 		if(principal instanceof UserDetails) {
