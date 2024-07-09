@@ -109,6 +109,15 @@ public class TorneoController {
 		return "redirect:/admin/dashboard";
 	}
 	
+	@GetMapping(value = "/admin/tournaments/delete/{idTorneo}")
+	public String getTorneoElimina(@PathVariable("idTorneo")Long idTorneo) throws IOException {
+		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);
+		this.torneoService.remove(torneo);
+        Path fileNameAndPath = Paths.get("src/main/resources/static/"+torneo.getLogo());
+        Files.delete(fileNameAndPath);
+		return "redirect:/admin/dashboard";
+	}
+	
 	@GetMapping(value = "/admin/tournaments/{idTorneo}/registrationDeadline")
 	public String getTorneoTerminaIscrizioni(@PathVariable("idTorneo")Long idTorneo) {
 		Torneo torneo = this.torneoService.findTorneoByIdTorneo(idTorneo);

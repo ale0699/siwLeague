@@ -33,4 +33,9 @@ public class TorneoService {
 		
 		this.torneoRepository.save(torneo);
 	}
+	
+	public void remove(Torneo torneo) {
+		
+		this.torneoRepository.delete(torneo);
+	}
 }

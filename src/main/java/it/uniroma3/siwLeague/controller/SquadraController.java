@@ -142,6 +142,6 @@ public class SquadraController {
 		this.squadraService.remove(squadra);
         Path fileNameAndPath = Paths.get("src/main/resources/static/"+squadra.getLogo());
         Files.delete(fileNameAndPath);
-		return "redirect:/manager/dashboard";
+		return "redirect:/dashboard";
 	}
 }

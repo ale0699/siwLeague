@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,11 +32,11 @@ public class Torneo {
 	private boolean iscrizioneInCorso;
 	private boolean svolgimentoInCorso;
 	
-	@OneToMany(mappedBy = "torneo")
+	@OneToMany(mappedBy = "torneo", cascade = CascadeType.REMOVE)
 	@OrderBy("punti DESC")
 	private List<Squadra> squadreIscritte;
 	
-	@OneToMany(mappedBy = "torneo")
+	@OneToMany(mappedBy = "torneo", cascade = CascadeType.REMOVE)
 	private List<Partita> partiteTorneo;
 
 	public Long getIdTorneo() {

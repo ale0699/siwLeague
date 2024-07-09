@@ -74,6 +74,13 @@ public class IndexController {
 		return "admin/dashboard.html";
 	}
 	
+	@GetMapping(value = "/admin/dashboard/teams/edit")
+	public String getAdminTeamsEdit(Model model) {
+		
+		model.addAttribute("squadre", this.squadraService.findAllSquadre());
+		return "admin/gestisciSquadreDashboard.html";
+	}
+	
 	@GetMapping(value = "/contacts")
 	public String getContatti() {
 		

@@ -60,6 +60,10 @@
             <div class="col text-center">
                 <div class="nome-torneo">
                     <h1 th:text="'Modifica Torneo ' + ${torneo.nome}"></h1>
+                </div>
+				<a th:href="@{'/admin/tournaments/delete/'+${torneo.idTorneo}}">
+				    <button type="button" class="btn btn-primary">Elimina Torneo</button>
+				</a>
             </div>
         </div>
     </header>

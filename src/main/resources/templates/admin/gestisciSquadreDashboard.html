@@ -76,8 +76,8 @@
                                 Aggiungi Torneo
                             </a>
                         </li>
-                        <li class="li-nav">
-						    <a href="/admin/dashboard/teams/edit" class="full-link">
+						<li class="li-nav">
+						    <a href="/admin/teams/edit" class="full-link">
 								Gestisci Squadre
 						    </a>
 						</li>
@@ -85,31 +85,19 @@
                 </div>
             </div>
             <div class="row pt-2">
-                <h2 class="text-center">Gestione Tornei</h2>
+                <h2 class="text-center">Gestione Squadre</h2>
             </div>
             <div class="row pt-5 pb-5 container d-flex justify-content-around row-cols-auto">
-                <div class="col mt-2 text-center" th:each="torneo : ${tornei}">
+                <div class="col mt-2 text-center" th:each="squadra : ${squadre}">
                     <div class="card object-card mb-2 p-2 h-100" style="width: 18rem;">
                         <div class="card-logo-container">
-                            <img th:src="@{${torneo.logo}}" class="card-img-top img-logo" alt="logo">
+                            <img th:src="@{${squadra.logo}}" class="card-img-top img-logo" alt="logo">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title" th:text="${torneo.nome}"></h5>
-                            <div th:if="${torneo.iscrizioneInCorso}">
-                                <p class="card-text">Fase torneo: Iscrizioni in corso</p>
-                                <a th:href="@{'/admin/tournaments/'+${torneo.idTorneo}+'/registrationDeadline'}" class="btn btn-primary mt-2">Termina iscrizioni del torneo e avvia la competizione</a>
-                            </div>
-                            <div th:if="${!torneo.iscrizioneInCorso && torneo.svolgimentoInCorso}">
-                                <p class="card-text">Fase torneo: In corso di svolgimento</p>
-                                <a th:href="@{'/admin/matches/edit/tournaments/'+${torneo.idTorneo}}" class="btn btn-primary mt-2">Gestisci Partite</a>
-                                <a th:href="@{'/admin/tournaments/'+${torneo.idTorneo}+'/competitionDeadline'}" class="btn btn-primary mt-2">Termina lo svolgimento della competizione</a>
-                            </div>
-                            <div th:if="${!torneo.iscrizioneInCorso && !torneo.svolgimentoInCorso}">
-                                <p class="card-text">Fase torneo: Terminato</p>
-                            </div>
-                            <a th:href="@{'/admin/tournaments/edit/'+${torneo.idTorneo}}" class="btn btn-primary mt-2"> Modifica
-                                torneo</a>
-                        </div>
+                            <h5 class="card-title" th:text="${squadra.nome}"></h5>
+                            <a th:href="@{'/manager/teams/edit/'+${squadra.idSquadra}}" th:if="${squadra.torneo.iscrizioneInCorso}" class="btn btn-primary mt-2">Modifica Squadra</a>
+							<button th:if="${!squadra.torneo.iscrizioneInCorso}" type="button" class="btn btn-primary mt-2" disabled>Squadra non modificabile, il torneo non è in fase di iscrizione</button>
+						</div>
                     </div>
                 </div>
             </div>
