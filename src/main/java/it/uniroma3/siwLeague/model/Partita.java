@@ -27,7 +27,6 @@ public class Partita {
 	private int golSquadraCasa;
 	private int golSquadraFuoriCasa;
 	
-	//serve?
 	@ManyToOne
 	private Torneo torneo;
 	
